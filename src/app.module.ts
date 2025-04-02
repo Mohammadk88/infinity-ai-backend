@@ -13,6 +13,8 @@ import { ContentSchedulerModule } from './content-scheduler/content-scheduler.mo
 
 import { AIGeneratorModule } from './ai-generator/ai-generator.module';
 import { WebContentModule } from './web-content/web-content.module';
+import { SubscriptionPlanModule } from './subscription-plan/subscription-plan.module';
+import { SubscriptionModule } from './subscription/subscription.module';
 @Module({
   imports: [
     AuthModule,
@@ -26,6 +28,8 @@ import { WebContentModule } from './web-content/web-content.module';
     ContentScheduleModule,
     AIGeneratorModule,
     WebContentModule,
+    SubscriptionPlanModule,
+    SubscriptionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
