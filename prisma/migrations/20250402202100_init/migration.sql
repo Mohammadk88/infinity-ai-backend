@@ -320,6 +320,8 @@ CREATE TABLE "SubscriptionPlan" (
     "priceMonthly" DOUBLE PRECISION NOT NULL,
     "priceYearly" DOUBLE PRECISION NOT NULL,
     "features" JSONB NOT NULL DEFAULT '{}',
+    "duration" INTEGER NOT NULL,
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -329,11 +331,16 @@ CREATE TABLE "SubscriptionPlan" (
 -- CreateTable
 CREATE TABLE "Subscription" (
     "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
     "clientId" TEXT NOT NULL,
     "planId" TEXT NOT NULL,
     "status" "SubscriptionStatus" NOT NULL DEFAULT 'ACTIVE',
     "startedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "expiresAt" TIMESTAMP(3) NOT NULL,
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "canceledAt" TIMESTAMP(3),
 
     CONSTRAINT "Subscription_pkey" PRIMARY KEY ("id")
 );
@@ -507,6 +514,9 @@ ALTER TABLE "WebContentTag" ADD CONSTRAINT "WebContentTag_webContentId_fkey" FOR
 
 -- AddForeignKey
 ALTER TABLE "WebContentTag" ADD CONSTRAINT "WebContentTag_tagId_fkey" FOREIGN KEY ("tagId") REFERENCES "Tag"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Subscription" ADD CONSTRAINT "Subscription_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Subscription" ADD CONSTRAINT "Subscription_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "Client"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
