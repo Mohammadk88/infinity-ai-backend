@@ -8,5 +8,6 @@ import { AIGeneratorModule } from 'src/ai-generator/ai-generator.module';
   imports: [AIGeneratorModule],
   controllers: [SocialPostsController],
   providers: [SocialPostsService, PrismaService],
+  exports: [SocialPostsService],
 })
 export class SocialPostsModule {}

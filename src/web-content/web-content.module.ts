@@ -8,5 +8,6 @@ import { PrismaService } from '../prisma/prisma.service';
 @Module({
   controllers: [WebContentController],
   providers: [WebContentService, PrismaService],
+  exports: [WebContentService],
 })
 export class WebContentModule {}

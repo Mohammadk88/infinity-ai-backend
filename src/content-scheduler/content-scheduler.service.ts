@@ -1,10 +1,18 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { Cron } from '@nestjs/schedule';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { SocialPostsService } from 'src/social-post/social-post.service';
+import { WebContentService } from 'src/web-content/web-content.service';
 
 @Injectable()
 export class ContentSchedulerService {
-  constructor(private prisma: PrismaService) {}
+  private readonly logger = new Logger(ContentSchedulerService.name);
+
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly socialPostService: SocialPostsService,
+    private readonly webContentService: WebContentService,
+  ) {}
 
   @Cron('* * * * *') // كل دقيقة
   async checkAndPublishScheduledContent() {
@@ -69,5 +77,73 @@ export class ContentSchedulerService {
     });
 
     console.log(`🌐 تم نشر WebContent بنجاح: ${webContentId}`);
+  }
+  async checkAndPublish() {
+    const now = new Date();
+
+    const schedules = await this.prisma.contentSchedule.findMany({
+      where: {
+        status: 'pending',
+        OR: [{ publishAt: { lte: now } }, { publishAt: { equals: now } }],
+      },
+    });
+
+    this.logger.log(`Found \${schedules.length} schedules to process`);
+
+    for (const schedule of schedules) {
+      if (schedule.socialPostId) {
+        await this.socialPostService.publishSocialPost(
+          schedule.id,
+          schedule.socialPostId,
+        );
+      } else if (schedule.webContentId) {
+        await this.webContentService.publishWebContent(
+          schedule.id,
+          schedule.webContentId,
+        );
+      }
+
+      await this.prisma.contentSchedule.update({
+        where: { id: schedule.id },
+        data: { status: 'published' },
+      });
+
+      this.logger.log(`Published schedule: \${schedule.id}`);
+    }
+
+    return { processed: schedules.length };
+  }
+
+  async manualPublish(scheduleId: string) {
+    const schedule = await this.prisma.contentSchedule.findUnique({
+      where: { id: scheduleId },
+    });
+
+    if (!schedule) throw new Error('Schedule not found');
+
+    if (schedule.socialPostId) {
+      await this.socialPostService.publishSocialPost(
+        schedule.id,
+        schedule.socialPostId,
+      );
+    } else if (schedule.webContentId) {
+      await this.webContentService.publishWebContent(
+        schedule.id,
+        schedule.webContentId,
+      );
+    }
+
+    await this.prisma.contentSchedule.update({
+      where: { id: scheduleId },
+      data: { status: 'published' },
+    });
+
+    return { success: true };
+  }
+
+  async getAllSchedules() {
+    return this.prisma.contentSchedule.findMany({
+      orderBy: { publishAt: 'asc' },
+    });
   }
 }

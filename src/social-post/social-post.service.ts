@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateSocialPostDto } from './dto/create-social-post.dto';
 import { UpdateSocialPostDto } from './dto/update-social-post.dto';
@@ -8,6 +8,7 @@ import { GenerateSocialPostDto } from './dto/generate-social-post.dto';
 
 @Injectable()
 export class SocialPostsService {
+  private readonly logger = new Logger(SocialPostsService.name);
   constructor(
     private prisma: PrismaService,
     private aiGeneratorService: AIGeneratorService,
@@ -137,5 +138,21 @@ export class SocialPostsService {
       prompt,
       content,
     };
+  }
+  async publishSocialPost(scheduleId: string, postId: string) {
+    await this.prisma.socialPost.update({
+      where: { id: postId },
+      data: {
+        status: 'PUBLISHED',
+        publishedAt: new Date(),
+      },
+    });
+
+    await this.prisma.contentSchedule.update({
+      where: { id: scheduleId },
+      data: { status: 'published' },
+    });
+
+    this.logger.log(`✅ تم نشر SocialPost بنجاح: ${postId}`);
   }
 }

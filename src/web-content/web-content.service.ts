@@ -1,10 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateWebContentDto } from './dto/create-web-content.dto';
 import { UpdateWebContentDto } from './dto/update-web-content.dto';
 
 @Injectable()
 export class WebContentService {
+  private readonly logger = new Logger(WebContentService.name);
   constructor(private prisma: PrismaService) {}
 
   async create(dto: CreateWebContentDto, clientId: string, userId: string) {
@@ -50,5 +51,22 @@ export class WebContentService {
         deletedAt: new Date(),
       },
     });
+  }
+
+  async publishWebContent(scheduleId: string, webContentId: string) {
+    await this.prisma.webContent.update({
+      where: { id: webContentId },
+      data: {
+        status: 'PUBLISHED',
+        publishedAt: new Date(),
+      },
+    });
+
+    await this.prisma.contentSchedule.update({
+      where: { id: scheduleId },
+      data: { status: 'published' },
+    });
+
+    this.logger.log(`🌐 تم نشر WebContent بنجاح: ${webContentId}`);
   }
 }
