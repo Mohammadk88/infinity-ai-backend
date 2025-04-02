@@ -176,7 +176,7 @@ CREATE TABLE "CampaignPerformance" (
 CREATE TABLE "AIProviderConfig" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
-    "baseUrl" TEXT NOT NULL,
+    "baseUrl" TEXT,
     "provider" TEXT NOT NULL,
     "apiKey" TEXT NOT NULL,
     "model" TEXT,
@@ -232,13 +232,18 @@ CREATE TABLE "ContentSchedule" (
 CREATE TABLE "WebContent" (
     "id" TEXT NOT NULL,
     "clientId" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
     "content" TEXT NOT NULL,
+    "mediaUrl" TEXT,
     "type" "WebContentType" NOT NULL DEFAULT 'BLOG',
     "status" "WebStatus" NOT NULL DEFAULT 'DRAFT',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "isAIGenerated" BOOLEAN NOT NULL DEFAULT false,
+    "publishedAt" TIMESTAMP(3),
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "WebContent_pkey" PRIMARY KEY ("id")
 );
@@ -472,6 +477,9 @@ ALTER TABLE "ContentSchedule" ADD CONSTRAINT "ContentSchedule_webContentId_fkey"
 
 -- AddForeignKey
 ALTER TABLE "WebContent" ADD CONSTRAINT "WebContent_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "Client"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "WebContent" ADD CONSTRAINT "WebContent_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "FileUpload" ADD CONSTRAINT "FileUpload_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

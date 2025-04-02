@@ -82,6 +82,7 @@ model User {
   automationRules AutomationRule[]
   aiJobs       AIJobQueue[]
   socialAccounts SocialAccount[]
+  webContents  WebContent[]
 }
 
 model Client {
@@ -284,14 +285,22 @@ model ContentSchedule {
 model WebContent {
   id         String   @id @default(uuid())
   clientId   String
+  userId         String
+
   title      String
   slug       String   @unique
   content    String
+  mediaUrl       String?
   type       WebContentType @default(BLOG)
   status     WebStatus @default(DRAFT)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
+  isAIGenerated Boolean  @default(false)
+  publishedAt DateTime?
+  deletedAt  DateTime?
+
   client     Client   @relation(fields: [clientId], references: [id])
+  user     User   @relation(fields: [userId], references: [id])
   schedule   ContentSchedule?
   webContentTags WebContentTag[]
   webContentCategories WebContentCategory[]

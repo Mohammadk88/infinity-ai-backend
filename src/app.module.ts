@@ -12,6 +12,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { ContentSchedulerModule } from './content-scheduler/content-scheduler.module';
 
 import { AIGeneratorModule } from './ai-generator/ai-generator.module';
+import { WebContentModule } from './web-content/web-content.module';
 @Module({
   imports: [
     AuthModule,
@@ -24,6 +25,7 @@ import { AIGeneratorModule } from './ai-generator/ai-generator.module';
     TagsModule,
     ContentScheduleModule,
     AIGeneratorModule,
+    WebContentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
