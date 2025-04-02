@@ -140,12 +140,24 @@ CREATE TABLE "SocialPost" (
 CREATE TABLE "MarketingCampaign" (
     "id" TEXT NOT NULL,
     "clientId" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "objective" TEXT,
-    "budget" DOUBLE PRECISION,
-    "startDate" TIMESTAMP(3),
-    "endDate" TIMESTAMP(3),
+    "userId" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "description" TEXT,
+    "startDate" TIMESTAMP(3) NOT NULL,
+    "endDate" TIMESTAMP(3) NOT NULL,
+    "budget" DOUBLE PRECISION NOT NULL,
+    "objective" TEXT NOT NULL,
+    "socialAccountId" TEXT NOT NULL,
+    "status" TEXT NOT NULL DEFAULT 'active',
+    "targetAudience" TEXT,
+    "platform" "SocialPlatform" NOT NULL,
+    "content" TEXT,
+    "mediaUrl" TEXT,
+    "performanceMetrics" JSONB,
+    "isAIGenerated" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "deletedAt" TIMESTAMP(3),
 
     CONSTRAINT "MarketingCampaign_pkey" PRIMARY KEY ("id")
 );
@@ -459,7 +471,13 @@ ALTER TABLE "SocialAccount" ADD CONSTRAINT "SocialAccount_clientId_fkey" FOREIGN
 ALTER TABLE "SocialPost" ADD CONSTRAINT "SocialPost_socialAccountId_fkey" FOREIGN KEY ("socialAccountId") REFERENCES "SocialAccount"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "MarketingCampaign" ADD CONSTRAINT "MarketingCampaign_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "MarketingCampaign" ADD CONSTRAINT "MarketingCampaign_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "Client"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "MarketingCampaign" ADD CONSTRAINT "MarketingCampaign_socialAccountId_fkey" FOREIGN KEY ("socialAccountId") REFERENCES "SocialAccount"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CampaignPost" ADD CONSTRAINT "CampaignPost_campaignId_fkey" FOREIGN KEY ("campaignId") REFERENCES "MarketingCampaign"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

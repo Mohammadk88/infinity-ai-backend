@@ -84,6 +84,7 @@ model User {
   socialAccounts SocialAccount[]
   webContents  WebContent[]
   subscriptions Subscription[]
+  marketingCampaigns MarketingCampaign[]
 }
 
 model Client {
@@ -173,6 +174,7 @@ model SocialAccount {
   user        User     @relation(fields: [userId], references: [id])
   client      Client   @relation(fields: [clientId], references: [id])
   posts       SocialPost[]
+  marketingCampaigns MarketingCampaign[]
 }
 
 model SocialPost {
@@ -197,18 +199,34 @@ model SocialPost {
 }
 
 model MarketingCampaign {
-  id          String   @id @default(uuid())
-  clientId    String
-  title       String
-  objective   String?
-  budget      Float?
-  startDate   DateTime?
-  endDate     DateTime?
-  createdAt   DateTime @default(now())
+  id              String   @id @default(uuid())
+  clientId        String
+  userId          String
+  name            String
+  description     String?
+  startDate       DateTime
+  endDate         DateTime
+  budget          Float
+  objective       String
+  socialAccountId String
+  status          String   @default("active") // active | completed | canceled
+  targetAudience  String?
+  platform        SocialPlatform
+  content         String?
+  mediaUrl        String?
+  performanceMetrics Json?
+  isAIGenerated   Boolean  @default(false)
 
-  client      Client   @relation(fields: [clientId], references: [id])
-  posts       CampaignPost[]
-  performance CampaignPerformance[]
+  user            User            @relation(fields: [userId], references: [id])
+  client          Client          @relation(fields: [clientId], references: [id])
+  socialAccount   SocialAccount   @relation(fields: [socialAccountId], references: [id])
+  posts           CampaignPost[]
+  performance     CampaignPerformance[]
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  deletedAt       DateTime?
+
 }
 
 model CampaignPost {

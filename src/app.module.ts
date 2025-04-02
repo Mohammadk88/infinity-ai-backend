@@ -15,6 +15,9 @@ import { AIGeneratorModule } from './ai-generator/ai-generator.module';
 import { WebContentModule } from './web-content/web-content.module';
 import { SubscriptionPlanModule } from './subscription-plan/subscription-plan.module';
 import { SubscriptionModule } from './subscription/subscription.module';
+import { MarketingCampaignModule } from './marketing-campaign/marketing-campaign.module';
+import { CampaignPostModule } from './campaign-post/campaign-post.module';
+import { CampaignPerformanceModule } from './campaign-performance/campaign-performance.module';
 @Module({
   imports: [
     AuthModule,
@@ -30,6 +33,9 @@ import { SubscriptionModule } from './subscription/subscription.module';
     WebContentModule,
     SubscriptionPlanModule,
     SubscriptionModule,
+    MarketingCampaignModule,
+    CampaignPostModule,
+    CampaignPerformanceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
