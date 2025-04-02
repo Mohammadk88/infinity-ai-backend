@@ -1,0 +1,438 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+enum UserRole {
+  ADMIN
+  CLIENT
+  TEAM_MEMBER
+}
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELED
+}
+
+enum PostStatus {
+  DRAFT
+  SCHEDULED
+  PUBLISHED
+  FAILED
+}
+
+enum SocialPlatform {
+  FACEBOOK
+  INSTAGRAM
+  TWITTER
+  LINKEDIN
+  TIKTOK
+  YOUTUBE
+}
+
+enum WebContentType {
+  BLOG
+  LANDING_PAGE
+  PRODUCT_PAGE
+}
+
+enum WebStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+
+model User {
+  id          String    @id @default(uuid())
+  name        String
+  email       String    @unique
+  emailVerified DateTime?
+  phone       String?   @unique
+  phoneVerified DateTime?
+  image       String?
+  sword    String?   // كلمة السر مشفرة
+  password    String
+  role        UserRole  @default(CLIENT) // ADMIN | CLIENT | TEAM_MEMBER
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  teams       TeamMember[]
+  clients     Client[] // إذا كان مدير حسابات
+  tasks       Task[]   // مهام مخصصة إله
+  notifications Notification[]
+  aiConfigs AIProviderConfig[]
+  fileUploads FileUpload[]
+  activityLogs ActivityLog[]
+  sessions     Session[]
+  invoices     Invoice[]
+  automationRules AutomationRule[]
+  aiJobs       AIJobQueue[]
+  socialAccounts SocialAccount[]
+}
+
+model Client {
+  id         String    @id @default(uuid())
+  name        String
+  email       String    @unique
+  phone       String?   @unique
+  image       String?
+  userId     String
+  company    String?
+  industry   String?
+  createdAt  DateTime  @default(now())
+
+  currentSubscriptionId String? @unique
+  currentSubscription   Subscription? @relation("ActiveSubscription", fields: [currentSubscriptionId], references: [id])
+
+  // 💳 للربط مع بوابة الدفع (Stripe أو غيرها)
+  stripeCustomerId      String? 
+
+  // 🔁 العلاقات الحالية
+  subscriptions         Subscription[] @relation("ClientSubscriptions")
+  user       User      @relation(fields: [userId], references: [id])
+  socialAccounts SocialAccount[]
+  marketingCampaigns MarketingCampaign[]
+  webContents WebContent[]
+  aiJobs     AIJobQueue[]
+}
+
+model Team {
+  id          String    @id @default(uuid())
+  name        String
+  createdAt   DateTime  @default(now())
+  members     TeamMember[]
+  tasks       Task[]
+}
+
+model Task {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  status      TaskStatus @default(PENDING)
+  assignedTo  String?
+  teamId      String?
+  dueDate     DateTime?
+  createdAt   DateTime @default(now())
+
+  user        User?    @relation(fields: [assignedTo], references: [id])
+  team        Team?    @relation(fields: [teamId], references: [id])
+}
+
+model Notification {
+  id         String   @id @default(uuid())
+  userId     String
+  title      String
+  body       String?
+  read       Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model TeamMember {
+  id       String   @id @default(uuid())
+  teamId   String
+  userId   String
+
+  team     Team     @relation(fields: [teamId], references: [id])
+  user     User     @relation(fields: [userId], references: [id])
+}
+
+model SocialAccount {
+  id          String   @id @default(uuid())
+  clientId    String
+  userId    String
+  platform    SocialPlatform
+  accountName String
+  pageId      String
+  accessToken String
+  refreshToken String?
+  username    String?
+  status      String   @default("active")
+  tokenExpiresAt DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+  
+  user        User     @relation(fields: [userId], references: [id])
+  client      Client   @relation(fields: [clientId], references: [id])
+  posts       SocialPost[]
+}
+
+model SocialPost {
+  id              String   @id @default(uuid())
+  socialAccountId String
+  clientId        String
+  userId          String
+
+  content         String
+  mediaUrl        String?
+  scheduledAt     DateTime?
+  publishedAt     DateTime?
+  status          PostStatus @default(DRAFT)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  isAIGenerated   Boolean  @default(false)
+
+  socialAccount   SocialAccount @relation(fields: [socialAccountId], references: [id])
+  postTags       PostTag[]
+  postCategories PostCategory[]
+  schedule   ContentSchedule?
+}
+
+model MarketingCampaign {
+  id          String   @id @default(uuid())
+  clientId    String
+  title       String
+  objective   String?
+  budget      Float?
+  startDate   DateTime?
+  endDate     DateTime?
+  createdAt   DateTime @default(now())
+
+  client      Client   @relation(fields: [clientId], references: [id])
+  posts       CampaignPost[]
+  performance CampaignPerformance[]
+}
+
+model CampaignPost {
+  id          String   @id @default(uuid())
+  campaignId  String
+  content     String
+  mediaUrl    String?
+  createdAt   DateTime @default(now())
+
+  campaign    MarketingCampaign @relation(fields: [campaignId], references: [id])
+}
+
+model CampaignPerformance {
+  id           String   @id @default(uuid())
+  campaignId   String
+  metric       String
+  value        Float
+  recordedAt   DateTime @default(now())
+
+  campaign     MarketingCampaign @relation(fields: [campaignId], references: [id])
+}
+
+model AIProviderConfig {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  baseUrl     String?
+  provider    String   // "openai", "gemini", ...
+  apiKey      String   // مشفّر أو محفوظ بأمان
+  model       String?  // "gpt-4", "claude-2"
+  isActive    Boolean  @default(false)
+  isDeleted   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Session {
+  id         String   @id @default(uuid())
+  userId     String
+  token      String   @unique
+  device     String?
+  ipAddress  String?
+  createdAt  DateTime @default(now())
+  expiresAt  DateTime
+  user       User     @relation(fields: [userId], references: [id])
+  @@index([userId])
+}
+
+model ActivityLog {
+  id         String   @id @default(uuid())
+  userId     String
+  action     String
+  context    String?
+  meta       Json?
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model ContentSchedule {
+  id             String   @id @default(uuid())
+  socialPostId   String?  @unique
+  webContentId   String?  @unique
+  isAIGenerated Boolean     @default(false)
+  publishAt      DateTime
+  repeat         Boolean  @default(false)
+  frequency      String?
+  status        String      @default("pending") // pending | published | failed
+  createdAt      DateTime @default(now())
+  socialPost     SocialPost?   @relation(fields: [socialPostId], references: [id])
+  webContent     WebContent?   @relation(fields: [webContentId], references: [id])
+}
+
+model WebContent {
+  id         String   @id @default(uuid())
+  clientId   String
+  title      String
+  slug       String   @unique
+  content    String
+  type       WebContentType @default(BLOG)
+  status     WebStatus @default(DRAFT)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  client     Client   @relation(fields: [clientId], references: [id])
+  schedule   ContentSchedule?
+  webContentTags WebContentTag[]
+  webContentCategories WebContentCategory[]
+}
+
+model FileUpload {
+  id         String   @id @default(uuid())
+  userId     String
+  name       String
+  url        String
+  type       String
+  size       Int
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model Category {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  description String?
+  createdAt  DateTime @default(now())
+  postCategories PostCategory[]
+  webContentCategories WebContentCategory[]
+}
+
+model Tag {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  createdAt  DateTime @default(now())
+  postTags PostTag[]
+  webContentTags WebContentTag[]
+}
+
+model PostCategory {
+  postId     String
+  categoryId String
+  post     SocialPost   @relation(fields: [postId], references: [id])
+  category Category     @relation(fields: [categoryId], references: [id])
+  @@id([postId, categoryId])
+}
+
+model WebContentCategory {
+  webContentId String
+  categoryId   String
+  webContent WebContent @relation(fields: [webContentId], references: [id])
+  category   Category   @relation(fields: [categoryId], references: [id])
+  @@id([webContentId, categoryId])
+}
+
+model PostTag {
+  postId String
+  tagId  String
+  post SocialPost @relation(fields: [postId], references: [id])
+  tag  Tag        @relation(fields: [tagId], references: [id])
+  @@id([postId, tagId])
+}
+
+model WebContentTag {
+  webContentId String
+  tagId        String
+  webContent WebContent @relation(fields: [webContentId], references: [id])
+  tag        Tag        @relation(fields: [tagId], references: [id])
+  @@id([webContentId, tagId])
+}
+
+model SubscriptionPlan {
+  id           String   @id @default(uuid())
+  name         String
+  description  String?
+  priceMonthly Float
+  priceYearly  Float
+  features     Json     @default("{}")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  subscriptions Subscription[]
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  EXPIRED
+  PENDING
+  CANCELED
+}
+
+model Subscription {
+  id             String               @id @default(uuid())
+  clientId       String
+  planId         String
+  status         SubscriptionStatus  @default(ACTIVE)
+  startedAt      DateTime            @default(now())
+  expiresAt      DateTime
+
+  client         Client              @relation("ClientSubscriptions", fields: [clientId], references: [id])
+  activeForClient Client?            @relation("ActiveSubscription")
+  plan           SubscriptionPlan    @relation(fields: [planId], references: [id])
+  invoices       Invoice[]
+}
+
+model AIJobQueue {
+  id           String   @id @default(cuid())
+  type         String
+  status       String   @default("pending")
+  payload      Json
+  scheduledAt  DateTime?
+  startedAt    DateTime?
+  completedAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  userId       String?
+  clientId     String?
+
+  user         User?     @relation(fields: [userId], references: [id])
+  client       Client?   @relation(fields: [clientId], references: [id])
+}
+
+
+model AutomationRule {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String   // اسم القاعدة (مثلاً: "نشر تلقائي عند وصول تعليق")
+  trigger     String   // مثال: "new_comment", "post_scheduled", "campaign_created"
+  condition   Json     // شروط إضافية (مثلاً: من حساب معين، من صفحة معينة...)
+  action      Json     // الإجراء الذي سيتم (نشر، توليد رد، إرسال بريد...)
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Invoice {
+  id             String   @id @default(cuid())
+  userId         String
+  subscriptionId String?
+  amount         Float
+  currency       String   @default("USD")
+  status         String   @default("unpaid") // "unpaid" | "paid" | "failed"
+  issuedAt       DateTime @default(now())
+  paidAt         DateTime?
+
+  user           User     @relation(fields: [userId], references: [id])
+  subscription   Subscription? @relation(fields: [subscriptionId], references: [id])
+}
+

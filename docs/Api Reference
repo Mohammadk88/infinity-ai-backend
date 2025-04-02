@@ -1,0 +1,100 @@
+# 📘 API Documentation - Clients & Auth Module
+
+## ✅ Auth Endpoints
+
+### POST `/api/auth/register`
+- **Description**: Register a new user
+- **Body**:
+```json
+{
+  "name": "string",
+  "email": "string",
+  "password": "string"
+}
+```
+- **Response**:
+```json
+{
+  "token": "jwt_token",
+  "user": {
+    "id": "uuid",
+    "name": "string",
+    "email": "string",
+    ...
+  }
+}
+```
+
+### POST `/api/auth/login`
+- **Description**: Login existing user
+- **Body**:
+```json
+{
+  "email": "string",
+  "password": "string"
+}
+```
+- **Response**:
+```json
+{
+  "token": "jwt_token",
+  "user": {
+    "id": "uuid",
+    "name": "string",
+    "email": "string",
+    ...
+  }
+}
+```
+
+---
+
+## 🧑‍💼 Clients Endpoints
+
+### POST `/api/clients`
+- **Description**: Create new client (associated to a user)
+- **Body**:
+```json
+{
+  "name": "string",
+  "email": "string",
+  "phone": "string (optional)",
+  "company": "string (optional)",
+  "industry": "string (optional)"
+}
+```
+- **Response**:
+```json
+{
+  "id": "uuid",
+  "name": "string",
+  "email": "string",
+  "phone": "string",
+  "userId": "uuid",
+  ...
+}
+```
+
+### GET `/api/clients`
+- **Description**: Fetch all clients
+- **Response**: `Client[]`
+
+### GET `/api/clients/:id`
+- **Description**: Fetch a single client by ID
+
+### PUT `/api/clients/:id`
+- **Description**: Update a client by ID
+- **Body**: Partial client fields (same as create)
+
+### DELETE `/api/clients/:id`
+- **Description**: Delete client by ID
+
+---
+
+## Notes
+- All endpoints require JWT token in `Authorization` header.
+- We're currently using NestJS + Prisma with DTO validation.
+- We ensured hashed passwords using bcrypt, and returning token after register/login.
+- روابط العلاقات من Client → User تم إنشاؤها بـ Prisma بنجاح.
+
+> سيتم تحديث هذا الملف بكل endpoint جديد لاحقًا 🔁
