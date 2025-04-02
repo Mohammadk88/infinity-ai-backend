@@ -8,11 +8,15 @@ import { SocialPostsModule } from './social-post/social-post.module';
 import { CategoriesModule } from './categories/categories.module';
 import { TagsModule } from './tags/tags.module';
 import { ContentScheduleModule } from './content-schedule/content-schedule.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { ContentSchedulerModule } from './content-scheduler/content-scheduler.module';
 
 import { AIGeneratorModule } from './ai-generator/ai-generator.module';
 @Module({
   imports: [
     AuthModule,
+    ScheduleModule.forRoot(),
+    ContentSchedulerModule,
     ClientsModule,
     SocialAccountsModule,
     SocialPostsModule,
