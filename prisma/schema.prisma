@@ -85,6 +85,8 @@ model User {
   webContents  WebContent[]
   subscriptions Subscription[]
   marketingCampaigns MarketingCampaign[]
+
+  Team Team[]
 }
 
 model Client {
@@ -111,12 +113,20 @@ model Client {
   marketingCampaigns MarketingCampaign[]
   webContents WebContent[]
   aiJobs     AIJobQueue[]
+
+  Team Team[]
 }
 
 model Team {
   id          String    @id @default(uuid())
   name        String
+  userId    String
+  clientId  String
   createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user      User     @relation(fields: [userId], references: [id])
+  client    Client   @relation(fields: [clientId], references: [id])
   members     TeamMember[]
   tasks       Task[]
 }
@@ -150,7 +160,11 @@ model TeamMember {
   id       String   @id @default(uuid())
   teamId   String
   userId   String
+  role     UserRole @default(TEAM_MEMBER) // ADMIN | CLIENT | TEAM_MEMBER
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
+  
   team     Team     @relation(fields: [teamId], references: [id])
   user     User     @relation(fields: [userId], references: [id])
 }

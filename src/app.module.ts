@@ -18,6 +18,9 @@ import { SubscriptionModule } from './subscription/subscription.module';
 import { MarketingCampaignModule } from './marketing-campaign/marketing-campaign.module';
 import { CampaignPostModule } from './campaign-post/campaign-post.module';
 import { CampaignPerformanceModule } from './campaign-performance/campaign-performance.module';
+import { TeamModule } from './team/team.module';
+import { TeamMemberModule } from './team-member/team-member.module';
+import { TaskModule } from './task/task.module';
 @Module({
   imports: [
     AuthModule,
@@ -36,6 +39,9 @@ import { CampaignPerformanceModule } from './campaign-performance/campaign-perfo
     MarketingCampaignModule,
     CampaignPostModule,
     CampaignPerformanceModule,
+    TeamModule,
+    TeamMemberModule,
+    TaskModule,
   ],
   controllers: [AppController],
   providers: [AppService],
