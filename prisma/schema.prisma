@@ -115,6 +115,8 @@ model Client {
   aiJobs     AIJobQueue[]
 
   Team Team[]
+
+  Notification Notification[]
 }
 
 model Team {
@@ -144,16 +146,29 @@ model Task {
   user        User?    @relation(fields: [assignedTo], references: [id])
   team        Team?    @relation(fields: [teamId], references: [id])
 }
-
+enum NotificationType {
+  info
+  success
+  warning
+  error
+}
 model Notification {
-  id         String   @id @default(uuid())
-  userId     String
-  title      String
-  body       String?
-  read       Boolean  @default(false)
-  createdAt  DateTime @default(now())
+  id          String   @id @default(uuid())
+  userId      String
+  clientId    String
+  title       String
+  message     String
+  isRead      Boolean  @default(false)
+  type        String   @default("info")
+  link        String? // رابط الإجراء المرتبط بالإشعار (مثلاً: رابط المهمة أو المنشور)
+  linkText    String? // نص الرابط
+  linkType    String? // نوع الرابط (مثلاً: "task", "post")
+  moduleType String? // نوع العنصر المرتبط بالإشعار (Post، Task...)
+  moduleId String?  // ID للعنصر المرتبط بالإشعار (Post، Task...)
+  createdAt   DateTime @default(now())
 
-  user       User     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
+  client      Client   @relation(fields: [clientId], references: [id])
 }
 
 model TeamMember {

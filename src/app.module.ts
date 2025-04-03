@@ -22,6 +22,7 @@ import { TeamModule } from './team/team.module';
 import { TeamMemberModule } from './team-member/team-member.module';
 import { TaskModule } from './task/task.module';
 import { FileUploadModule } from './file-upload/file-upload.module';
+import { NotificationModule } from './notification/notification.module';
 @Module({
   imports: [
     AuthModule,
@@ -44,6 +45,7 @@ import { FileUploadModule } from './file-upload/file-upload.module';
     TeamMemberModule,
     TaskModule,
     FileUploadModule,
+    NotificationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
