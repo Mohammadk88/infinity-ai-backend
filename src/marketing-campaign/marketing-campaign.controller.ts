@@ -12,7 +12,7 @@ import { MarketingCampaignService } from './marketing-campaign.service';
 import { CreateMarketingCampaignDto } from './dto/create-marketing-campaign.dto';
 import { UpdateMarketingCampaignDto } from './dto/update-marketing-campaign.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import { CurrentUser } from '../common/decorators/current-user.decorator';
 import { ApiBearerAuth, ApiTags, ApiOperation } from '@nestjs/swagger';
 import { JwtPayload } from '../common/interfaces/jwt-payload.interface';
 
