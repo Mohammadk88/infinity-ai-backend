@@ -37,6 +37,9 @@ export class SocialPostsService {
     const post = await this.prisma.socialPost.create({
       data: {
         ...rest,
+        files: {
+          connect: dto.fileIds?.map((id) => ({ id })) || [],
+        },
         postTags: tagIds
           ? {
               create: tagIds.map((tagId) => ({
@@ -77,7 +80,7 @@ export class SocialPostsService {
   async findOne(id: string) {
     const post = await this.prisma.socialPost.findUnique({
       where: { id },
-      include: { postTags: true, postCategories: true },
+      include: { postTags: true, postCategories: true, files: true },
     });
 
     if (!post) throw new NotFoundException('Social post not found');

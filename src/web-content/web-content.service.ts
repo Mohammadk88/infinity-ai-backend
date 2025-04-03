@@ -14,6 +14,9 @@ export class WebContentService {
         ...dto,
         clientId,
         userId,
+        files: {
+          connect: dto.fileIds?.map((id) => ({ id })) || [],
+        },
       },
     });
   }
@@ -29,7 +32,10 @@ export class WebContentService {
   }
 
   async findOne(id: string) {
-    const content = await this.prisma.webContent.findUnique({ where: { id } });
+    const content = await this.prisma.webContent.findUnique({
+      where: { id },
+      include: { files: true },
+    });
     if (!content) throw new NotFoundException('المحتوى غير موجود');
     return content;
   }

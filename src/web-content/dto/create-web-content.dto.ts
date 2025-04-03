@@ -42,4 +42,9 @@ export class CreateWebContentDto {
   @IsOptional()
   @IsBoolean()
   isAIGenerated?: boolean = false;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  fileIds?: string[];
 }

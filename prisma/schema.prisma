@@ -211,7 +211,7 @@ model SocialPost {
   postCategories PostCategory[]
   schedule   ContentSchedule?
 
-  FileUpload FileUpload[]
+  files FileUpload[]
 }
 
 model MarketingCampaign {
@@ -354,7 +354,7 @@ model WebContent {
   webContentTags WebContentTag[]
   webContentCategories WebContentCategory[]
 
-  FileUpload FileUpload[]
+  files FileUpload[]
 }
 enum FileType {
     IMAGE
