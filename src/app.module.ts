@@ -23,6 +23,7 @@ import { TeamMemberModule } from './team-member/team-member.module';
 import { TaskModule } from './task/task.module';
 import { FileUploadModule } from './file-upload/file-upload.module';
 import { NotificationModule } from './notification/notification.module';
+import { AiproviderConfigModule } from './aiprovider-config/aiprovider-config.module';
 @Module({
   imports: [
     AuthModule,
@@ -46,6 +47,7 @@ import { NotificationModule } from './notification/notification.module';
     TaskModule,
     FileUploadModule,
     NotificationModule,
+    AiproviderConfigModule,
   ],
   controllers: [AppController],
   providers: [AppService],
