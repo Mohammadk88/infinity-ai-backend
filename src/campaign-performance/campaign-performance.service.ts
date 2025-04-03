@@ -11,31 +11,28 @@ export class CampaignPerformanceService {
     return this.prisma.campaignPerformance.create({ data: dto });
   }
 
-  findAll() {
-    return this.prisma.campaignPerformance.findMany();
+  findAll(campaignId: string) {
+    return this.prisma.campaignPerformance.findMany({
+      where: { campaignId },
+    });
   }
 
-  findOne(id: string) {
-    return this.prisma.campaignPerformance.findUnique({ where: { id } });
+  async findOne(id: string) {
+    const perf = await this.prisma.campaignPerformance.findUnique({
+      where: { id },
+    });
+    if (!perf) throw new NotFoundException('Performance not found');
+    return perf;
   }
 
-  async update(id: string, dto: UpdateCampaignPerformanceDto) {
-    await this.ensureExists(id);
+  update(id: string, dto: UpdateCampaignPerformanceDto) {
     return this.prisma.campaignPerformance.update({
       where: { id },
       data: dto,
     });
   }
 
-  async remove(id: string) {
-    await this.ensureExists(id);
+  remove(id: string) {
     return this.prisma.campaignPerformance.delete({ where: { id } });
-  }
-
-  private async ensureExists(id: string) {
-    const exists = await this.prisma.campaignPerformance.findUnique({
-      where: { id },
-    });
-    if (!exists) throw new NotFoundException('Campaign performance not found');
   }
 }

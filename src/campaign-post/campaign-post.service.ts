@@ -8,32 +8,33 @@ export class CampaignPostService {
   constructor(private prisma: PrismaService) {}
 
   create(dto: CreateCampaignPostDto) {
-    return this.prisma.campaignPost.create({ data: dto });
-  }
-
-  findAll() {
-    return this.prisma.campaignPost.findMany();
-  }
-
-  findOne(id: string) {
-    return this.prisma.campaignPost.findUnique({ where: { id } });
-  }
-
-  async update(id: string, dto: UpdateCampaignPostDto) {
-    await this.ensureExists(id);
-    return this.prisma.campaignPost.update({
-      where: { id },
-      data: dto,
+    return this.prisma.campaignPost.create({
+      data: {
+        ...dto,
+      },
     });
   }
 
-  async remove(id: string) {
-    await this.ensureExists(id);
-    return this.prisma.campaignPost.delete({ where: { id } });
+  findAll(campaignId: string) {
+    return this.prisma.campaignPost.findMany({
+      where: { campaignId },
+    });
   }
 
-  private async ensureExists(id: string) {
-    const exists = await this.prisma.campaignPost.findUnique({ where: { id } });
-    if (!exists) throw new NotFoundException('Campaign post not found');
+  async findOne(id: string) {
+    const post = await this.prisma.campaignPost.findUnique({ where: { id } });
+    if (!post) throw new NotFoundException('Post not found');
+    return post;
+  }
+
+  update(id: string, dto: UpdateCampaignPostDto) {
+    return this.prisma.campaignPost.update({
+      where: { id },
+      data: { ...dto },
+    });
+  }
+
+  remove(id: string) {
+    return this.prisma.campaignPost.delete({ where: { id } });
   }
 }

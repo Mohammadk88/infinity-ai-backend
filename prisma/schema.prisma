@@ -234,6 +234,7 @@ model CampaignPost {
   campaignId  String
   content     String
   mediaUrl    String?
+  scheduledAt DateTime?
   createdAt   DateTime @default(now())
 
   campaign    MarketingCampaign @relation(fields: [campaignId], references: [id])
@@ -244,6 +245,19 @@ model CampaignPerformance {
   campaignId   String
   metric       String
   value        Float
+  description  String?
+  impressions  Int?
+  clicks       Int?
+  conversions  Int?
+  engagementRate Float?
+  reach        Int?
+  costPerClick Float?
+  costPerConversion Float?
+  costPerImpression Float?
+  costPerEngagement Float?
+  costPerReach Float?
+  engagement   Int?
+  cost         Float?
   recordedAt   DateTime @default(now())
 
   campaign     MarketingCampaign @relation(fields: [campaignId], references: [id])

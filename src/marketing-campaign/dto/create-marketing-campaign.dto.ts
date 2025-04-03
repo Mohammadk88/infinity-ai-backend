@@ -1,29 +1,65 @@
 import {
-  IsNotEmpty,
   IsString,
   IsOptional,
   IsDateString,
+  IsNumber,
+  IsEnum,
+  IsBoolean,
 } from 'class-validator';
+import { SocialPlatform } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateMarketingCampaignDto {
   @ApiProperty()
   @IsString()
-  @IsNotEmpty()
-  title!: string;
+  name!: string;
 
   @ApiProperty({ required: false })
-  @IsString()
   @IsOptional()
+  @IsString()
   description?: string;
 
-  @ApiProperty({ required: false })
+  @ApiProperty()
   @IsDateString()
-  @IsOptional()
-  startDate?: string;
+  startDate!: Date;
+
+  @ApiProperty()
+  @IsDateString()
+  endDate!: Date;
+
+  @ApiProperty()
+  @IsNumber()
+  budget!: number;
+
+  @ApiProperty()
+  @IsString()
+  objective!: string;
+
+  @ApiProperty()
+  @IsString()
+  socialAccountId!: string;
+
+  @ApiProperty({ enum: SocialPlatform })
+  @IsEnum(SocialPlatform)
+  platform!: SocialPlatform;
 
   @ApiProperty({ required: false })
-  @IsDateString()
   @IsOptional()
-  endDate?: string;
+  @IsString()
+  targetAudience?: string;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsString()
+  content?: string;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsString()
+  mediaUrl?: string;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsBoolean()
+  isAIGenerated?: boolean;
 }

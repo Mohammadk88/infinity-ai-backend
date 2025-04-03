@@ -1,50 +1,74 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateMarketingCampaignDto } from './dto/create-marketing-campaign.dto';
 import { UpdateMarketingCampaignDto } from './dto/update-marketing-campaign.dto';
 
 @Injectable()
 export class MarketingCampaignService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
-  create(data: CreateMarketingCampaignDto, userId: string, clientId: string) {
+  async create(
+    createDto: CreateMarketingCampaignDto,
+    clientId: string,
+    userId: string,
+  ) {
+    // Verify social account belongs to the client
+    const socialAccount = await this.prisma.socialAccount.findFirst({
+      where: {
+        id: createDto.socialAccountId,
+        clientId,
+      },
+    });
+
+    if (!socialAccount) {
+      throw new NotFoundException('Social account not found for this client');
+    }
+
     return this.prisma.marketingCampaign.create({
       data: {
-        ...data,
-        userId,
+        ...createDto,
         clientId,
+        userId,
+        platform: createDto.platform,
       },
     });
   }
 
-  findAll(userId: string, clientId: string) {
+  async findAll(clientId: string) {
     return this.prisma.marketingCampaign.findMany({
-      where: { userId, clientId },
-      orderBy: { createdAt: 'desc' },
+      where: { clientId },
+      include: {
+        socialAccount: true,
+        posts: true,
+        performance: true,
+      },
     });
   }
 
-  findOne(id: string, userId: string, clientId: string) {
-    return this.prisma.marketingCampaign.findFirstOrThrow({
-      where: { id, userId, clientId },
+  async findOne(id: string, clientId: string) {
+    const campaign = await this.prisma.marketingCampaign.findFirst({
+      where: { id, clientId },
+      include: {
+        socialAccount: true,
+        posts: true,
+        performance: true,
+      },
+    });
+
+    if (!campaign) throw new NotFoundException('Campaign not found');
+    return campaign;
+  }
+
+  async update(id: string, dto: UpdateMarketingCampaignDto, clientId: string) {
+    return this.prisma.marketingCampaign.updateMany({
+      where: { id, clientId },
+      data: dto,
     });
   }
 
-  async update(
-    id: string,
-    data: UpdateMarketingCampaignDto,
-    userId: string,
-    clientId: string,
-  ) {
-    const campaign = await this.findOne(id, userId, clientId);
-    return this.prisma.marketingCampaign.update({
-      where: { id: campaign.id },
-      data,
+  async remove(id: string, clientId: string) {
+    return this.prisma.marketingCampaign.deleteMany({
+      where: { id, clientId },
     });
-  }
-
-  async remove(id: string, userId: string, clientId: string) {
-    const campaign = await this.findOne(id, userId, clientId);
-    return this.prisma.marketingCampaign.delete({ where: { id: campaign.id } });
   }
 }
