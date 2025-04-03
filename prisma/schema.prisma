@@ -210,6 +210,8 @@ model SocialPost {
   postTags       PostTag[]
   postCategories PostCategory[]
   schedule   ContentSchedule?
+
+  FileUpload FileUpload[]
 }
 
 model MarketingCampaign {
@@ -351,17 +353,48 @@ model WebContent {
   schedule   ContentSchedule?
   webContentTags WebContentTag[]
   webContentCategories WebContentCategory[]
-}
 
+  FileUpload FileUpload[]
+}
+enum FileType {
+    IMAGE
+    VIDEO
+    DOCUMENT
+    AUDIO
+  }
+enum MediaStatus {
+  UPLOADED
+  PROCESSING
+  PROCESSED
+  FAILED
+}
 model FileUpload {
-  id         String   @id @default(uuid())
-  userId     String
-  name       String
-  url        String
-  type       String
-  size       Int
-  createdAt  DateTime @default(now())
-  user       User     @relation(fields: [userId], references: [id])
+  id             String   @id @default(uuid())
+  userId         String
+  name           String
+  url            String
+  type           FileType
+  size           Int
+  properties     Json?  // هون منخزن معلومات إضافية حسب نوع الملف (resolution, duration, etc.)
+
+  aiCategory     String?
+  aiDescription  String?
+  aiSummary      String?
+  aiKeywords     Json?
+  aiGenerated    Boolean  @default(false)
+
+  postId         String?
+  webContentId   String?
+  platform       SocialPlatform?
+  status         MediaStatus @default(UPLOADED)
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  deletedAt      DateTime?
+
+  user           User        @relation(fields: [userId], references: [id])
+  post           SocialPost? @relation(fields: [postId], references: [id])
+  webContent     WebContent? @relation(fields: [webContentId], references: [id])
 }
 
 model Category {

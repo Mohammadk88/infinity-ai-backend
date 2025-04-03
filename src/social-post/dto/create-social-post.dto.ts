@@ -91,4 +91,9 @@ export class CreateSocialPostDto {
   @IsOptional()
   @IsString()
   promptExtra?: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  fileIds?: string[];
 }

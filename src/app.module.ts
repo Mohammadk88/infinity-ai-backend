@@ -21,6 +21,7 @@ import { CampaignPerformanceModule } from './campaign-performance/campaign-perfo
 import { TeamModule } from './team/team.module';
 import { TeamMemberModule } from './team-member/team-member.module';
 import { TaskModule } from './task/task.module';
+import { FileUploadModule } from './file-upload/file-upload.module';
 @Module({
   imports: [
     AuthModule,
@@ -42,6 +43,7 @@ import { TaskModule } from './task/task.module';
     TeamModule,
     TeamMemberModule,
     TaskModule,
+    FileUploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],
