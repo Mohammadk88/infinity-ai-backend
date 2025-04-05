@@ -23,20 +23,25 @@ export class AuthService {
   @ApiBody({ type: RegisterDto })
   async register(dto: RegisterDto): Promise<{ token: string; user: User }> {
     try {
-      const hashedPassword: string = await bcrypt.hash(dto.password, 10) as string;
-      const user: User = await this.prisma.user.create({
+      const hashedPassword: string = await bcrypt.hash(dto.password, 10);
+
+      const user = await this.prisma.user.create({
         data: {
           name: dto.name,
           email: dto.email,
           password: hashedPassword,
         },
       });
+
       const token = this.jwt.sign({ sub: user.id });
+
       return { token, user };
     } catch (error) {
+      console.error('Registration error:', error);
       throw new UnauthorizedException('Registration failed');
     }
   }
+
   /**
    * Login an existing user by checking email and password
    * @param dto LoginDto
@@ -49,22 +54,29 @@ export class AuthService {
       console.log('Email is required', dto);
       throw new UnauthorizedException('Email is required');
     }
+
     const user = await this.prisma.user.findUnique({
       where: { email: dto.email },
     });
+
     if (!user) throw new UnauthorizedException('User not found');
 
     try {
-      const passwordValid: boolean = await bcrypt.compare(dto.password, user.password ?? '') as boolean;
-      if (!passwordValid)
+      const passwordValid = await bcrypt.compare(
+        dto.password,
+        user.password ?? '',
+      );
+
+      if (!passwordValid) {
         throw new UnauthorizedException('Invalid credentials');
-      if (!dto.password) {
-        throw new UnauthorizedException('Password is required');
       }
+
       const token = this.jwt.sign({ sub: user.id });
+
       return { token, user };
     } catch (error) {
-      throw new UnauthorizedException('Login failed');
+      console.error('Password comparison error:', error);
+      throw new UnauthorizedException('Authentication error');
     }
   }
 }
