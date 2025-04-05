@@ -36,7 +36,7 @@ export class SocialAccountsService {
 
   async update(id: string, dto: UpdateSocialAccountDto) {
     const { tokenExpiresAt, ...rest } = dto;
-  
+
     return this.prisma.socialAccount.update({
       where: { id },
       data: {
