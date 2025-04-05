@@ -1,9 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsArray,
-  IsOptional,
-  IsString,
-} from 'class-validator/types/decorator/decorators';
+import { IsArray, IsOptional, IsString } from 'class-validator';
 
 export class CreateTwitterPostDto {
   @ApiProperty()

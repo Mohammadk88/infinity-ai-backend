@@ -1,8 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { Cron } from '@nestjs/schedule';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { SocialPostsService } from 'src/social-post/social-post.service';
 import { WebContentService } from 'src/web-content/web-content.service';
+import { TwitterService } from 'src/twitter/twitter.service';
 
 @Injectable()
 export class ContentSchedulerService {
@@ -12,6 +13,7 @@ export class ContentSchedulerService {
     private readonly prisma: PrismaService,
     private readonly socialPostService: SocialPostsService,
     private readonly webContentService: WebContentService,
+    private readonly twitterService: TwitterService,
   ) {}
 
   @Cron('* * * * *') // كل دقيقة
@@ -145,5 +147,74 @@ export class ContentSchedulerService {
     return this.prisma.contentSchedule.findMany({
       orderBy: { publishAt: 'asc' },
     });
+  }
+
+  @Cron(CronExpression.EVERY_MINUTE)
+  async handleScheduledPublishing() {
+    const now = new Date();
+
+    const schedules = await this.prisma.contentSchedule.findMany({
+      where: {
+        publishAt: { lte: now },
+        status: 'pending',
+        socialPost: { isNot: null },
+      },
+      include: {
+        socialPost: {
+          include: {
+            postTags: true,
+            postCategories: true,
+          },
+        },
+      },
+    });
+
+    for (const schedule of schedules) {
+      const post = schedule.socialPost;
+      if (!post?.socialAccountId) continue;
+
+      const socialAccount = await this.prisma.socialAccount.findUnique({
+        where: { id: post.socialAccountId },
+      });
+
+      if (!socialAccount) continue;
+
+      try {
+        switch (socialAccount.platform) {
+          case 'TWITTER':
+            await this.twitterService.publishTweet(
+              {
+                status: post.content,
+                mediaUrl: post.mediaUrl ?? undefined,
+                socialAccountId: socialAccount.id,
+                tagIds: post.postTags.map((t) => t.tagId),
+                categoryIds: post.postCategories.map((c) => c.categoryId),
+              },
+              {
+                sub: post.userId, // Assuming JwtPayload uses 'sub' instead of 'userId'
+                clientId: post.clientId,
+                id: post.userId,
+              },
+            );
+            break;
+
+          // TODO: add Facebook, LinkedIn, etc.
+
+          default:
+            throw new Error(`Unsupported platform: ${socialAccount.platform}`);
+        }
+
+        await this.prisma.contentSchedule.update({
+          where: { id: schedule.id },
+          data: { status: 'published' },
+        });
+      } catch (error) {
+        console.error('Failed to publish scheduled post:', error);
+        await this.prisma.contentSchedule.update({
+          where: { id: schedule.id },
+          data: { status: 'failed' },
+        });
+      }
+    }
   }
 }

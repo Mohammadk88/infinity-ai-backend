@@ -29,7 +29,7 @@ export class TaskController {
   @Get(':id')
   @ApiOperation({ summary: 'Get one task by ID' })
   findOne(@Param('id') id: string, @CurrentUser() user: JwtPayload) {
-    return this.taskService.findOne(id, user.teamId);
+    return this.taskService.findOne(id, user.teamId || '');
   }
 
   @Patch(':id')
@@ -39,12 +39,12 @@ export class TaskController {
     @Body() updateTaskDto: UpdateTaskDto,
     @CurrentUser() user: JwtPayload,
   ) {
-    return this.taskService.update(id, updateTaskDto, user.teamId);
+    return this.taskService.update(id, updateTaskDto, user.teamId || '');
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete task by ID' })
   remove(@Param('id') id: string, @CurrentUser() user: JwtPayload) {
-    return this.taskService.remove(id, user.teamId);
+    return this.taskService.remove(id, user.teamId || '');
   }
 }
