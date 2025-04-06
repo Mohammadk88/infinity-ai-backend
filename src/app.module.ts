@@ -24,7 +24,6 @@ import { TaskModule } from './task/task.module';
 import { FileUploadModule } from './file-upload/file-upload.module';
 import { NotificationModule } from './notification/notification.module';
 import { AiproviderConfigModule } from './aiprovider-config/aiprovider-config.module';
-import { TwitterModule } from './twitter/twitter.module';
 @Module({
   imports: [
     AuthModule,
@@ -49,7 +48,6 @@ import { TwitterModule } from './twitter/twitter.module';
     FileUploadModule,
     NotificationModule,
     AiproviderConfigModule,
-    TwitterModule,
   ],
   controllers: [AppController],
   providers: [AppService],

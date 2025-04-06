@@ -3,7 +3,6 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { SocialPostsService } from 'src/social-post/social-post.service';
 import { WebContentService } from 'src/web-content/web-content.service';
-import { TwitterService } from 'src/twitter/twitter.service';
 
 @Injectable()
 export class ContentSchedulerService {
@@ -13,7 +12,6 @@ export class ContentSchedulerService {
     private readonly prisma: PrismaService,
     private readonly socialPostService: SocialPostsService,
     private readonly webContentService: WebContentService,
-    private readonly twitterService: TwitterService,
   ) {}
 
   @Cron('* * * * *') // كل دقيقة
@@ -182,20 +180,6 @@ export class ContentSchedulerService {
       try {
         switch (socialAccount.platform) {
           case 'TWITTER':
-            await this.twitterService.publishTweet(
-              {
-                status: post.content,
-                mediaUrl: post.mediaUrl ?? undefined,
-                socialAccountId: socialAccount.id,
-                tagIds: post.postTags.map((t) => t.tagId),
-                categoryIds: post.postCategories.map((c) => c.categoryId),
-              },
-              {
-                sub: post.userId, // Assuming JwtPayload uses 'sub' instead of 'userId'
-                clientId: post.clientId,
-                id: post.userId,
-              },
-            );
             break;
 
           // TODO: add Facebook, LinkedIn, etc.

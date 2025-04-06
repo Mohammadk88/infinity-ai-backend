@@ -9,10 +9,10 @@ import { SocialPlatform } from '@prisma/client'; // تأكد من المسار �
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateSocialAccountDto {
-  @ApiProperty()
-  @IsNotEmpty()
+  @ApiPropertyOptional()
+  @IsOptional()
   @IsString()
-  clientId!: string;
+  clientId?: string;
 
   @ApiProperty()
   @IsNotEmpty()
