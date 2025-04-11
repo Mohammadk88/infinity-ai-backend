@@ -25,7 +25,6 @@ export class TwitterAuthService {
       this.accessToken = response.data.access_token;
       this.tokenExpiresAt = Date.now() + response.data.expires_in * 1000;
     }
-    */
   }
 
   getAccessToken(): string {
