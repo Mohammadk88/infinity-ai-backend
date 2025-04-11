@@ -2,16 +2,14 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { PublishOptions, PublishResult } from '../interfaces/ISocialPublisher';
 import { SocialPlatform } from '../enums/social-platform.enum';
 import { BaseSocialProvider } from '../base/base-social.provider';
-import axios from 'axios';
-import AxiosError from 'axios';
 import { TwitterAuthService } from './twitter-auth.service';
 
-interface TwitterResponse {
-  data: {
-    id: string;
-    text: string;
-  };
-}
+// interface TwitterResponse {
+//   data: {
+//     id: string;
+//     text: string;
+//   };
+// }
 
 @Injectable()
 export class TwitterProvider extends BaseSocialProvider {
@@ -27,21 +25,34 @@ export class TwitterProvider extends BaseSocialProvider {
   }
 
   async publish(options: PublishOptions): Promise<PublishResult> {
-    const { content } = options;
-    const accessToken = this.authService.getAccessToken();
-
-    const url = 'https://api.twitter.com/2/tweets';
-    const headers = {
-      Authorization: `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    };
-
+    const { content, userId, clientId } = options;
     try {
-      const response = await axios.post<TwitterResponse>(
-        url,
-        { text: content },
-        { headers },
+      const tokenResult = await this.authService.getAccessToken(
+        userId,
+        clientId,
       );
+
+      if (!tokenResult) {
+        throw new HttpException('No linked Twitter account found.', 400);
+      }
+
+      // Instead of using the token directly, we'll use the Twitter auth service's
+      // publish method which properly handles OAuth 1.0a authentication
+      const tweetResult = await this.authService.publish(
+        userId,
+        clientId || '',
+        content,
+      );
+
+      // Create a response structure that matches what we expect
+      const response = {
+        data: {
+          data: {
+            id: tweetResult.tweetId,
+            text: tweetResult.text || content,
+          },
+        },
+      };
 
       return {
         success: true,
@@ -49,18 +60,26 @@ export class TwitterProvider extends BaseSocialProvider {
         postUrl: `https://twitter.com/user/status/${response.data.data.id}`,
         rawResponse: response.data,
       };
-    } catch (err) {
-      if (err instanceof AxiosError) {
-        console.error('Twitter publish error:', (await err).data);
+    } catch (err: unknown) {
+      const error = err as {
+        response?: {
+          status?: number;
+          data?: {
+            error?: string;
+          };
+        };
+        message?: string;
+      };
 
-        throw new HttpException(
-          'Failed to publish tweet on Twitter',
-          (await err).status ?? 500,
-        );
-      } else {
-        console.error('Unknown error publishing to Twitter:', err);
-        throw new HttpException('Failed to publish tweet on Twitter', 500);
-      }
+      const status = error?.response?.status ?? 500;
+      const message =
+        error?.response?.data?.error ||
+        error?.message ||
+        'Twitter publish failed';
+
+      console.error('Twitter publish error:', error?.response?.data || error);
+
+      throw new HttpException(message, status);
     }
   }
 }

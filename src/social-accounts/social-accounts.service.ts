@@ -33,6 +33,18 @@ export class SocialAccountsService {
       throw new NotFoundException('Social account not found');
     return account;
   }
+  async findOneByWhere(userId: string, clientId?: string) {
+    const account = await this.prisma.socialAccount.findFirst({
+      where: {
+        userId: userId,
+        clientId: clientId,
+        platform: 'TWITTER',
+        deletedAt: null,
+      },
+    });
+    if (!account) throw new NotFoundException('Social account not found');
+    return account;
+  }
 
   async update(id: string, dto: UpdateSocialAccountDto) {
     const { tokenExpiresAt, ...rest } = dto;

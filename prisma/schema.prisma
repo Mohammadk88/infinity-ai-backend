@@ -200,6 +200,8 @@ model SocialAccount {
   updatedAt   DateTime @updatedAt
   deletedAt   DateTime?
   
+  @@unique([userId, platform]) // 👈 أضف هذا السطر
+
   user        User     @relation(fields: [userId], references: [id])
   client      Client?  @relation(fields: [clientId], references: [id])
   posts       SocialPost[]

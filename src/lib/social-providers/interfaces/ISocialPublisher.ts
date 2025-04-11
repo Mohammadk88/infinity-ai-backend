@@ -34,6 +34,7 @@ export interface PublishOptions {
   pageId?: string; // معرف الصفحة أو الحساب على المنصة
   extra?: Record<string, any>;
   text: string;
+  clientId?: string;
 }
 
 export interface PublishResult {
@@ -45,7 +46,10 @@ export interface PublishResult {
   message?: string;
   postId?: string;
 }
-
+export interface PublishOptions {
+  content: string;
+  userId: string;
+}
 export interface ISocialPublisher {
   publish(options: PublishOptions): Promise<PublishResult>;
 }

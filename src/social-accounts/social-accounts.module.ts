@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { SocialAccountsService } from './social-accounts.service';
-import { SocialAccountsController } from './social-accounts.controller';
-import { PrismaModule } from '../prisma/prisma.module';
+import { PrismaModule } from '../prisma/prisma.module'; // ✅ حسب مكان مجلد prisma عندك
 
 @Module({
-  imports: [PrismaModule],
-  controllers: [SocialAccountsController],
+  imports: [PrismaModule], // ✅ أضف هذا السطر
   providers: [SocialAccountsService],
+  exports: [SocialAccountsService],
 })
 export class SocialAccountsModule {}

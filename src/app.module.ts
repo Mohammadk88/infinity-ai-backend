@@ -24,6 +24,7 @@ import { TaskModule } from './task/task.module';
 import { FileUploadModule } from './file-upload/file-upload.module';
 import { NotificationModule } from './notification/notification.module';
 import { AiproviderConfigModule } from './aiprovider-config/aiprovider-config.module';
+import { SocialProvidersModule } from './lib/social-providers/social-providers.module';
 @Module({
   imports: [
     AuthModule,
@@ -48,6 +49,7 @@ import { AiproviderConfigModule } from './aiprovider-config/aiprovider-config.mo
     FileUploadModule,
     NotificationModule,
     AiproviderConfigModule,
+    SocialProvidersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -15,6 +15,10 @@ export class CreateSocialAccountDto {
   clientId?: string;
 
   @ApiProperty()
+  @IsString()
+  userId!: string;
+
+  @ApiProperty()
   @IsNotEmpty()
   @IsEnum(SocialPlatform)
   platform!: SocialPlatform;
