@@ -16,7 +16,6 @@ import { randomUUID } from 'crypto';
 import { generateCodeChallenge, generateCodeVerifier } from '../../pkce.util';
 import { SocialSessionStore } from '../redis/social-session.redis'; // افترضنا عندك store جاهز
 import axios from 'axios';
-import qs from 'qs';
 import { Prisma } from '@prisma/client';
 @Injectable()
 export class TwitterAuthService {
