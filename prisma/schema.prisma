@@ -17,6 +17,7 @@ datasource db {
 enum UserRole {
   ADMIN
   CLIENT
+  AI_
   TEAM_MEMBER
 }
 
@@ -41,6 +42,15 @@ enum SocialPlatform {
   LINKEDIN
   TIKTOK
   YOUTUBE
+  SNAPCHAT
+  WHATSAPP
+  PINTEREST
+  REDDIT
+  TELEGRAM
+  BLUESKY
+  THREADS
+  TIKTOK_ADS
+  GOOGLE
 }
 
 enum WebContentType {
@@ -472,6 +482,9 @@ model SubscriptionPlan {
   features     Json     @default("{}")
   duration    Int      // بالأيام
   isActive    Boolean  @default(true)
+  isRecommended Boolean  @default(false)
+  isTrial     Boolean  @default(false)
+  isDeleted   Boolean  @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
