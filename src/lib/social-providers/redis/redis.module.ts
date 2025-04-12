@@ -5,6 +5,6 @@ import { SocialSessionStore } from './social-session.redis';
 
 @Module({
   providers: [RedisService, SocialSessionStore],
-  exports: [SocialSessionStore],
+  exports: [SocialSessionStore, RedisService],
 })
 export class RedisModule {}

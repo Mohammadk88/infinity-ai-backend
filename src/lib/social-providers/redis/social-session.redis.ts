@@ -6,7 +6,8 @@ export class SocialSessionStore {
   constructor(private redis: RedisService) {}
 
   async set(key: string, data: any, ttlSeconds = 300): Promise<void> {
-    await this.redis.set(key, data, ttlSeconds);
+    const jsonData = JSON.stringify(data); // 👈 مهم
+    await this.redis.set(key, jsonData, ttlSeconds);
   }
 
   async get<T>(key: string): Promise<T | null> {

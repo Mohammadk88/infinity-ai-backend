@@ -191,12 +191,12 @@ export class TwitterAuthService {
     console.log('codeChallenge', codeChallenge);
     console.log('state', state);
     // 🧠 خزّن الـ verifier والبيانات بالـ session store
-    const dataRedis = JSON.stringify({
+    const dataRedis = {
       codeVerifier,
       clientId,
       userId,
       createdAt: Date.now(),
-    });
+    };
     await this.RedisStore.delete(`twitter:auth:${state}`);
     await this.RedisStore.set(`twitter:auth:${state}`, dataRedis, 300); // TTL 5 دقائق مثلًا
 
