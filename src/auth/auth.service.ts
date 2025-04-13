@@ -47,36 +47,33 @@ export class AuthService {
    * @param dto LoginDto
    * @returns Promise<{ token: string; user: User }>
    */
-  @ApiOperation({ summary: 'Login user' })
-  @ApiBody({ type: LoginDto })
-  async login(dto: LoginDto): Promise<{ token: string; user: User }> {
-    if (!dto.email) {
-      console.log('Email is required', dto);
-      throw new UnauthorizedException('Email is required');
-    }
+  async login(dto: LoginDto): Promise<string> {
+    const user = await this.validateUser(dto.email, dto.password);
+    const payload = { sub: user.id, email: user.email };
+    return this.jwt.sign(payload);
+  }
 
+  /**
+   * Validate user credentials
+   * @param email User email
+   * @param password User password
+   * @returns Promise<User>
+   */
+  private async validateUser(email: string, password: string): Promise<User> {
     const user = await this.prisma.user.findUnique({
-      where: { email: dto.email },
+      where: { email },
     });
 
-    if (!user) throw new UnauthorizedException('User not found');
-
-    try {
-      const passwordValid = await bcrypt.compare(
-        dto.password,
-        user.password ?? '',
-      );
-
-      if (!passwordValid) {
-        throw new UnauthorizedException('Invalid credentials');
-      }
-
-      const token = this.jwt.sign({ sub: user.id });
-
-      return { token, user };
-    } catch (error) {
-      console.error('Password comparison error:', error);
-      throw new UnauthorizedException('Authentication error');
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials');
     }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    return user;
   }
 }
