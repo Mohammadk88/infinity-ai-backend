@@ -58,7 +58,20 @@ async function main() {
       ],
       skipDuplicates: true,
     });
-
+    await prisma.permission.createMany({
+      data: [
+        { name: 'Create Posts', key: 'can_create_post', module: 'posts' },
+        { name: 'Edit Posts', key: 'can_edit_post', module: 'posts' },
+        { name: 'View Reports', key: 'can_view_reports', module: 'analytics' },
+        {
+          name: 'Manage Clients',
+          key: 'can_manage_clients',
+          module: 'clients',
+        },
+        { name: 'Assign Tasks', key: 'can_assign_tasks', module: 'tasks' },
+      ],
+      skipDuplicates: true,
+    });
     console.log('✅ Seed completed successfully!');
   } finally {
     await prisma.$disconnect();

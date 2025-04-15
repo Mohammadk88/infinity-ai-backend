@@ -18,13 +18,15 @@ import { SubscriptionModule } from './subscription/subscription.module';
 import { MarketingCampaignModule } from './marketing-campaign/marketing-campaign.module';
 import { CampaignPostModule } from './campaign-post/campaign-post.module';
 import { CampaignPerformanceModule } from './campaign-performance/campaign-performance.module';
-import { TeamModule } from './team/team.module';
-import { TeamMemberModule } from './team-member/team-member.module';
-import { TaskModule } from './task/task.module';
 import { FileUploadModule } from './file-upload/file-upload.module';
 import { NotificationModule } from './notification/notification.module';
 import { AiproviderConfigModule } from './aiprovider-config/aiprovider-config.module';
 import { SocialProvidersModule } from './lib/social-providers/social-providers.module';
+import { AffiliateModule } from './affiliate/affiliate.module';
+import { UserPointModule } from './user-point/user-point.module';
+import { PointEventModule } from './point-event/point-event.module';
+import { AwardModule } from './award/award.module';
+import { RewardRedemptionModule } from './reward-redemption/reward-redemption.module';
 @Module({
   imports: [
     AuthModule,
@@ -43,13 +45,15 @@ import { SocialProvidersModule } from './lib/social-providers/social-providers.m
     MarketingCampaignModule,
     CampaignPostModule,
     CampaignPerformanceModule,
-    TeamModule,
-    TeamMemberModule,
-    TaskModule,
     FileUploadModule,
     NotificationModule,
     AiproviderConfigModule,
     SocialProvidersModule,
+    AffiliateModule,
+    UserPointModule,
+    PointEventModule,
+    AwardModule,
+    RewardRedemptionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

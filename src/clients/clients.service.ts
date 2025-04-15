@@ -10,11 +10,12 @@ export class ClientsService {
   /**
    * إنشاء عميل جديد وربطه بمستخدم محدد
    */
-  async create(dto: CreateClientDto, userId: string) {
+  async create(dto: CreateClientDto, userId: string, agencyId: string) {
     return this.prisma.client.create({
       data: {
         ...dto,
         userId,
+        agencyId,
       },
     });
   }
@@ -64,7 +65,7 @@ export class ClientsService {
       const updatedClient = await this.prisma.client.update({
         where: { id: clientId },
         data: {
-          subscriptions: {
+          Subscription: {
             connect: { id: subscriptionId },
           },
         },

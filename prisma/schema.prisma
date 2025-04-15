@@ -13,21 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-enum UserRole {
-  ADMIN
-  CLIENT
-  AI_
-  TEAM_MEMBER
-}
-
-enum TaskStatus {
-  PENDING
-  IN_PROGRESS
-  COMPLETED
-  CANCELED
-}
-
 enum PostStatus {
   DRAFT
   SCHEDULED
@@ -64,7 +49,16 @@ enum WebStatus {
   PUBLISHED
   ARCHIVED
 }
-
+enum UserType {
+  SUPPER_ADMIN
+  ADMIN
+  MANAGER
+  PERSONAL
+  COMPANY_OWNER
+  COMPANY_MEMBER
+  CLIENT
+  AI_AGENT
+}
 
 model User {
   id          String    @id @default(uuid())
@@ -74,15 +68,46 @@ model User {
   phone       String?   @unique
   phoneVerified DateTime?
   image       String?
+  affiliateId String? @unique
+  referralCode String?   // كود الإحالة
+  referredBy  String?   // معرف المستخدم الذي أحاله
+  referralCount Int?    // عدد المستخدمين الذين تم إحالتهم
+  referralBonus Float?  // مكافأة الإحالة
+  isActive    Boolean   @default(true)
+  isVerified  Boolean   @default(false) // هل تم التحقق من البريد الإلكتروني أو رقم الهاتف
+  isTwoFactorEnabled Boolean @default(false) // هل تم تفعيل التحقق الثنائي
+  isPasswordResetRequested Boolean @default(false) // هل تم طلب إعادة تعيين كلمة المرور
+  isPasswordResetVerified Boolean @default(false) // هل تم التحقق من إعادة تعيين كلمة المرور
+  isEmailVerified Boolean @default(false) // هل تم التحقق من البريد الإلكتروني
+  isPhoneVerified Boolean @default(false) // هل تم التحقق من رقم الهاتف
   sword    String?   // كلمة السر مشفرة
+  userType  UserType @default(PERSONAL)
   password    String
-  role        UserRole  @default(CLIENT) // ADMIN | CLIENT | TEAM_MEMBER
-  createdAt   DateTime  @default(now())
+  companiesOwned Company[] @relation("CompanyOwner")
+  memberIn       CompanyMember[]
+  createdAt      DateTime @default(now())
+  createdBy      String? // معرف المستخدم الذي أنشأ هذا المستخدم
+  updatedBy      String? // معرف المستخدم الذي قام بتحديث هذا المستخدم
   updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  deletedBy   String? // معرف المستخدم الذي حذف هذا المستخدم
+  lastLogin   DateTime?
+  lastLoginIp String?
+  lastLoginDevice String?
+  lastLoginLocation String?
+  lastLoginBrowser String?
+  lastLoginOs String?
+  blockedAt DateTime?
+  blockedBy String? // معرف المستخدم الذي حظر هذا المستخدم
+  blockedReason String? // سبب الحظر
+  isSuspended Boolean   @default(false) // هل تم تعليق الحساب
+  isBlocked   Boolean   @default(false) // هل تم حظر الحساب
+  affiliate   Affiliate? @relation("UserAffiliate", fields: [affiliateId], references: [id])
 
-  teams       TeamMember[]
+
   clients     Client[] // إذا كان مدير حسابات
   tasks       Task[]   // مهام مخصصة إله
+  leads       Lead[]   // مهام مخصصة إله
   notifications Notification[]
   aiConfigs AIProviderConfig[]
   fileUploads FileUpload[]
@@ -96,7 +121,81 @@ model User {
   subscriptions Subscription[]
   marketingCampaigns MarketingCampaign[]
 
-  Team Team[]
+
+  LeadActivity LeadActivity[]
+
+  Project Project[]
+
+  Task Task[] @relation("TaskAssignee")
+
+  TaskComment TaskComment[]
+
+  Reminder Reminder[]
+
+  Affiliate Affiliate[] @relation("UserAffiliates")
+
+  Referral Referral[]
+
+  UserPoint UserPoint[]
+
+  PointEvent PointEvent[]
+
+  RewardRedemption RewardRedemption[]
+}
+enum CompanyType {
+  COMPANY
+  AGENCY
+}
+
+model Company {
+  id          String   @id @default(uuid())
+  name        String
+  email       String   @unique
+  phone       String?  @unique
+  image       String?
+  address     String?
+  city        String?
+  country     String?
+  website     String?
+  description String?
+  industry    String?
+  type        CompanyType
+  ownerId     String
+  verified    Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  createdBy   String? // معرف المستخدم الذي أنشأ هذا الكيان
+  updatedBy   String? // معرف المستخدم الذي قام بتحديث هذا الكيان
+  updatedAt   DateTime    @updatedAt
+  deletedAt   DateTime?
+  deletedBy   String? // معرف المستخدم الذي حذف هذا الكيان
+  isActive    Boolean     @default(true)
+
+  owner       User     @relation("CompanyOwner", fields: [ownerId], references: [id])
+  members     CompanyMember[]
+  clients     Client[]
+  roles       Role[]
+
+  Project Project[]
+}
+model CompanyMember {
+  id          String   @id @default(uuid())
+  userId      String
+  companyId   String
+  roleId      String
+  isActive    Boolean  @default(true)
+
+  createdAt   DateTime @default(now())
+  createdBy   String? // معرف المستخدم الذي أنشأ هذا الكيان
+  updatedBy   String? // معرف المستخدم الذي قام بتحديث هذا الكيان
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+  deletedBy   String? // معرف المستخدم الذي حذف هذا الكيان
+  isSuspended Boolean  @default(false) // هل تم تعليق الحساب
+
+  user        User     @relation(fields: [userId], references: [id])
+  company     Company  @relation(fields: [companyId], references: [id])
+  role        Role     @relation(fields: [roleId], references: [id])
+
 }
 
 model Client {
@@ -105,10 +204,16 @@ model Client {
   email       String    @unique
   phone       String?   @unique
   image       String?
-  userId     String
-  company    String?
+  userId     String?
+  agencyId  String
   industry   String?
   createdAt  DateTime  @default(now())
+  createdBy  String? // معرف المستخدم الذي أنشأ هذا الكيان
+  updatedBy  String? // معرف المستخدم الذي قام بتحديث هذا الكيان
+  updatedAt  DateTime  @updatedAt
+  deletedAt  DateTime?
+  deletedBy  String? // معرف المستخدم الذي حذف هذا الكيان
+  isActive   Boolean   @default(true)
 
   currentSubscriptionId String? @unique
   currentSubscription   Subscription? @relation("ActiveSubscription", fields: [currentSubscriptionId], references: [id])
@@ -117,51 +222,258 @@ model Client {
   stripeCustomerId      String? 
 
   // 🔁 العلاقات الحالية
-  subscriptions         Subscription[] @relation("ClientSubscriptions")
-  user       User      @relation(fields: [userId], references: [id])
+  user      User?     @relation(fields: [userId], references: [id])
+  agency    Company   @relation(fields: [agencyId], references: [id])
+  
   socialAccounts SocialAccount[]
   marketingCampaigns MarketingCampaign[]
   webContents WebContent[]
   aiJobs     AIJobQueue[]
 
-  Team Team[]
-
   Notification Notification[]
+
+  Subscription Subscription[] @relation("ClientSubscriptions")
 }
 
-model Team {
-  id          String    @id @default(uuid())
+model Role {
+  id          String   @id @default(uuid())
+  companyId   String
   name        String
-  userId    String
-  clientId  String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  isDefault   Boolean  @default(true)
 
-  user      User     @relation(fields: [userId], references: [id])
-  client    Client   @relation(fields: [clientId], references: [id])
-  members     TeamMember[]
+  company     Company  @relation(fields: [companyId], references: [id])
+  permissions PermissionOnRole[]
+
+  CompanyMember CompanyMember[]
+}
+
+model Permission {
+  id        String   @id @default(uuid())
+  name      String
+  key       String   @unique
+  module    String?
+
+  PermissionOnRole PermissionOnRole[]
+    @@map("Permission")
+}
+
+model PermissionOnRole {
+  id           String   @id @default(uuid())
+  roleId       String
+  permissionId String
+
+  role         Role       @relation(fields: [roleId], references: [id])
+  permission   Permission @relation(fields: [permissionId], references: [id])
+}
+
+
+model Project {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  startDate   DateTime
+  endDate     DateTime
+  status      String   @default("active") // active | completed | canceled
+  type        String   @default("internal") // internal | external
+  priority    String   @default("normal") // low | normal | high
+  budget      Float?
+  currency    String   @default("USD")
+  clientId    String?
+  companyId   String
+  createdBy   String
+  createdAt   DateTime @default(now())
+
+  company     Company  @relation(fields: [companyId], references: [id])
+  createdUser User     @relation(fields: [createdBy], references: [id])
+
+  sprints     Sprint[]
   tasks       Task[]
 }
 
+model Sprint {
+  id        String   @id @default(uuid())
+  name      String
+  goal      String?
+  projectId String
+  startDate DateTime
+  endDate   DateTime
+  status    String   @default("active") // active | completed | canceled
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  deletedBy String? // معرف المستخدم الذي حذف هذا الكيان
+  createdBy String
+  updatedBy String?
+  isActive  Boolean  @default(true)
+
+  project   Project  @relation(fields: [projectId], references: [id])
+  tasks     Task[]
+}
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  REVIEW
+  DONE
+  PENDING
+  ARCHIVED
+  CANCELLED
+  ON_HOLD
+  DEFERRED
+  INACTIVE
+  IN_FUTURE
+  BLOCKED
+}
+enum ModuleType {
+  SOCIAL_POST
+  SCHEDULER
+  CAMPAIGN
+  WEB_CONTENT
+  ANALYTICS
+  CLIENT
+  COMPANY_SETUP
+  OTHER
+}
 model Task {
   id          String   @id @default(uuid())
   title       String
   description String?
-  status      TaskStatus @default(PENDING)
+  status      TaskStatus @default(TODO)
+  priority    Int? // 1=High, 2=Med, 3=Low
+  type        String? // نوع المهمة (مثلاً: "تسويق", "تطوير", "تصميم")
+  tags        String? // علامات أو تصنيفات للمهمة
+  startDate   DateTime?
+  endDate     DateTime?
+  progress    Int? // نسبة الإنجاز (0-100)
+  isRecurring Boolean @default(false) // هل المهمة متكررة؟
+  recurrencePattern String? // نمط التكرار (يومياً، أسبوعياً، شهرياً، سنوياً)
+  Labels      String? // تسميات أو فئات للمهمة
+  TaskDependency String? // معرف المهمة المعتمدة
+  KanbanOrder Int? // ترتيب المهمة في كانبان
+
+  projectId   String
+  sprintId    String?
   assignedTo  String?
-  teamId      String?
+  createdBy   String
+  assignedBy  String?
+  moduleType  ModuleType?
+  moduleId    String?      // optional: ارتباط بالسجل الحقيقي
+
+  
   dueDate     DateTime?
   createdAt   DateTime @default(now())
+  updatedBy   String? // معرف المستخدم الذي قام بتحديث هذا الكيان
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+  deletedBy   String? // معرف المستخدم الذي حذف هذا الكيان
 
-  user        User?    @relation(fields: [assignedTo], references: [id])
-  team        Team?    @relation(fields: [teamId], references: [id])
+  project     Project  @relation(fields: [projectId], references: [id])
+  sprint      Sprint?  @relation(fields: [sprintId], references: [id])
+  assignee    User?    @relation("TaskAssignee", fields: [assignedTo], references: [id])
+  // creator     User     @relation("TaskCreator", fields: [createdBy], references: [id])
+
+  comments    TaskComment[]
+  attachments FileUpload[]
+
+  Reminder Reminder[]
+
+  User User[]
 }
+
+model TaskComment {
+  id        String   @id @default(uuid())
+  taskId    String
+  userId    String
+  message   String
+  createdAt DateTime @default(now())
+
+  task      Task     @relation(fields: [taskId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+}
+
 enum NotificationType {
   info
   success
   warning
   error
 }
+model Lead {
+  id         String   @id @default(uuid())
+  name       String
+  email      String?
+  phone      String?
+  source     String? // website, campaign, referral...
+  company    String?
+  notes      String?
+  stage      String   @default("New") // New → Qualified → Proposal → Closed
+  status     String   @default("Open") // Open → Won → Lost
+  socialAccountId String? // معرف حساب التواصل الاجتماعي
+
+  assignedTo String?
+  createdBy  String
+  createdAt  DateTime @default(now())
+
+  assignee   User?    @relation(fields: [assignedTo], references: [id])
+  socialAccount   SocialAccount?    @relation(fields: [socialAccountId], references: [id])
+  // creator    User     @relation(fields: [createdBy], references: [id])
+
+  LeadActivity LeadActivity[]
+
+  Reminder Reminder[]
+}
+model LeadActivity {
+  id        String   @id @default(uuid())
+  leadId    String
+  userId    String
+  type      String // call, meeting, email, note
+  message   String?
+  status    String? // completed, pending, cancelled
+  scheduledAt DateTime?
+  completedAt DateTime?
+  duration   Int? // مدة النشاط بالدقائق
+  notes      String?
+  followUpDate DateTime?
+  followUpStatus String? // pending, completed, cancelled
+  followUpNotes String?
+  followUpBy String? // معرف المستخدم الذي قام بمتابعة النشاط
+  followUpCreatedAt DateTime? // تاريخ إنشاء متابعة النشاط
+  followUpUpdatedAt DateTime? // تاريخ تحديث متابعة النشاط
+  followUpCreatedBy String? // معرف المستخدم الذي أنشأ متابعة النشاط
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+  deletedBy String? // معرف المستخدم الذي حذف هذا النشاط
+  createdBy String
+  updatedBy String?
+
+  lead      Lead     @relation(fields: [leadId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+}
+model Reminder {
+  id         String   @id @default(uuid())
+  userId     String
+  leadId     String?
+  taskId     String?
+  message    String
+  remindAt   DateTime
+  isSent     Boolean @default(false)
+  isRecurring Boolean @default(false) // هل التذكير متكرر؟
+  recurrencePattern String? // نمط التكرار (يومياً، أسبوعياً، شهرياً، سنوياً)
+  status     String   @default("active") // active | completed | cancelled
+  type       String   @default("reminder") // نوع التذكير (مثلاً: "تذكير", "تنبيه", "إشعار")
+  priority   Int? // 1=High, 2=Med, 3=Low
+  tags       String? // علامات أو تصنيفات للتذكير
+  notes      String? // ملاحظات إضافية
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  deletedAt  DateTime?
+  deletedBy  String? // معرف المستخدم الذي حذف هذا التذكير
+  createdBy  String
+  updatedBy  String?
+  lead       Lead?    @relation(fields: [leadId], references: [id])
+  task       Task?    @relation(fields: [taskId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+}
+
 model Notification {
   id          String   @id @default(uuid())
   userId      String
@@ -181,19 +493,153 @@ model Notification {
   client      Client   @relation(fields: [clientId], references: [id])
 }
 
-model TeamMember {
-  id       String   @id @default(uuid())
-  teamId   String
-  userId   String
-  role     UserRole @default(TEAM_MEMBER) // ADMIN | CLIENT | TEAM_MEMBER
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Affiliate {
+  id           String   @id @default(uuid())
+  userId       String
+  referralCode String   @unique
+  tierId     String?
+  commission   Float    @default(10) // نسبة العمولة
+  totalEarnings Float   @default(0)
+  totalReferrals Int    @default(0) // عدد الإحالات
+  totalConvertedReferrals Int @default(0) // عدد الإحالات التي تم تحويلها
+  totalPendingReferrals Int @default(0) // عدد الإحالات المعلقة
+  totalRejectedReferrals Int @default(0) // عدد الإحالات المرفوضة
+  totalApprovedReferrals Int @default(0) // عدد الإحالات المعتمدة
+  totalPendingEarnings Float @default(0) // الأرباح المعلقة
+  totalApprovedEarnings Float @default(0) // الأرباح المعتمدة
+  totalRejectedEarnings Float @default(0) // الأرباح المرفوضة
+  totalWithdrawnEarnings Float @default(0) // الأرباح المسحوبة
+  isActive     Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  deletedAt    DateTime?
+  deletedBy    String? // معرف المستخدم الذي حذف هذا الكيان
+  createdBy    String
+  updatedBy    String?
+  isSuspended  Boolean  @default(false) // هل تم تعليق الحساب
+  isBlocked    Boolean  @default(false) // هل تم حظر الحساب
+  isVerified   Boolean  @default(false) // هل تم التحقق من الحساب
 
+  user         User     @relation("UserAffiliates", fields: [userId], references: [id])
+  referrals    Referral[]
+
+tier       AffiliateTier? @relation(fields: [tierId], references: [id])
+
+  WithdrawalRequest WithdrawalRequest[]
+
+  User User[] @relation("UserAffiliate")
+}
+model UserPoint {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  points    Int      @default(0)
+  totalPoints Int    @default(0) // إجمالي النقاط المكتسبة
+  redeemedPoints Int @default(0) // النقاط المستردة
+  pendingPoints Int @default(0) // النقاط المعلقة
+  approvedPoints Int @default(0) // النقاط المعتمدة
+  rejectedPoints Int @default(0) // النقاط المرفوضة
+
+
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+  status    String   // "active", "inactive", "suspended"
+  createdBy String
+  updatedBy String?
   
-  team     Team     @relation(fields: [teamId], references: [id])
-  user     User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+}
+model PointEvent {
+  id        String   @id @default(uuid())
+  userId    String
+  type      String   // "login", "post_created", "referral_approved", etc.
+  description String?
+  points    Int
+  status    String   // "pending", "approved", "rejected"
+
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+}
+model Award {
+  id          String   @id @default(uuid())
+  name        String
+  image       String?
+  description String?
+  pointsCost  Int
+  type        String   // "gift_card", "discount", "product", etc.
+  value       Float    // قيمة الجائزة (مثل قيمة بطاقة الهدايا)
+  isRedeemable Boolean  @default(true) // هل يمكن استرداد الجائزة
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  RewardRedemption RewardRedemption[]
+}
+model RewardRedemption {
+  id        String   @id @default(uuid())
+  userId    String
+  awardId   String
+  status    String   @default("pending") // "pending", "approved", "rejected"
+  redeemedAt DateTime @default(now())
+
+  user      User   @relation(fields: [userId], references: [id])
+  award     Award  @relation(fields: [awardId], references: [id])
 }
 
+
+model AffiliateTier {
+  id           String   @id @default(uuid())
+  name         String
+  description  String?
+  minReferrals Int      @default(0)
+  commission   Float    @default(10)
+  benefits     String?
+
+  affiliates   Affiliate[]
+}
+model Referral {
+  id             String   @id @default(uuid())
+  affiliateId    String
+  referredUserId String
+  referredAt     DateTime @default(now())
+  status         String   @default("pending")
+  commission     Float    @default(10)
+  earnings       Float    @default(0)
+  isPaid         Boolean  @default(false)
+  paymentDate    DateTime?
+  paymentMethod  String?
+  paymentStatus  String?
+  paymentReference String?
+  paymentAmount  Float?
+  paymentCurrency String?
+  isConverted    Boolean  @default(false)
+
+  sourceId       String?  // ⬅️ جديد
+  source         ReferralSource? @relation(fields: [sourceId], references: [id])
+
+  affiliate      Affiliate @relation(fields: [affiliateId], references: [id])
+  referredUser   User      @relation(fields: [referredUserId], references: [id])
+}
+
+model ReferralSource {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+
+  referrals   Referral[]
+}
+model WithdrawalRequest {
+  id          String   @id @default(uuid())
+  affiliateId String
+  amount      Float
+  method      String
+  status      String   @default("pending") // approved / rejected / paid
+  requestedAt DateTime @default(now())
+  processedAt DateTime?
+
+  affiliate   Affiliate @relation(fields: [affiliateId], references: [id])
+}
 model SocialAccount {
   id          String   @id @default(uuid())
   clientId    String?
@@ -216,6 +662,7 @@ model SocialAccount {
   client      Client?  @relation(fields: [clientId], references: [id])
   posts       SocialPost[]
   marketingCampaigns MarketingCampaign[]
+  Lead Lead[]
 }
 
 model SocialPost {
@@ -422,6 +869,8 @@ model FileUpload {
   user           User        @relation(fields: [userId], references: [id])
   post           SocialPost? @relation(fields: [postId], references: [id])
   webContent     WebContent? @relation(fields: [webContentId], references: [id])
+
+  Task Task[]
 }
 
 model Category {

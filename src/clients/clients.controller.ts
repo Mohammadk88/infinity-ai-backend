@@ -38,7 +38,7 @@ export class ClientsController {
   @ApiResponse({ status: 201, description: 'تم إنشاء العميل بنجاح' })
   @ApiResponse({ status: 401, description: 'غير مصرح' })
   create(@Body() dto: CreateClientDto, @CurrentUser() user: JwtPayload) {
-    return this.clientsService.create(dto, user.sub);
+    return this.clientsService.create(dto, user.sub, user.clientId);
   }
 
   @Get()

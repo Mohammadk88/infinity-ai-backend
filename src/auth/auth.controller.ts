@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { Response, Request as ExpressRequest } from 'express';
-
+import { ApiOkResponse } from '@nestjs/swagger';
 import { User } from '@prisma/client';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -41,7 +41,9 @@ export class AuthController {
   }
   @UseGuards(AuthGuard('jwt'))
   @Get('me')
+  @ApiOkResponse()
   getProfile(@Req() req: ExpressRequest & { user: User }) {
+    console.log('asd', req.user);
     return req.user;
   }
   @Post('logout')

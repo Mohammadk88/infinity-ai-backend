@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
@@ -6,13 +10,14 @@ import * as bcrypt from 'bcrypt';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { ApiTags, ApiOperation, ApiBody } from '@nestjs/swagger';
-
+import { UserPointService } from '../user-point/user-point.service';
 @ApiTags('Auth')
 @Injectable()
 export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwt: JwtService,
+    private pointsService: UserPointService,
   ) {}
   /**
    * Register a new user and return token and user object
@@ -21,25 +26,54 @@ export class AuthService {
    */
   @ApiOperation({ summary: 'Register a new user' })
   @ApiBody({ type: RegisterDto })
-  async register(dto: RegisterDto): Promise<{ token: string; user: User }> {
-    try {
-      const hashedPassword: string = await bcrypt.hash(dto.password, 10);
+  async register(createUserDto: RegisterDto) {
+    const { email, password, name, referralCode } = createUserDto;
 
-      const user = await this.prisma.user.create({
-        data: {
-          name: dto.name,
-          email: dto.email,
-          password: hashedPassword,
-        },
+    const existing = await this.prisma.user.findUnique({ where: { email } });
+    if (existing) throw new BadRequestException('Email already exists');
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    if (referralCode) {
+      const affiliate = await this.prisma.affiliate.findUnique({
+        where: { referralCode },
       });
-
-      const token = this.jwt.sign({ sub: user.id });
-
-      return { token, user };
-    } catch (error) {
-      console.error('Registration error:', error);
-      throw new UnauthorizedException('Registration failed');
+      if (!affiliate) {
+        throw new BadRequestException('invalid_referral_code');
+      }
     }
+    const user = await this.prisma.user.create({
+      data: {
+        email,
+        name,
+        password: hashedPassword,
+      },
+    });
+
+    if (referralCode) {
+      const affiliate = await this.prisma.affiliate.findUnique({
+        where: { referralCode },
+      });
+      if (affiliate) {
+        await this.prisma.user.update({
+          where: { id: user.id },
+          data: { referredBy: referralCode },
+        });
+
+        await this.prisma.referral.create({
+          data: {
+            affiliateId: affiliate.id,
+            referredUserId: user.id,
+            commission: affiliate.commission,
+            status: 'pending',
+          },
+        });
+
+        await this.pointsService.addPoints(affiliate.userId, 20);
+        await this.pointsService.addPoints(user.id, 10);
+      }
+    }
+
+    return { message: 'Registration successful', userId: user.id };
   }
 
   /**
