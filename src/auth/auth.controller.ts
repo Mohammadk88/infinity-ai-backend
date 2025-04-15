@@ -1,19 +1,11 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Req,
-  Res,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, Res, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
-import { Response, Request as ExpressRequest } from 'express';
-import { ApiOkResponse } from '@nestjs/swagger';
+import { Response } from 'express';
 import { User } from '@prisma/client';
 import { AuthGuard } from '@nestjs/passport';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -39,13 +31,13 @@ export class AuthController {
 
     return { message: 'Login successful' };
   }
-  @UseGuards(AuthGuard('jwt'))
   @Get('me')
-  @ApiOkResponse()
-  getProfile(@Req() req: ExpressRequest & { user: User }) {
-    console.log('asd', req.user);
-    return req.user;
+  @UseGuards(AuthGuard('jwt'))
+  getMe(@CurrentUser() user: User) {
+    console.log(user);
+    return user;
   }
+
   @Post('logout')
   logout(@Res({ passthrough: true }) res: Response) {
     res.clearCookie('jwt');
