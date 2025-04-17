@@ -3,13 +3,15 @@ import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { Response } from 'express';
-import { User } from '@prisma/client';
-import { AuthGuard } from '@nestjs/passport';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
-
+import { JwtAuthGuard } from './jwt-auth.guard';
+import { PrismaService } from '../prisma/prisma.service';
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly prisma: PrismaService,
+  ) {}
 
   @Post('register')
   register(@Body() dto: RegisterDto) {
@@ -32,10 +34,16 @@ export class AuthController {
     return { message: 'Login successful' };
   }
   @Get('me')
-  @UseGuards(AuthGuard('jwt'))
-  getMe(@CurrentUser() user: User) {
-    console.log(user);
-    return user;
+  @UseGuards(JwtAuthGuard)
+  async getMe(@CurrentUser() user: { id: string }) {
+    const fullUser = await this.prisma.user.findUnique({
+      where: { id: user.id },
+      include: { affiliate: true },
+    });
+    return {
+      ...fullUser,
+      referralCode: fullUser?.affiliate?.referralCode || null,
+    };
   }
 
   @Post('logout')

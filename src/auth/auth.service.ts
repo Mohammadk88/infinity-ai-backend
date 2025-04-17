@@ -19,6 +19,31 @@ export class AuthService {
     private jwt: JwtService,
     private pointsService: UserPointService,
   ) {}
+
+  /**
+   * Generate a unique referral code
+   * @returns string
+   */
+  private async generateUniqueReferralCode(): Promise<string> {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const length = 8;
+
+    let code: string = '';
+    let exists = true;
+
+    while (exists) {
+      code = Array.from(
+        { length },
+        () => characters[Math.floor(Math.random() * characters.length)],
+      ).join('');
+      const existing = await this.prisma.affiliate.findUnique({
+        where: { referralCode: code },
+      });
+      exists = !!existing;
+    }
+
+    return code;
+  }
   /**
    * Register a new user and return token and user object
    * @param dto RegisterDto
@@ -48,6 +73,23 @@ export class AuthService {
         password: hashedPassword,
       },
     });
+    if (createUserDto.isAffiliate) {
+      const referralCode = await this.generateUniqueReferralCode();
+      const affiliate = await this.prisma.affiliate.create({
+        data: {
+          userId: user.id,
+          referralCode,
+          createdBy: user.id,
+        },
+      });
+
+      await this.prisma.user.update({
+        where: { id: user.id },
+        data: {
+          affiliateId: affiliate.id,
+        },
+      });
+    }
 
     if (referralCode) {
       const affiliate = await this.prisma.affiliate.findUnique({

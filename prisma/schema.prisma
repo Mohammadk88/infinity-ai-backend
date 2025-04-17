@@ -498,6 +498,7 @@ model Affiliate {
   userId       String
   referralCode String   @unique
   tierId     String?
+  status      String   @default("pending") // pending, approved, rejected
   commission   Float    @default(10) // نسبة العمولة
   totalEarnings Float   @default(0)
   totalReferrals Int    @default(0) // عدد الإحالات

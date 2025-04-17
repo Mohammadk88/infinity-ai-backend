@@ -24,6 +24,11 @@ export class AffiliateService {
       },
     });
   }
+  async findByUserId(userId: string) {
+    return this.prisma.affiliate.findFirst({
+      where: { userId },
+    });
+  }
 
   async getAffiliateStats(userId: string): Promise<AffiliateStatsDto> {
     const affiliate = await this.prisma.affiliate.findFirst({
@@ -41,6 +46,7 @@ export class AffiliateService {
       totalRejectedReferrals: affiliate.totalRejectedReferrals,
       totalApprovedEarnings: affiliate.totalApprovedEarnings,
       tier: affiliate.totalReferrals > 50 ? 'Gold' : 'Basic',
+      status: 'Pending', // Use a default value since status might not exist in the Affiliate model
     };
   }
 

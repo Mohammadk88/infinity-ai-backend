@@ -51,4 +51,10 @@ export class AffiliateStatsDto {
     required: false,
   })
   tier?: string;
+  @ApiProperty({
+    description: 'Affiliate tier or rank / رتبة أو تصنيف المستخدم كمسوّق',
+    example: 'Gold',
+    required: false,
+  })
+  status!: string;
 }
