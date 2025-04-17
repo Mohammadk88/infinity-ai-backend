@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Res, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
@@ -6,6 +14,8 @@ import { Response } from 'express';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { PrismaService } from '../prisma/prisma.service';
+import { Throttle } from '@nestjs/throttler';
+
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -17,6 +27,7 @@ export class AuthController {
   register(@Body() dto: RegisterDto) {
     return this.authService.register(dto);
   }
+  @Throttle({ default: { limit: 3, ttl: 60000 } })
   @Post('login')
   async login(
     @Body() loginDto: LoginDto,
@@ -27,8 +38,8 @@ export class AuthController {
     res.cookie('jwt', token, {
       httpOnly: true,
       sameSite: 'lax',
-      secure: false, // true إذا السيرفر https
-      maxAge: 7 * 24 * 60 * 60 * 1000, // أسبوع
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 24 * 60 * 60 * 1000, // يوم واحد
     });
 
     return { message: 'Login successful' };
@@ -50,5 +61,9 @@ export class AuthController {
   logout(@Res({ passthrough: true }) res: Response) {
     res.clearCookie('jwt');
     return { message: 'Logged out' };
+  }
+  @Get('csrf-token')
+  getCsrfToken(@Req() req: { csrfToken: () => string }) {
+    return { csrfToken: req.csrfToken() };
   }
 }

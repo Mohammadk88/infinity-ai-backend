@@ -27,8 +27,19 @@ import { UserPointModule } from './user-point/user-point.module';
 import { PointEventModule } from './point-event/point-event.module';
 import { AwardModule } from './award/award.module';
 import { RewardRedemptionModule } from './reward-redemption/reward-redemption.module';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
+
 @Module({
   imports: [
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60000,
+        limit: 10,
+        name: 'short',
+      },
+    ]),
+
     AuthModule,
     ScheduleModule.forRoot(),
     ContentSchedulerModule,
@@ -56,6 +67,12 @@ import { RewardRedemptionModule } from './reward-redemption/reward-redemption.mo
     RewardRedemptionModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+  ],
 })
 export class AppModule {}

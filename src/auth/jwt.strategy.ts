@@ -6,7 +6,12 @@ import { ExtractJwt } from 'passport-jwt';
 import { User } from '@prisma/client';
 import { randomUUID } from 'crypto';
 import { JwtPayload } from 'src/common/interfaces/jwt-payload.interface';
+import { JwtModule } from '@nestjs/jwt';
 
+JwtModule.register({
+  secret: process.env.JWT_SECRET,
+  signOptions: { expiresIn: '15m' },
+});
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private prisma: PrismaService) {
