@@ -17,7 +17,6 @@ import {
 import { AffiliateService } from './affiliate.service';
 import { AffiliateStatsDto } from './dto/affiliate-stats.dto';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
-import { User } from '@prisma/client';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { JwtPayload } from 'src/common/interfaces/jwt-payload.interface';
 
