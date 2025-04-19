@@ -18,4 +18,9 @@ export class ReferralController {
   async getMyReferrals(@CurrentUser('id') userId: string) {
     return this.referralService.getReferralsForAffiliate(userId);
   }
+  @UseGuards(JwtAuthGuard)
+  @Get('earnings')
+  async getEarningsSummary(@CurrentUser('id') userId: string) {
+    return this.referralService.getEarningsForAffiliate(userId);
+  }
 }

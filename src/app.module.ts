@@ -30,6 +30,7 @@ import { RewardRedemptionModule } from './reward-redemption/reward-redemption.mo
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { ReferralModule } from './referral/referral.module';
+import { MeModule } from './me/me.module';
 
 @Module({
   imports: [
@@ -67,6 +68,7 @@ import { ReferralModule } from './referral/referral.module';
     AwardModule,
     RewardRedemptionModule,
     ReferralModule,
+    MeModule,
   ],
   controllers: [AppController],
   providers: [

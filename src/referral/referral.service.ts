@@ -29,4 +29,39 @@ export class ReferralService {
       orderBy: { referredAt: 'desc' },
     });
   }
+  async getEarningsForAffiliate(userId: string) {
+    const affiliate = await this.prisma.affiliate.findFirst({
+      where: { userId },
+    });
+
+    if (!affiliate) {
+      throw new NotFoundException('Affiliate account not found');
+    }
+
+    return {
+      totalApprovedEarnings: affiliate.totalApprovedEarnings,
+      totalPendingEarnings: affiliate.totalPendingEarnings,
+      totalRejectedEarnings: affiliate.totalRejectedEarnings,
+      totalConvertedReferrals: affiliate.totalConvertedReferrals,
+      totalApprovedReferrals: affiliate.totalApprovedReferrals,
+      totalRejectedReferrals: affiliate.totalRejectedReferrals,
+    };
+  }
+  getMyReferrals(userId: string) {
+    return this.prisma.referral.findMany({
+      where: {
+        referredUserId: userId,
+      },
+      include: {
+        referredUser: {
+          select: {
+            id: true,
+            email: true,
+            name: true,
+          },
+        },
+      },
+      orderBy: { referredAt: 'desc' },
+    });
+  }
 }
