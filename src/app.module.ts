@@ -31,6 +31,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { ReferralModule } from './referral/referral.module';
 import { MeModule } from './me/me.module';
+import { CommissionModule } from './commission/commission.module';
 
 @Module({
   imports: [
@@ -69,6 +70,7 @@ import { MeModule } from './me/me.module';
     RewardRedemptionModule,
     ReferralModule,
     MeModule,
+    CommissionModule,
   ],
   controllers: [AppController],
   providers: [

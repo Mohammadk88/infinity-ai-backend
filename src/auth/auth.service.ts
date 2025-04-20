@@ -11,6 +11,7 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { ApiTags, ApiOperation, ApiBody } from '@nestjs/swagger';
 import { UserPointService } from '../user-point/user-point.service';
+import { ReferralService } from 'src/referral/referral.service';
 @ApiTags('Auth')
 @Injectable()
 export class AuthService {
@@ -18,6 +19,7 @@ export class AuthService {
     private prisma: PrismaService,
     private jwt: JwtService,
     private pointsService: UserPointService,
+    private referralService: ReferralService, // Inject ReferralService
   ) {}
 
   /**
@@ -58,14 +60,6 @@ export class AuthService {
     if (existing) throw new BadRequestException('Email already exists');
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    if (referralCode) {
-      const affiliate = await this.prisma.affiliate.findUnique({
-        where: { referralCode },
-      });
-      if (!affiliate) {
-        throw new BadRequestException('invalid_referral_code');
-      }
-    }
     const user = await this.prisma.user.create({
       data: {
         email,
@@ -73,45 +67,39 @@ export class AuthService {
         password: hashedPassword,
       },
     });
+
+    // If user wants to be an affiliate, create affiliate record
     if (createUserDto.isAffiliate) {
-      const referralCode = await this.generateUniqueReferralCode();
+      const generatedReferralCode = await this.generateUniqueReferralCode();
       const affiliate = await this.prisma.affiliate.create({
         data: {
           userId: user.id,
-          referralCode,
+          referralCode: generatedReferralCode,
           createdBy: user.id,
         },
       });
-
       await this.prisma.user.update({
         where: { id: user.id },
-        data: {
-          affiliateId: affiliate.id,
-        },
+        data: { affiliateId: affiliate.id },
       });
     }
 
+    // Handle referral code logic using ReferralService
     if (referralCode) {
-      const affiliate = await this.prisma.affiliate.findUnique({
-        where: { referralCode },
-      });
-      if (affiliate) {
+      try {
+        await this.referralService.handleReferralOnRegistration(
+          user.id,
+          referralCode,
+          { rewardUser: true }, // Optionally pass sourceId if available
+        );
+        // Optionally update referredBy field
         await this.prisma.user.update({
           where: { id: user.id },
           data: { referredBy: referralCode },
         });
-
-        await this.prisma.referral.create({
-          data: {
-            affiliateId: affiliate.id,
-            referredUserId: user.id,
-            commission: affiliate.commission,
-            status: 'pending',
-          },
-        });
-
-        await this.pointsService.addPoints(affiliate.userId, 20);
-        await this.pointsService.addPoints(user.id, 10);
+      } catch (err) {
+        // If referral code is invalid, ignore or throw error as needed
+        // throw new BadRequestException('Invalid referral code');
       }
     }
 
@@ -123,10 +111,11 @@ export class AuthService {
    * @param dto LoginDto
    * @returns Promise<{ token: string; user: User }>
    */
-  async login(dto: LoginDto): Promise<string> {
+  async login(dto: LoginDto): Promise<{ token: string; user: User }> {
     const user = await this.validateUser(dto.email, dto.password);
     const payload = { sub: user.id, email: user.email };
-    return this.jwt.sign(payload);
+    const token = this.jwt.sign(payload);
+    return { token, user };
   }
 
   /**

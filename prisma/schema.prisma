@@ -141,6 +141,8 @@ model User {
   PointEvent PointEvent[]
 
   RewardRedemption RewardRedemption[]
+
+  Commission Commission[]
 }
 enum CompanyType {
   COMPANY
@@ -630,6 +632,36 @@ model ReferralSource {
 
   referrals   Referral[]
 }
+
+model Commission {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id])
+  amount         Float
+  currency       String   @default("USD")
+  paymentMethod  String?  // مثل: "bank_transfer", "paypal", "crypto"
+  paymentStatus  String?  // مثل: "pending", "completed", "failed"
+  paymentDate    DateTime?
+  paymentReference String?
+  type           CommissionType // مثلاً: "referral", "bonus", "payout"
+  source         String?  // وصف مصدر العمولة
+  status         CommissionStatus // pending, approved, paid
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+enum CommissionType {
+  referral
+  bonus
+  payout
+}
+
+enum CommissionStatus {
+  pending
+  approved
+  paid
+}
+
 model WithdrawalRequest {
   id          String   @id @default(uuid())
   affiliateId String
@@ -1011,5 +1043,31 @@ model Invoice {
 
   user           User     @relation(fields: [userId], references: [id])
   subscription   Subscription? @relation(fields: [subscriptionId], references: [id])
+}
+
+model Currency {
+  id        String    @id @default(uuid())
+  code      String    @unique // e.g. USD, EUR
+  name      String
+  symbol    String
+  countries Country[]
+}
+
+model Country {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  code        String   @unique // e.g. US, FR
+  currencyId  String
+  currency    Currency @relation(fields: [currencyId], references: [id])
+}
+
+model Setting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  type      String?  // e.g. 'number', 'string', 'json', etc.
+  group     String?  // e.g. 'points', 'commission', etc.
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
