@@ -110,7 +110,7 @@ export class ReferralService {
   getMyReferrals(userId: string) {
     return this.prisma.referral.findMany({
       where: {
-        referredUserId: userId,
+        affiliateId: userId,
       },
       include: {
         referredUser: {

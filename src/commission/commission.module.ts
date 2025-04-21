@@ -6,5 +6,6 @@ import { PrismaService } from '../prisma/prisma.service';
 @Module({
   controllers: [CommissionController],
   providers: [CommissionService, PrismaService],
+  exports: [CommissionService],
 })
 export class CommissionModule {}
