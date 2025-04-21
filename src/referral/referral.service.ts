@@ -91,13 +91,14 @@ export class ReferralService {
   }
   async getEarningsForAffiliate(userId: string) {
     const affiliate = await this.prisma.affiliate.findFirst({
-      where: { userId },
+      where: {
+        userId: userId, // أو ببساطة: userId
+      },
     });
 
     if (!affiliate) {
       throw new NotFoundException('Affiliate account not found');
     }
-
     return {
       totalApprovedEarnings: affiliate.totalApprovedEarnings,
       totalPendingEarnings: affiliate.totalPendingEarnings,

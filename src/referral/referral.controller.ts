@@ -15,12 +15,12 @@ export class ReferralController {
   @UseGuards(JwtAuthGuard)
   @Get()
   @ApiOkResponse({ type: [ReferralResponseDto] })
-  async getMyReferrals(@CurrentUser('id') userId: string) {
-    return this.referralService.getReferralsForAffiliate(userId);
+  async getMyReferrals(@CurrentUser('id') user: { id: string }) {
+    return this.referralService.getReferralsForAffiliate(user.id);
   }
   @UseGuards(JwtAuthGuard)
   @Get('earnings')
-  async getEarningsSummary(@CurrentUser('id') userId: string) {
-    return this.referralService.getEarningsForAffiliate(userId);
+  async getEarningsSummary(@CurrentUser('id') user: { id: string }) {
+    return this.referralService.getEarningsForAffiliate(user.id);
   }
 }
