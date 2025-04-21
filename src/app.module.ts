@@ -32,6 +32,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { ReferralModule } from './referral/referral.module';
 import { MeModule } from './me/me.module';
 import { CommissionModule } from './commission/commission.module';
+import { InteractionModule } from './interaction/interaction.module';
 
 @Module({
   imports: [
@@ -71,6 +72,7 @@ import { CommissionModule } from './commission/commission.module';
     ReferralModule,
     MeModule,
     CommissionModule,
+    InteractionModule,
   ],
   controllers: [AppController],
   providers: [

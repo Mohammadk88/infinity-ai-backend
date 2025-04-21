@@ -143,6 +143,8 @@ model User {
   RewardRedemption RewardRedemption[]
 
   Commission Commission[]
+
+  Interaction Interaction[]
 }
 enum CompanyType {
   COMPANY
@@ -178,6 +180,8 @@ model Company {
   roles       Role[]
 
   Project Project[]
+
+  Interaction Interaction[]
 }
 model CompanyMember {
   id          String   @id @default(uuid())
@@ -235,6 +239,8 @@ model Client {
   Notification Notification[]
 
   Subscription Subscription[] @relation("ClientSubscriptions")
+
+  Interaction Interaction[]
 }
 
 model Role {
@@ -266,6 +272,32 @@ model PermissionOnRole {
 
   role         Role       @relation(fields: [roleId], references: [id])
   permission   Permission @relation(fields: [permissionId], references: [id])
+}
+model Interaction {
+  id          String      @id @default(uuid())
+  clientId    String
+  companyId   String
+  userId      String
+  type        InteractionType
+  notes       String?
+  status      String?    // pending, completed, cancelled
+  scheduledAt DateTime?
+  completedAt DateTime?
+  duration    Int?       // مدة النشاط بالدقائق 
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  client      Client      @relation(fields: [clientId], references: [id])
+  company     Company     @relation(fields: [companyId], references: [id])
+  user        User        @relation(fields: [userId], references: [id])
+}
+
+enum InteractionType {
+  CALL
+  MEETING
+  EMAIL
+  SOCIAL_MEDIA
+  OTHER
 }
 
 

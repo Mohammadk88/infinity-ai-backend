@@ -37,4 +37,22 @@ export class AwardService {
   async remove(id: string) {
     return this.prisma.award.delete({ where: { id } });
   }
+  // إجمالي النقاط
+  async getUserPoints(userId: string) {
+    const pointData = await this.prisma.userPoint.findUnique({
+      where: { userId },
+    });
+
+    return {
+      currentPoints: pointData?.points || 0,
+    };
+  }
+
+  // سجل الأحداث (تسجيل، إحالة...)
+  async getPointHistory(userId: string) {
+    return this.prisma.pointEvent.findMany({
+      where: { userId },
+      orderBy: { createdAt: 'desc' },
+    });
+  }
 }
