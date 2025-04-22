@@ -33,6 +33,9 @@ import { ReferralModule } from './referral/referral.module';
 import { MeModule } from './me/me.module';
 import { CommissionModule } from './commission/commission.module';
 import { InteractionModule } from './interaction/interaction.module';
+import { CompanyModule } from './company/company.module';
+import { CompanyMemberModule } from './company-member/company-member.module';
+import { CountryModule } from './country/country.module';
 
 @Module({
   imports: [
@@ -73,6 +76,9 @@ import { InteractionModule } from './interaction/interaction.module';
     MeModule,
     CommissionModule,
     InteractionModule,
+    CompanyModule,
+    CompanyMemberModule,
+    CountryModule,
   ],
   controllers: [AppController],
   providers: [

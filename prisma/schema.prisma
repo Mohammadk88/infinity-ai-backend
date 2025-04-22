@@ -526,7 +526,11 @@ model Notification {
   user        User     @relation(fields: [userId], references: [id])
   client      Client   @relation(fields: [clientId], references: [id])
 }
-
+enum AffiliateType {
+  REFERRAL
+  PARTNER
+  RESELLER
+}
 model Affiliate {
   id           String   @id @default(uuid())
   userId       String
@@ -554,7 +558,8 @@ model Affiliate {
   isSuspended  Boolean  @default(false) // هل تم تعليق الحساب
   isBlocked    Boolean  @default(false) // هل تم حظر الحساب
   isVerified   Boolean  @default(false) // هل تم التحقق من الحساب
-
+  type AffiliateType @default(REFERRAL)
+  isReseller Boolean @default(false) // هذا للسهولة حالياً
   user         User     @relation("UserAffiliates", fields: [userId], references: [id])
   referrals    Referral[]
 
@@ -1082,15 +1087,18 @@ model Currency {
   code      String    @unique // e.g. USD, EUR
   name      String
   symbol    String
-  countries Country[]
+
+  country_id  String
+  country    Country @relation(fields: [country_id], references: [id])
+
 }
 
 model Country {
   id          String   @id @default(uuid())
   name        String   @unique
   code        String   @unique // e.g. US, FR
-  currencyId  String
-  currency    Currency @relation(fields: [currencyId], references: [id])
+
+  currencies Currency[]
 }
 
 model Setting {
