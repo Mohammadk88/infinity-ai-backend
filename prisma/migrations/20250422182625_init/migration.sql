@@ -17,6 +17,9 @@ CREATE TYPE "UserType" AS ENUM ('SUPPER_ADMIN', 'ADMIN', 'MANAGER', 'PERSONAL', 
 CREATE TYPE "CompanyType" AS ENUM ('COMPANY', 'AGENCY');
 
 -- CreateEnum
+CREATE TYPE "InteractionType" AS ENUM ('CALL', 'MEETING', 'EMAIL', 'SOCIAL_MEDIA', 'OTHER');
+
+-- CreateEnum
 CREATE TYPE "TaskStatus" AS ENUM ('TODO', 'IN_PROGRESS', 'REVIEW', 'DONE', 'PENDING', 'ARCHIVED', 'CANCELLED', 'ON_HOLD', 'DEFERRED', 'INACTIVE', 'IN_FUTURE', 'BLOCKED');
 
 -- CreateEnum
@@ -24,6 +27,15 @@ CREATE TYPE "ModuleType" AS ENUM ('SOCIAL_POST', 'SCHEDULER', 'CAMPAIGN', 'WEB_C
 
 -- CreateEnum
 CREATE TYPE "NotificationType" AS ENUM ('info', 'success', 'warning', 'error');
+
+-- CreateEnum
+CREATE TYPE "AffiliateType" AS ENUM ('REFERRAL', 'PARTNER', 'RESELLER');
+
+-- CreateEnum
+CREATE TYPE "CommissionType" AS ENUM ('referral', 'bonus', 'payout');
+
+-- CreateEnum
+CREATE TYPE "CommissionStatus" AS ENUM ('pending', 'approved', 'paid');
 
 -- CreateEnum
 CREATE TYPE "FileType" AS ENUM ('IMAGE', 'VIDEO', 'DOCUMENT', 'AUDIO');
@@ -174,6 +186,24 @@ CREATE TABLE "PermissionOnRole" (
     "permissionId" TEXT NOT NULL,
 
     CONSTRAINT "PermissionOnRole_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Interaction" (
+    "id" TEXT NOT NULL,
+    "clientId" TEXT NOT NULL,
+    "companyId" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "type" "InteractionType" NOT NULL,
+    "notes" TEXT,
+    "status" TEXT,
+    "scheduledAt" TIMESTAMP(3),
+    "completedAt" TIMESTAMP(3),
+    "duration" INTEGER,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Interaction_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -382,6 +412,8 @@ CREATE TABLE "Affiliate" (
     "isSuspended" BOOLEAN NOT NULL DEFAULT false,
     "isBlocked" BOOLEAN NOT NULL DEFAULT false,
     "isVerified" BOOLEAN NOT NULL DEFAULT false,
+    "type" "AffiliateType" NOT NULL DEFAULT 'REFERRAL',
+    "isReseller" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Affiliate_pkey" PRIMARY KEY ("id")
 );
@@ -488,6 +520,25 @@ CREATE TABLE "ReferralSource" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "ReferralSource_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Commission" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "amount" DOUBLE PRECISION NOT NULL,
+    "currency" TEXT NOT NULL DEFAULT 'USD',
+    "paymentMethod" TEXT,
+    "paymentStatus" TEXT,
+    "paymentDate" TIMESTAMP(3),
+    "paymentReference" TEXT,
+    "type" "CommissionType" NOT NULL,
+    "source" TEXT,
+    "status" "CommissionStatus" NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Commission_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -836,6 +887,41 @@ CREATE TABLE "Invoice" (
 );
 
 -- CreateTable
+CREATE TABLE "Currency" (
+    "id" TEXT NOT NULL,
+    "code" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "symbol" TEXT NOT NULL,
+    "exchangeRate" DOUBLE PRECISION,
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
+
+    CONSTRAINT "Currency_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Country" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "code" TEXT NOT NULL,
+    "currencyId" TEXT NOT NULL,
+
+    CONSTRAINT "Country_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Setting" (
+    "id" TEXT NOT NULL,
+    "key" TEXT NOT NULL,
+    "value" TEXT NOT NULL,
+    "type" TEXT,
+    "group" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Setting_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "_TaskToUser" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL,
@@ -915,6 +1001,18 @@ CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
 CREATE UNIQUE INDEX "Tag_name_key" ON "Tag"("name");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Currency_code_key" ON "Currency"("code");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Country_name_key" ON "Country"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Country_code_key" ON "Country"("code");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Setting_key_key" ON "Setting"("key");
+
+-- CreateIndex
 CREATE INDEX "_TaskToUser_B_index" ON "_TaskToUser"("B");
 
 -- CreateIndex
@@ -952,6 +1050,15 @@ ALTER TABLE "PermissionOnRole" ADD CONSTRAINT "PermissionOnRole_roleId_fkey" FOR
 
 -- AddForeignKey
 ALTER TABLE "PermissionOnRole" ADD CONSTRAINT "PermissionOnRole_permissionId_fkey" FOREIGN KEY ("permissionId") REFERENCES "Permission"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Interaction" ADD CONSTRAINT "Interaction_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "Client"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Interaction" ADD CONSTRAINT "Interaction_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "Company"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Interaction" ADD CONSTRAINT "Interaction_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Project" ADD CONSTRAINT "Project_companyId_fkey" FOREIGN KEY ("companyId") REFERENCES "Company"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -1030,6 +1137,9 @@ ALTER TABLE "Referral" ADD CONSTRAINT "Referral_affiliateId_fkey" FOREIGN KEY ("
 
 -- AddForeignKey
 ALTER TABLE "Referral" ADD CONSTRAINT "Referral_referredUserId_fkey" FOREIGN KEY ("referredUserId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Commission" ADD CONSTRAINT "Commission_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "WithdrawalRequest" ADD CONSTRAINT "WithdrawalRequest_affiliateId_fkey" FOREIGN KEY ("affiliateId") REFERENCES "Affiliate"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -1135,6 +1245,9 @@ ALTER TABLE "Invoice" ADD CONSTRAINT "Invoice_userId_fkey" FOREIGN KEY ("userId"
 
 -- AddForeignKey
 ALTER TABLE "Invoice" ADD CONSTRAINT "Invoice_subscriptionId_fkey" FOREIGN KEY ("subscriptionId") REFERENCES "Subscription"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Country" ADD CONSTRAINT "Country_currencyId_fkey" FOREIGN KEY ("currencyId") REFERENCES "Currency"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_TaskToUser" ADD CONSTRAINT "_TaskToUser_A_fkey" FOREIGN KEY ("A") REFERENCES "Task"("id") ON DELETE CASCADE ON UPDATE CASCADE;

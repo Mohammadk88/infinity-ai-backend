@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
   Post,
   Req,
   Res,
@@ -15,6 +16,8 @@ import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { PrismaService } from '../prisma/prisma.service';
 import { Throttle } from '@nestjs/throttler';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { RegisterCompanyDto } from './dto/register-company.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -27,6 +30,17 @@ export class AuthController {
   register(@Body() dto: RegisterDto) {
     return this.authService.register(dto);
   }
+  @Post('register-company')
+  @HttpCode(200)
+  @ApiOperation({ summary: 'Register a new company with owner' })
+  @ApiResponse({
+    status: 200,
+    description: 'Company and user created successfully',
+  })
+  registerCompany(@Body() dto: RegisterCompanyDto) {
+    return this.authService.registerCompany(dto);
+  }
+
   @Throttle({ default: { limit: 3, ttl: 60000 } })
   @Post('login')
   async login(

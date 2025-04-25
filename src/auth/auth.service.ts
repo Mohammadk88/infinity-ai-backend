@@ -11,6 +11,7 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { ApiTags, ApiOperation, ApiBody } from '@nestjs/swagger';
 import { UserPointService } from '../user-point/user-point.service';
+import { RegisterCompanyDto } from './dto/register-company.dto';
 @ApiTags('Auth')
 @Injectable()
 export class AuthService {
@@ -152,5 +153,52 @@ export class AuthService {
     }
 
     return user;
+  }
+  async registerCompany(dto: RegisterCompanyDto) {
+    if (dto.password !== dto.confirmPassword) {
+      throw new BadRequestException("Passwords don't match");
+    }
+
+    const hashedPassword = await bcrypt.hash(dto.password, 10);
+
+    const user = await this.prisma.user.create({
+      data: {
+        name: dto.ownerName,
+        email: dto.ownerEmail,
+        password: hashedPassword,
+        userType: 'COMPANY_OWNER',
+      },
+    });
+
+    const company = await this.prisma.company.create({
+      data: {
+        name: dto.companyName,
+        email: dto.email,
+        countryId: dto.country,
+        type: dto.companyType,
+        ownerId: user.id,
+      },
+    });
+
+    const role = await this.prisma.role.create({
+      data: {
+        name: 'Owner',
+        companyId: company.id,
+        isDefault: true,
+      },
+    });
+
+    await this.prisma.companyMember.create({
+      data: {
+        userId: user.id,
+        companyId: company.id,
+        roleId: role.id,
+      },
+    });
+
+    return {
+      user,
+      company,
+    };
   }
 }

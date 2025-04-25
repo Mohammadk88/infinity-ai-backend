@@ -159,27 +159,27 @@ model Company {
   image       String?
   address     String?
   city        String?
-  country     String?
-  website     String?
-  description String?
-  industry    String?
-  type        CompanyType
-  ownerId     String
-  verified    Boolean     @default(false)
-  createdAt   DateTime    @default(now())
-  createdBy   String? // معرف المستخدم الذي أنشأ هذا الكيان
-  updatedBy   String? // معرف المستخدم الذي قام بتحديث هذا الكيان
-  updatedAt   DateTime    @updatedAt
-  deletedAt   DateTime?
-  deletedBy   String? // معرف المستخدم الذي حذف هذا الكيان
-  isActive    Boolean     @default(true)
+website     String?
+description String?
+industry    String?
+type        CompanyType
+ownerId     String
+verified    Boolean     @default(false)
+createdAt   DateTime    @default(now())
+createdBy   String? // معرف المستخدم الذي أنشأ هذا الكيان
+updatedBy   String? // معرف المستخدم الذي قام بتحديث هذا الكيان
+updatedAt   DateTime    @updatedAt
+deletedAt   DateTime?
+deletedBy   String? // معرف المستخدم الذي حذف هذا الكيان
+isActive    Boolean     @default(true)
+countryId   String?
+owner       User     @relation("CompanyOwner", fields: [ownerId], references: [id])
+members     CompanyMember[]
+clients     Client[]
+roles       Role[]
 
-  owner       User     @relation("CompanyOwner", fields: [ownerId], references: [id])
-  members     CompanyMember[]
-  clients     Client[]
-  roles       Role[]
-
-  Project Project[]
+Project Project[]
+countryRelation Country? @relation(fields: [countryId], references: [id])
 
   Interaction Interaction[]
 }
@@ -322,6 +322,9 @@ model Project {
 
   sprints     Sprint[]
   tasks       Task[]
+
+
+
 }
 
 model Sprint {
@@ -1087,18 +1090,20 @@ model Currency {
   code      String    @unique // e.g. USD, EUR
   name      String
   symbol    String
-
-  country_id  String
-  country    Country @relation(fields: [country_id], references: [id])
-
+  exchangeRate Float?   // سعر الصرف بالنسبة للدولار الأمريكي
+  isActive  Boolean   @default(true)
+  Country Country[]
 }
 
 model Country {
-  id          String   @id @default(uuid())
-  name        String   @unique
-  code        String   @unique // e.g. US, FR
+  id         String    @id @default(uuid())
+  name       String    @unique
+  code       String    @unique
+  
+  currencyId String
+  currency   Currency  @relation(fields: [currencyId], references: [id])
 
-  currencies Currency[]
+  Company Company[]
 }
 
 model Setting {
