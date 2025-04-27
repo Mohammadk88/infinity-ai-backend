@@ -1,45 +1,26 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Put, Param, Body, HttpCode } from '@nestjs/common';
 import { CompanyService } from './company.service';
-import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
-import { ApiTags } from '@nestjs/swagger';
-import { CurrentUser } from '../common/decorators/current-user.decorator';
+import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 @ApiTags('Companies')
 @Controller('companies')
 export class CompanyController {
-  constructor(private readonly companyService: CompanyService) {}
-
-  @Post()
-  create(@Body() dto: CreateCompanyDto, @CurrentUser('id') userId: string) {
-    return this.companyService.create(dto, userId);
-  }
-
-  @Get()
-  findAll() {
-    return this.companyService.findAll();
-  }
+  constructor(private readonly service: CompanyService) {}
 
   @Get(':id')
+  @ApiOperation({ summary: 'Get company by ID including settings' })
+  @ApiResponse({ status: 200, description: 'Company found successfully' })
+  @ApiResponse({ status: 404, description: 'Company not found' })
   findOne(@Param('id') id: string) {
-    return this.companyService.findOne(id);
+    return this.service.findOne(id);
   }
 
-  @Patch(':id')
+  @Put(':id')
+  @HttpCode(200)
+  @ApiOperation({ summary: 'Update basic company information' })
+  @ApiResponse({ status: 200, description: 'Company updated successfully' })
   update(@Param('id') id: string, @Body() dto: UpdateCompanyDto) {
-    return this.companyService.update(id, dto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.companyService.remove(id);
+    return this.service.update(id, dto);
   }
 }

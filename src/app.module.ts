@@ -10,6 +10,7 @@ import { TagsModule } from './tags/tags.module';
 import { ContentScheduleModule } from './content-schedule/content-schedule.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ContentSchedulerModule } from './content-scheduler/content-scheduler.module';
+import { AppConfigModule } from './common/config/app.config.module';
 
 import { AIGeneratorModule } from './ai-generator/ai-generator.module';
 import { WebContentModule } from './web-content/web-content.module';
@@ -36,9 +37,11 @@ import { InteractionModule } from './interaction/interaction.module';
 import { CompanyModule } from './company/company.module';
 import { CompanyMemberModule } from './company-member/company-member.module';
 import { CountryModule } from './country/country.module';
+import { CompanySettingsModule } from './company-setting/company-setting.module';
 
 @Module({
   imports: [
+    AppConfigModule,
     ThrottlerModule.forRoot([
       {
         ttl: 60000,
@@ -79,6 +82,7 @@ import { CountryModule } from './country/country.module';
     CompanyModule,
     CompanyMemberModule,
     CountryModule,
+    CompanySettingsModule,
   ],
   controllers: [AppController],
   providers: [

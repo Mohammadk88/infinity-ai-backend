@@ -173,8 +173,6 @@ export class AuthService {
     const company = await this.prisma.company.create({
       data: {
         name: dto.companyName,
-        email: dto.email,
-        countryId: dto.country,
         type: dto.companyType,
         ownerId: user.id,
       },

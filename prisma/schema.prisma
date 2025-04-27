@@ -154,35 +154,54 @@ enum CompanyType {
 model Company {
   id          String   @id @default(uuid())
   name        String
-  email       String   @unique
-  phone       String?  @unique
-  image       String?
-  address     String?
-  city        String?
-website     String?
-description String?
-industry    String?
-type        CompanyType
-ownerId     String
-verified    Boolean     @default(false)
-createdAt   DateTime    @default(now())
-createdBy   String? // معرف المستخدم الذي أنشأ هذا الكيان
-updatedBy   String? // معرف المستخدم الذي قام بتحديث هذا الكيان
-updatedAt   DateTime    @updatedAt
-deletedAt   DateTime?
-deletedBy   String? // معرف المستخدم الذي حذف هذا الكيان
-isActive    Boolean     @default(true)
-countryId   String?
+  type        CompanyType
+  ownerId     String
+  verified    Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  createdBy   String? // معرف المستخدم الذي أنشأ هذا الكيان
+  updatedBy   String? // معرف المستخدم الذي قام بتحديث هذا الكيان
+  updatedAt   DateTime    @updatedAt
+  deletedAt   DateTime?
+  deletedBy   String? // معرف المستخدم الذي حذف هذا الكيان
+  isActive    Boolean     @default(true)
+
 owner       User     @relation("CompanyOwner", fields: [ownerId], references: [id])
 members     CompanyMember[]
 clients     Client[]
 roles       Role[]
 
 Project Project[]
-countryRelation Country? @relation(fields: [countryId], references: [id])
-
+  
   Interaction Interaction[]
+
+CompanySetting CompanySetting[]
 }
+model CompanySetting {
+  id               String   @id @default(uuid())
+  companyId        String   @unique
+  email            String
+  phone            String
+  address          String
+  website          String?
+  description      String?
+  logoUrl          String?
+  coverImage       String?
+  defaultRoleId    String
+  timezone         String
+  language         String
+  currency         String
+  countryId      String
+  
+  createdAt        DateTime @default(now())
+  createdBy        String? // معرف المستخدم الذي أنشأ هذا الكيان
+  updatedAt       DateTime @updatedAt
+  updatedBy       String? // معرف المستخدم الذي قام بتحديث هذا الكيان
+  
+  
+  countryRelation Country? @relation(fields: [countryId], references: [id])
+  company          Company  @relation(fields: [companyId], references: [id])
+}
+
 model CompanyMember {
   id          String   @id @default(uuid())
   userId      String
@@ -1103,7 +1122,7 @@ model Country {
   currencyId String
   currency   Currency  @relation(fields: [currencyId], references: [id])
 
-  Company Company[]
+  CompanySetting CompanySetting[]
 }
 
 model Setting {

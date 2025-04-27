@@ -3,21 +3,25 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 import cookieParser from 'cookie-parser';
 import csurf from 'csurf';
 import helmet from 'helmet';
 import * as Express from 'express';
+import { join } from 'path';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   const config = new DocumentBuilder()
     .setTitle('Infinity AI System')
     .setDescription('Full API documentation for our marketing system')
     .setVersion('1.0')
     .addBearerAuth() // عشان توثيق JWT
     .build();
-
+  app.useStaticAssets(join(__dirname, '..', 'public'), {
+    prefix: '/public/',
+  });
   const document = SwaggerModule.createDocument(app, config);
   if (process.env.NODE_ENV !== 'production') {
     SwaggerModule.setup('docs', app, document); // /docs بتفتح منه التوثيق
