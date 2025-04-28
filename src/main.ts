@@ -19,9 +19,14 @@ async function bootstrap() {
     .setVersion('1.0')
     .addBearerAuth() // عشان توثيق JWT
     .build();
-  app.useStaticAssets(join(__dirname, '..', 'public'), {
-    prefix: '/public/',
-  });
+  app.useStaticAssets(
+    process.env.NODE_ENV === 'production'
+      ? join(__dirname, '..', 'uploads') // وقت الإنتاج ناخد من dist/uploads
+      : join(__dirname, 'uploads'), // وقت التطوير ناخد من src/uploads العادية
+    {
+      prefix: '/public/',
+    },
+  );
   const document = SwaggerModule.createDocument(app, config);
   if (process.env.NODE_ENV !== 'production') {
     SwaggerModule.setup('docs', app, document); // /docs بتفتح منه التوثيق

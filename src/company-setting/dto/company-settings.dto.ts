@@ -14,8 +14,39 @@ export class UpdateCompanySettingsDto {
   @IsString()
   currency?: string;
 
-  @ApiProperty({ required: false })
-  @IsOptional()
+  @ApiProperty({ required: true })
   @IsString()
-  isActive?: boolean;
+  email?: string;
+
+  @ApiProperty({ required: true })
+  @IsString()
+  phone?: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  address?: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  website?: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  logoUrl?: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  coverImage?: string;
+
+  @ApiProperty({ required: true })
+  @IsString()
+  countryId?: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  description?: string;
+
+  @ApiProperty({ required: true })
+  @IsString()
+  defaultRoleId?: string;
 }

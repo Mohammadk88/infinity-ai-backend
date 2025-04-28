@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsEnum } from 'class-validator';
+import { IsString, IsOptional, IsEnum, IsBoolean } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { CompanyType } from '@prisma/client';
 
@@ -11,4 +11,12 @@ export class UpdateCompanyDto {
   @IsEnum(CompanyType)
   @IsOptional()
   type?: CompanyType;
+
+  @ApiProperty({ example: true })
+  @IsBoolean()
+  verified!: boolean;
+
+  @ApiProperty({ example: true })
+  @IsBoolean()
+  isActive!: boolean;
 }
