@@ -18,7 +18,12 @@ export class CompanyService {
   async update(id: string, dto: UpdateCompanyDto) {
     return this.prisma.company.update({
       where: { id },
-      data: { name: dto.name, type: dto.type },
+      data: {
+        name: dto.name,
+        type: dto.type,
+        verified: dto.verified,
+        isActive: dto.isActive,
+      },
     });
   }
 }
