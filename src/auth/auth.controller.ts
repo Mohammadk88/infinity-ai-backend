@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Get,
@@ -18,12 +19,19 @@ import { PrismaService } from '../prisma/prisma.service';
 import { Throttle } from '@nestjs/throttler';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { RegisterCompanyDto } from './dto/register-company.dto';
+import { UserService } from 'src/users/users.service';
+import { CompanyMemberService } from 'src/company-member/company-member.service';
+import { RegisterFromInvitationDto } from './dto/register-from-invitation.dto';
+import { InvitationService } from 'src/invitation/invitation.service';
 
 @Controller('auth')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly prisma: PrismaService,
+    private readonly invitationService: InvitationService,
+    private readonly companyMemberService: CompanyMemberService,
+    private readonly userService: UserService,
   ) {}
 
   @Post('register')
@@ -79,5 +87,40 @@ export class AuthController {
   @Get('csrf-token')
   getCsrfToken(@Req() req: { csrfToken: () => string }) {
     return { csrfToken: req.csrfToken() };
+  }
+
+  @Post('register-from-invitation')
+  @ApiOperation({ summary: 'Register user from invitation' })
+  async registerFromInvitation(@Body() dto: RegisterFromInvitationDto) {
+    const invitation = await this.invitationService.findByToken(dto.token);
+
+    if (!invitation || invitation.status !== 'PENDING') {
+      throw new BadRequestException('Invitation is not valid or already used');
+    }
+
+    const existingUser = await this.userService.findByEmail(invitation.email);
+    if (existingUser) {
+      throw new BadRequestException('User already exists');
+    }
+
+    // 1. إنشاء المستخدم
+    const user = await this.userService.create({
+      email: invitation.email,
+      name: dto.name,
+      password: dto.password,
+      emailVerified: true,
+    });
+
+    // 2. ربط المستخدم بالشركة كـ member
+    await this.companyMemberService.create({
+      userId: user.id,
+      companyId: invitation.companyId,
+      roleId: invitation.roleId,
+    });
+
+    // 3. تحديث الدعوة إلى accepted
+    await this.invitationService.markAsAccepted(dto.token);
+
+    return { message: 'Account created and invitation accepted' };
   }
 }

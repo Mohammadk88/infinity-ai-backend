@@ -155,7 +155,7 @@ model Company {
   id          String   @id @default(uuid())
   name        String
   type        CompanyType
-  ownerId     String
+  ownerId     String?
   verified    Boolean     @default(false)
   createdAt   DateTime    @default(now())
   createdBy   String? // معرف المستخدم الذي أنشأ هذا الكيان
@@ -165,7 +165,7 @@ model Company {
   deletedBy   String? // معرف المستخدم الذي حذف هذا الكيان
   isActive    Boolean     @default(true)
 
-owner       User     @relation("CompanyOwner", fields: [ownerId], references: [id])
+owner       User?     @relation("CompanyOwner", fields: [ownerId], references: [id])
 members     CompanyMember[]
 clients     Client[]
 roles       Role[]
@@ -175,6 +175,8 @@ Project Project[]
   Interaction Interaction[]
 
 CompanySetting CompanySetting[]
+
+  Invitation Invitation[]
 }
 model CompanySetting {
   id               String   @id @default(uuid())
@@ -221,6 +223,30 @@ model CompanyMember {
   company     Company  @relation(fields: [companyId], references: [id])
   role        Role     @relation(fields: [roleId], references: [id])
 
+}
+model Invitation {
+  id          String   @id @default(uuid())
+  email       String
+  roleId      String
+  companyId   String
+  token       String   @unique
+  acceptedAt  DateTime?
+  expiresAt   DateTime
+  status      InvitationStatus @default(PENDING)
+  invitedBy   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  company     Company  @relation(fields: [companyId], references: [id])
+  role        Role     @relation(fields: [roleId], references: [id])
+}
+
+enum InvitationStatus {
+  PENDING
+  ACCEPTED
+  EXPIRED
+  CANCELLED
 }
 
 model Client {
@@ -272,6 +298,8 @@ model Role {
   permissions PermissionOnRole[]
 
   CompanyMember CompanyMember[]
+
+  Invitation Invitation[]
 }
 
 model Permission {

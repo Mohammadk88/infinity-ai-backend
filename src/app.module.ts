@@ -38,6 +38,9 @@ import { CompanyModule } from './company/company.module';
 import { CompanyMemberModule } from './company-member/company-member.module';
 import { CountryModule } from './country/country.module';
 import { CompanySettingsModule } from './company-setting/company-setting.module';
+import { InvitationModule } from './invitation/invitation.module';
+import { MailModule } from './mail/mail.module';
+import { RolesModule } from './role/role.module';
 
 @Module({
   imports: [
@@ -83,6 +86,9 @@ import { CompanySettingsModule } from './company-setting/company-setting.module'
     CompanyMemberModule,
     CountryModule,
     CompanySettingsModule,
+    InvitationModule,
+    MailModule,
+    RolesModule,
   ],
   controllers: [AppController],
   providers: [

@@ -31,4 +31,14 @@ export class CompanyMemberService {
   remove(id: string) {
     return this.prisma.companyMember.delete({ where: { id } });
   }
+  async addMember(data: {
+    companyId: string;
+    roleId: string;
+    userId: string;
+    addedBy: string;
+  }) {
+    return this.prisma.companyMember.create({
+      data,
+    });
+  }
 }

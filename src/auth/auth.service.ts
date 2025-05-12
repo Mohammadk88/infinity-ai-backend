@@ -9,16 +9,24 @@ import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
-import { ApiTags, ApiOperation, ApiBody } from '@nestjs/swagger';
+import { ApiOperation, ApiBody } from '@nestjs/swagger';
 import { UserPointService } from '../user-point/user-point.service';
 import { RegisterCompanyDto } from './dto/register-company.dto';
-@ApiTags('Auth')
+import { RegisterFromInvitationDto } from './dto/register-from-invitation.dto';
+import { InvitationService } from '../invitation/invitation.service';
+import { UserService } from '../users/users.service';
+import { CompanyMemberService } from 'src/company-member/company-member.service';
+import { CompanyService } from 'src/company/company.service';
 @Injectable()
 export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwt: JwtService,
     private pointsService: UserPointService,
+    private invitationService: InvitationService,
+    private userService: UserService,
+    private companyMemberService: CompanyMemberService,
+    private readonly companyService: CompanyService,
   ) {}
 
   /**
@@ -170,13 +178,15 @@ export class AuthService {
       },
     });
 
-    const company = await this.prisma.company.create({
-      data: {
+    const company = await this.companyService.create(
+      {
         name: dto.companyName,
         type: dto.companyType,
-        ownerId: user.id,
+        verified: false,
+        isActive: true,
       },
-    });
+      user.id,
+    );
 
     const role = await this.prisma.role.create({
       data: {
@@ -198,5 +208,28 @@ export class AuthService {
       user,
       company,
     };
+  }
+  async registerFromInvitation(dto: RegisterFromInvitationDto) {
+    const invitation = await this.invitationService.findByToken(dto.token);
+    if (!invitation || invitation.status !== 'PENDING') {
+      throw new BadRequestException('Invitation expired or invalid');
+    }
+
+    const user = await this.userService.createUserFromInvitation({
+      email: invitation.email,
+      name: dto.name,
+      password: dto.password,
+    });
+
+    await this.companyMemberService.addMember({
+      companyId: invitation.companyId,
+      roleId: invitation.roleId,
+      userId: user.id,
+      addedBy: invitation.invitedBy,
+    });
+
+    await this.invitationService.markAsAccepted(dto.token);
+
+    return { message: 'User registered and linked to company successfully' };
   }
 }
