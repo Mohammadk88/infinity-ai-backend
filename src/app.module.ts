@@ -41,6 +41,7 @@ import { CompanySettingsModule } from './company-setting/company-setting.module'
 import { InvitationModule } from './invitation/invitation.module';
 import { MailModule } from './mail/mail.module';
 import { RolesModule } from './role/role.module';
+import { RedisModule } from './modules/redis/redis.module';
 
 @Module({
   imports: [
@@ -89,6 +90,7 @@ import { RolesModule } from './role/role.module';
     InvitationModule,
     MailModule,
     RolesModule,
+    RedisModule,
   ],
   controllers: [AppController],
   providers: [
