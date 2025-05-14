@@ -221,12 +221,15 @@ export class AuthService {
       password: dto.password,
     });
 
-    await this.companyMemberService.addMember({
-      companyId: invitation.companyId,
-      roleId: invitation.roleId,
-      userId: user.id,
-      addedBy: invitation.invitedBy,
-    });
+    await this.companyMemberService.addMember(
+      {
+        companyId: invitation.companyId,
+        roleId: invitation.roleId,
+        userId: user.id,
+        addedBy: invitation.invitedBy,
+      },
+      invitation.invitedBy,
+    );
 
     await this.invitationService.markAsAccepted(dto.token);
 
