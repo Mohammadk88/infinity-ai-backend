@@ -971,11 +971,43 @@ CREATE TABLE "Memory" (
 );
 
 -- CreateTable
+CREATE TABLE "PipelineStage" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "color" TEXT,
+    "order" INTEGER NOT NULL,
+    "userId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "PipelineStage_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ClientNote" (
+    "id" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
+    "clientId" TEXT NOT NULL,
+    "authorId" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "ClientNote_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "_TaskToUser" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL,
 
     CONSTRAINT "_TaskToUser_AB_pkey" PRIMARY KEY ("A","B")
+);
+
+-- CreateTable
+CREATE TABLE "_LeadToPipelineStage" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL,
+
+    CONSTRAINT "_LeadToPipelineStage_AB_pkey" PRIMARY KEY ("A","B")
 );
 
 -- CreateTable
@@ -1063,6 +1095,9 @@ CREATE UNIQUE INDEX "Setting_key_key" ON "Setting"("key");
 
 -- CreateIndex
 CREATE INDEX "_TaskToUser_B_index" ON "_TaskToUser"("B");
+
+-- CreateIndex
+CREATE INDEX "_LeadToPipelineStage_B_index" ON "_LeadToPipelineStage"("B");
 
 -- CreateIndex
 CREATE INDEX "_FileUploadToTask_B_index" ON "_FileUploadToTask"("B");
@@ -1311,10 +1346,19 @@ ALTER TABLE "Invoice" ADD CONSTRAINT "Invoice_subscriptionId_fkey" FOREIGN KEY (
 ALTER TABLE "Country" ADD CONSTRAINT "Country_currencyId_fkey" FOREIGN KEY ("currencyId") REFERENCES "Currency"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "ClientNote" ADD CONSTRAINT "ClientNote_clientId_fkey" FOREIGN KEY ("clientId") REFERENCES "Client"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "_TaskToUser" ADD CONSTRAINT "_TaskToUser_A_fkey" FOREIGN KEY ("A") REFERENCES "Task"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_TaskToUser" ADD CONSTRAINT "_TaskToUser_B_fkey" FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_LeadToPipelineStage" ADD CONSTRAINT "_LeadToPipelineStage_A_fkey" FOREIGN KEY ("A") REFERENCES "Lead"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_LeadToPipelineStage" ADD CONSTRAINT "_LeadToPipelineStage_B_fkey" FOREIGN KEY ("B") REFERENCES "PipelineStage"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_FileUploadToTask" ADD CONSTRAINT "_FileUploadToTask_A_fkey" FOREIGN KEY ("A") REFERENCES "FileUpload"("id") ON DELETE CASCADE ON UPDATE CASCADE;

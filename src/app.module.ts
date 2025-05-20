@@ -42,6 +42,9 @@ import { InvitationModule } from './invitation/invitation.module';
 import { MailModule } from './mail/mail.module';
 import { RolesModule } from './role/role.module';
 import { RedisModule } from './modules/redis/redis.module';
+import { PipelineStageModule } from './pipeline-stage/pipeline-stage.module';
+import { ClientNoteModule } from './client-note/client-note.module';
+import { LeadModule } from './lead/lead.module';
 
 @Module({
   imports: [
@@ -91,6 +94,9 @@ import { RedisModule } from './modules/redis/redis.module';
     MailModule,
     RolesModule,
     RedisModule,
+    PipelineStageModule,
+    ClientNoteModule,
+    LeadModule,
   ],
   controllers: [AppController],
   providers: [

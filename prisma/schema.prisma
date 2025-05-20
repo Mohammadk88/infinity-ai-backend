@@ -286,6 +286,8 @@ model Client {
   Subscription Subscription[] @relation("ClientSubscriptions")
 
   Interaction Interaction[]
+
+  ClientNote ClientNote[]
 }
 
 model Role {
@@ -503,6 +505,8 @@ model Lead {
   LeadActivity LeadActivity[]
 
   Reminder Reminder[]
+
+  PipelineStage PipelineStage[]
 }
 model LeadActivity {
   id        String   @id @default(uuid())
@@ -1174,3 +1178,23 @@ model Memory {
   expiresAt  DateTime?
 }
 
+model PipelineStage {
+  id        String   @id @default(cuid())
+  name      String
+  color     String?   // لتلوين المرحلة في الواجهة (اختياري)
+  order     Int       // ترتيب المرحلة في المسار
+  userId    String    // المالك (أو الشركة لاحقًا)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  leads     Lead[]
+}
+model ClientNote {
+  id        String   @id @default(cuid())
+  content   String
+  clientId  String
+  authorId  String
+  createdAt DateTime @default(now())
+
+  client    Client   @relation(fields: [clientId], references: [id])
+}
