@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateAIProviderConfigDto } from './dto/create-ai-provider-config.dto';
 import { UpdateAIProviderConfigDto } from './dto/update-ai-provider-config.dto';
+import { AIProviderConfig } from '@prisma/client';
 
 @Injectable()
 export class AIProviderConfigService {
@@ -17,7 +18,7 @@ export class AIProviderConfigService {
   }
 
   async findAllByUser(userId: string) {
-    return this.prisma.aIProviderConfig.findMany({
+    return await this.prisma.aIProviderConfig.findMany({
       where: { userId, isDeleted: false },
       orderBy: { createdAt: 'desc' },
     });
@@ -54,6 +55,15 @@ export class AIProviderConfigService {
       data: {
         isDeleted: true,
         isActive: false,
+      },
+    });
+  }
+  async findActiveByUser(userId: string): Promise<AIProviderConfig | null> {
+    return this.prisma.aIProviderConfig.findFirst({
+      where: {
+        userId,
+        isEnabled: true,
+        isActive: true,
       },
     });
   }

@@ -34,7 +34,19 @@ export class InstagramService {
 
     return `https://api.instagram.com/oauth/authorize?client_id=${instagramClientId}&redirect_uri=${redirectUri}&scope=user_profile,user_media,pages_show_list,instagram_basic,instagram_content_publish&response_type=code&state=${state}`;
   }
+  getAuthorizationUrl(): string {
+    const clientId = process.env.INSTAGRAM_APP_ID;
+    const redirectUri = encodeURIComponent(
+      process.env.INSTAGRAM_CALLBACK_URL || '',
+    );
+    const state = 'secure-random-state';
 
+    if (!clientId || !redirectUri) {
+      throw new BadRequestException('Instagram app configuration is missing');
+    }
+
+    return `https://api.instagram.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=user_profile,user_media&response_type=code&state=${state}`;
+  }
   /**
    * Handle Instagram OAuth callback
    * @param code The authorization code returned by Instagram
@@ -97,6 +109,7 @@ export class InstagramService {
           platform: 'INSTAGRAM',
           accountName: data.user_id,
           pageId: data.user_id,
+          externalId: data.user_id,
           accessToken: data.access_token,
           tokenExpiresAt: new Date(Date.now() + 60 * 60 * 24 * 60 * 1000), // 60 days approx.
         },

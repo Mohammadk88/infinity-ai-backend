@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import axios from 'axios';
 import * as qs from 'qs';
 import { ConfigService } from '@nestjs/config';
@@ -7,11 +7,13 @@ import { v4 as uuidv4 } from 'uuid';
 import { PrismaService } from '../../../prisma/prisma.service'; // Assuming you have a PrismaService for database operations
 import { generateCodeVerifier } from 'src/lib/pkce.util';
 @Injectable()
-export class LinkedInService {
+export class LinkedInAuthService {
   private clientId: string;
   private clientSecret: string;
   private redirectUri: string;
   private clientScope: string;
+  private readonly logger = new Logger(LinkedInAuthService.name);
+
   constructor(
     private configService: ConfigService,
     private RedisStore: SocialSessionStore,
@@ -26,7 +28,13 @@ export class LinkedInService {
     ) as string;
     this.clientScope = this.configService.get('LINKEDIN_SCOPE') as string;
   }
+  getAuthorizationUrl(): string {
+    const clientId = this.clientId;
+    const redirectUri = encodeURIComponent(this.redirectUri);
+    const state = 'secure-random-state'; // لاحقاً يمكن توليده ديناميكياً
 
+    return `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&state=${state}&scope=${encodeURIComponent(this.clientScope)}`;
+  }
   async getAuthUrl(userId: string, clientId: string) {
     // const state = `${userId}:${clientId}`;
     const stateId = uuidv4(); // unique & unguessable
@@ -114,9 +122,10 @@ export class LinkedInService {
     await this.prisma.socialAccount.upsert({
       where: {
         // بفرض إنو (userId + platform) هو المفتاح المميز
-        userId_platform: {
+        userId_platform_pageId: {
           userId,
           platform: 'LINKEDIN',
+          pageId: '',
         },
       },
       update: {
@@ -128,6 +137,7 @@ export class LinkedInService {
         platform: 'LINKEDIN',
         accountName: 'LinkedIn Account',
         pageId: '', // LinkedIn ما بتعطي Page ID بهي المرحلة، منتركه فاضي
+        externalId: '', // Required field for LinkedIn accounts
         accessToken,
         tokenExpiresAt: new Date(
           Date.now() + tokenResponse.data.expires_in * 1000,
@@ -136,5 +146,125 @@ export class LinkedInService {
     });
 
     return { success: true, accessToken };
+  }
+
+  async postToCompanyPage(
+    companyId: string,
+    content: string,
+    accessToken: string,
+  ): Promise<void> {
+    const url = 'https://api.linkedin.com/v2/ugcPosts';
+
+    const payload = {
+      author: `urn:li:organization:${companyId}`,
+      lifecycleState: 'PUBLISHED',
+      specificContent: {
+        'com.linkedin.ugc.ShareContent': {
+          shareCommentary: {
+            text: content,
+          },
+          shareMediaCategory: 'NONE',
+        },
+      },
+      visibility: {
+        'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC',
+      },
+    };
+
+    try {
+      await axios.post(url, payload, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'X-Restli-Protocol-Version': '2.0.0',
+          'Content-Type': 'application/json',
+        },
+      });
+    } catch (unknownError: unknown) {
+      let errorMessage = '';
+      if (
+        unknownError &&
+        typeof unknownError === 'object' &&
+        'response' in unknownError &&
+        unknownError.response &&
+        typeof unknownError.response === 'object' &&
+        'data' in unknownError.response
+      ) {
+        errorMessage = `❌ Error posting to company page ${companyId}: ${JSON.stringify((unknownError as { response: { data: unknown } }).response.data)}`;
+      } else if (
+        unknownError &&
+        typeof unknownError === 'object' &&
+        'message' in unknownError &&
+        typeof (unknownError as { message?: unknown }).message === 'string'
+      ) {
+        errorMessage = `❌ Error posting to company page ${companyId}: ${(unknownError as { message: string }).message}`;
+      } else {
+        errorMessage = `❌ Error posting to company page ${companyId}: ${String(unknownError)}`;
+      }
+      this.logger.error(errorMessage);
+      throw unknownError;
+    }
+  }
+
+  async postToUserProfile(
+    profileId: string,
+    content: string,
+    accessToken: string,
+  ): Promise<void> {
+    const url = 'https://api.linkedin.com/v2/ugcPosts';
+
+    const payload = {
+      author: `urn:li:person:${profileId}`,
+      lifecycleState: 'PUBLISHED',
+      specificContent: {
+        'com.linkedin.ugc.ShareContent': {
+          shareCommentary: {
+            text: content,
+          },
+          shareMediaCategory: 'NONE',
+        },
+      },
+      visibility: {
+        'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC',
+      },
+    };
+
+    try {
+      await axios.post(url, payload, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'X-Restli-Protocol-Version': '2.0.0',
+          'Content-Type': 'application/json',
+        },
+      });
+
+      this.logger.log(`✅ Published post to user profile ${profileId}`);
+    } catch (error) {
+      let errorMessage = '';
+      if (
+        error &&
+        typeof error === 'object' &&
+        'response' in error &&
+        error.response &&
+        typeof error.response === 'object' &&
+        'data' in error.response
+      ) {
+        errorMessage = (error as { response: { data: unknown } }).response
+          .data as string;
+      } else if (
+        error &&
+        typeof error === 'object' &&
+        'message' in error &&
+        typeof (error as { message?: unknown }).message === 'string'
+      ) {
+        errorMessage = (error as { message: string }).message;
+      } else {
+        errorMessage = String(error);
+      }
+      this.logger.error(
+        `❌ Error posting to user profile ${profileId}`,
+        errorMessage,
+      );
+      throw error;
+    }
   }
 }

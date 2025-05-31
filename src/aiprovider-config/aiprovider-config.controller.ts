@@ -18,13 +18,12 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @ApiTags('AI Provider Config')
 @ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('ai-provider-config')
 export class AIProviderConfigController {
   constructor(private readonly service: AIProviderConfigService) {}
 
   @Post()
-  @UseGuards(JwtAuthGuard)
-  @ApiBearerAuth()
   create(
     @CurrentUser() user: JwtPayload,
     @Body() dto: CreateAIProviderConfigDto,
@@ -34,6 +33,11 @@ export class AIProviderConfigController {
   @Get()
   findAll(@CurrentUser() user: JwtPayload) {
     return this.service.findAllByUser(user.id);
+  }
+
+  @Get('active')
+  getActiveProvider(@CurrentUser() user: JwtPayload) {
+    return this.service.findActiveByUser(user.id);
   }
 
   @Get(':id')

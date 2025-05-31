@@ -9,6 +9,7 @@ import {
 import OAuth from 'oauth-1.0a';
 import * as crypto from 'crypto';
 import { SocialAccountsService } from '../../../social-accounts/social-accounts.service';
+import { Inject, forwardRef } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { HttpService } from '@nestjs/axios';
@@ -25,6 +26,7 @@ export class TwitterAuthService {
   private readonly consumerSecret: string;
   private readonly callbackUrl: string;
   constructor(
+    @Inject(forwardRef(() => SocialAccountsService))
     private readonly socialAccountService: SocialAccountsService,
     private readonly configService: ConfigService,
     private readonly prisma: PrismaService,
@@ -53,6 +55,13 @@ export class TwitterAuthService {
           .digest('base64');
       },
     });
+  }
+  getAuthorizationUrl(): string {
+    const clientId = process.env.TWITTER_CLIENT_ID;
+    const redirectUri = encodeURIComponent(this.callbackUrl);
+    const state = 'secure-random-state';
+
+    return `https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=tweet.read%20tweet.write&state=${state}&code_challenge=challenge&code_challenge_method=plain`;
   }
   async getAccessToken(
     userId: string,
@@ -320,6 +329,7 @@ export class TwitterAuthService {
         accessToken: access_token,
         refreshToken: refresh_token,
         tokenExpiresAt: expiresAt.toISOString(),
+        externalId: '',
         user: { connect: { id: userId } },
       };
       if (clientId) {

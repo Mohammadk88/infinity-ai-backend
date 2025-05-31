@@ -772,6 +772,10 @@ model SocialAccount {
   accountName String
   pageId      String
   accessToken String
+  externalId   String
+  accessSecret  String?
+  accountType   AccountType @default(USER)  // 👈 أضف هذا السطر
+
   refreshToken String?
   username    String?
   status      String   @default("active")
@@ -780,15 +784,19 @@ model SocialAccount {
   updatedAt   DateTime @updatedAt
   deletedAt   DateTime?
   
-  @@unique([userId, platform]) // 👈 أضف هذا السطر
+  @@unique([userId, platform, pageId])
 
   user        User     @relation(fields: [userId], references: [id])
   client      Client?  @relation(fields: [clientId], references: [id])
   posts       SocialPost[]
   marketingCampaigns MarketingCampaign[]
   Lead Lead[]
+  PostAccount PostAccount[]
 }
-
+enum AccountType {
+  USER
+  COMPANY
+}
 model SocialPost {
   id              String   @id @default(uuid())
   socialAccountId String
@@ -810,6 +818,19 @@ model SocialPost {
   schedule   ContentSchedule?
 
   files FileUpload[]
+
+  PostAccount PostAccount[]
+}
+
+model PostAccount {
+  id              String       @id @default(uuid())
+  postId          String
+  socialAccountId String
+
+  post            SocialPost   @relation(fields: [postId], references: [id])
+  socialAccount   SocialAccount @relation(fields: [socialAccountId], references: [id])
+
+  @@unique([postId, socialAccountId])
 }
 
 model MarketingCampaign {
@@ -886,6 +907,7 @@ model AIProviderConfig {
   apiKey      String   // مشفّر أو محفوظ بأمان
   model       String?  // "gpt-4", "claude-2"
   isActive    Boolean  @default(false)
+  isEnabled Boolean  @default(true) // 👈 أضف هذا السطر
   isDeleted   Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

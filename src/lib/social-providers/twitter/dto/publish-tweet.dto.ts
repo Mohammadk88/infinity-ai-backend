@@ -14,4 +14,26 @@ export class PublishTweetDto {
   @IsNotEmpty()
   @IsString()
   content!: string;
+
+  @ApiProperty({
+    name: 'postId',
+  })
+  @IsString()
+  @IsNotEmpty()
+  postId!: string;
+  @ApiProperty({
+    name: 'socialAccountId',
+  })
+  @ApiProperty({ name: 'twitterAccountId' })
+  @IsString()
+  @IsNotEmpty()
+  twitterAccountId!: string;
+
+  @ApiPropertyOptional({
+    example: 'https://example.com/image.jpg',
+    description: 'Optional media URL to attach to the tweet',
+  })
+  @IsOptional()
+  @IsString()
+  mediaUrl?: string;
 }

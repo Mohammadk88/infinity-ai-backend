@@ -41,10 +41,11 @@ import { CompanySettingsModule } from './company-setting/company-setting.module'
 import { InvitationModule } from './invitation/invitation.module';
 import { MailModule } from './mail/mail.module';
 import { RolesModule } from './role/role.module';
-import { RedisModule } from './modules/redis/redis.module';
+import { RedisModule } from './lib/social-providers/redis/redis.module';
 import { PipelineStageModule } from './pipeline-stage/pipeline-stage.module';
 import { ClientNoteModule } from './client-note/client-note.module';
 import { LeadModule } from './lead/lead.module';
+import { OAuthModule } from './oauth/oauth.module';
 
 @Module({
   imports: [
@@ -97,6 +98,7 @@ import { LeadModule } from './lead/lead.module';
     PipelineStageModule,
     ClientNoteModule,
     LeadModule,
+    OAuthModule,
   ],
   controllers: [AppController],
   providers: [

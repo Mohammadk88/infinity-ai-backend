@@ -36,6 +36,11 @@ export class CreateSocialAccountDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
+  externalId!: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
   accessToken!: string;
 
   @ApiPropertyOptional()
