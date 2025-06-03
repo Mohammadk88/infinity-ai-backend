@@ -19,6 +19,7 @@ import { JwtPayload } from '../common/interfaces/jwt-payload.interface';
 import { PrismaService } from '../prisma/prisma.service';
 
 @ApiTags('Subscriptions')
+@UseGuards(JwtAuthGuard)
 @Controller('subscriptions')
 export class SubscriptionController {
   constructor(
@@ -26,6 +27,10 @@ export class SubscriptionController {
     private readonly prisma: PrismaService,
   ) {}
 
+  @Get('me')
+  async getMySubscription(@CurrentUser('id') userId: string) {
+    return await this.subscriptionService.getActiveSubscription(userId);
+  }
   @Post()
   @ApiOperation({ summary: 'Create a new subscription' })
   @UseGuards(JwtAuthGuard)
@@ -40,16 +45,28 @@ export class SubscriptionController {
       clientId: dto.clientId || user.clientId,
     });
   }
-
-  @Get()
-  @ApiOperation({ summary: 'Get all subscriptions' })
-  findAll() {
-    return this.prisma.subscription.findMany({
-      include: {
-        plan: true,
-        client: true,
+  @Post('activate')
+  @UseGuards(JwtAuthGuard)
+  async activatePlan(
+    @CurrentUser() user: JwtPayload,
+    @Body()
+    body: {
+      planId: string;
+      amount: number;
+      method: string;
+      externalId: string;
+    },
+  ) {
+    return this.subscriptionService.createOrRenewSubscription(
+      user.id,
+      body.planId,
+      user.clientId,
+      {
+        amount: body.amount,
+        method: body.method,
+        externalId: body.externalId,
       },
-    });
+    );
   }
 
   @Get(':id')

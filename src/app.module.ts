@@ -46,6 +46,8 @@ import { PipelineStageModule } from './pipeline-stage/pipeline-stage.module';
 import { ClientNoteModule } from './client-note/client-note.module';
 import { LeadModule } from './lead/lead.module';
 import { OAuthModule } from './oauth/oauth.module';
+import { UsageLimitModule } from './usage-limit/usage-limit.module';
+import { PaymentsModule } from './payments/payments.module';
 
 @Module({
   imports: [
@@ -99,6 +101,8 @@ import { OAuthModule } from './oauth/oauth.module';
     ClientNoteModule,
     LeadModule,
     OAuthModule,
+    UsageLimitModule,
+    PaymentsModule,
   ],
   controllers: [AppController],
   providers: [

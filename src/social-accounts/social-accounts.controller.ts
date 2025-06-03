@@ -75,10 +75,10 @@ export class SocialAccountsController {
     console.log('📊 Getting stats for:', user.id);
     return this.service.getStats(user.id);
   }
-  @Get('my-social-accounts')
-  @ApiOperation({ summary: 'Get all connected social accounts' })
+  @Post('my-social-accounts')
+  @ApiOperation({ summary: 'Get statistics for Test' })
   getSocialAccounts(@CurrentUser() user: JwtPayload) {
-    console.log('🔍 Fetching accounts for user:', user.id);
+    console.log('📊 Getting social-accounts for:', user.id);
     return this.service.getAccountsForUser(user.id);
   }
 

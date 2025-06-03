@@ -274,7 +274,66 @@ async function main() {
       ],
       skipDuplicates: true,
     });
+    await prisma.subscriptionPlan.deleteMany(); // clear for dev only
 
+    await prisma.subscriptionPlan.createMany({
+      data: [
+        {
+          id: 'freelancer',
+          name: 'Freelancer',
+          description: 'Perfect for solo creators and freelancers',
+          priceMonthly: 15,
+          priceYearly: 150,
+          features: {
+            ai_generation: 10,
+            scheduled_posts: 20,
+            social_accounts: 3,
+            ai_agents: 1,
+          },
+          duration: 30,
+          isActive: true,
+          isRecommended: false,
+          isTrial: false,
+          isDeleted: false,
+        },
+        {
+          id: 'small_business',
+          name: 'Small Business',
+          description: 'Ideal for growing businesses and marketing teams',
+          priceMonthly: 59,
+          priceYearly: 590,
+          features: {
+            ai_generation: 9999,
+            scheduled_posts: 9999,
+            social_accounts: 999,
+            ai_agents: 5,
+          },
+          duration: 30,
+          isActive: true,
+          isRecommended: true,
+          isTrial: false,
+          isDeleted: false,
+        },
+        {
+          id: 'agency',
+          name: 'Agency',
+          description: 'For agencies with advanced needs',
+          priceMonthly: 199,
+          priceYearly: 1990,
+          features: {
+            ai_generation: 999999,
+            scheduled_posts: 999999,
+            social_accounts: 9999,
+            ai_agents: 20,
+          },
+          duration: 30,
+          isActive: false, // COMING SOON
+          isRecommended: false,
+          isTrial: false,
+          isDeleted: false,
+        },
+      ],
+    });
     console.log('✅ Seed completed successfully!');
   } finally {
     await prisma.$disconnect();

@@ -145,6 +145,12 @@ model User {
   Commission Commission[]
 
   Interaction Interaction[]
+
+  UsageLimit UsageLimit[]
+
+  Payment Payment[]
+
+  PaymentMethod PaymentMethod[]
 }
 enum CompanyType {
   COMPANY
@@ -288,6 +294,10 @@ model Client {
   Interaction Interaction[]
 
   ClientNote ClientNote[]
+
+  Payment Payment[]
+
+  PaymentMethod PaymentMethod[]
 }
 
 model Role {
@@ -1079,11 +1089,15 @@ model SubscriptionPlan {
   isActive    Boolean  @default(true)
   isRecommended Boolean  @default(false)
   isTrial     Boolean  @default(false)
+  paddleProductId String?
+  paddlePlanId String?
   isDeleted   Boolean  @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
   subscriptions Subscription[]
+
+  Payment Payment[]
 }
 
 enum SubscriptionStatus {
@@ -1101,6 +1115,7 @@ model Subscription {
   status         SubscriptionStatus  @default(ACTIVE)
   startedAt      DateTime            @default(now())
   expiresAt      DateTime
+  isTrial     Boolean  @default(false)
   isActive          Boolean  @default(true)
   createdAt      DateTime            @default(now())
   updatedAt      DateTime            @updatedAt
@@ -1112,7 +1127,71 @@ model Subscription {
   plan           SubscriptionPlan    @relation(fields: [planId], references: [id])
   invoices       Invoice[]
 }
+model UsageLimit {
+  id        String      @id @default(cuid())
+  user      User        @relation(fields: [userId], references: [id])
+  userId    String
+  type      UsageType
+  used      Int         @default(0)
+  limit     Int
+  resetPeriod String   @default("monthly") // monthly, weekly, daily
+  resetAt   DateTime
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
 
+  @@unique([userId, type])
+}
+
+enum UsageType {
+  ai_generation
+  scheduled_posts
+  social_accounts
+  ai_agents
+}
+model Payment {
+  id              String      @id @default(cuid())
+  user            User        @relation(fields: [userId], references: [id])
+  userId          String
+  plan            SubscriptionPlan @relation(fields: [planId], references: [id])
+  planId          String
+  client          Client?     @relation(fields: [clientId], references: [id])
+  clientId        String?
+
+  amount          Int         // in cents
+  currency        String      @default("USD")
+  status          PaymentStatus
+  method          String?     // stripe, paypal, etc.
+  externalId      String?     // payment session ID (from Stripe for example)
+  paidAt          DateTime?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  CANCELLED
+  PARTIAL
+  REFUNDED
+}
+model PaymentMethod {
+  id           String   @id @default(cuid())
+  user         User     @relation(fields: [userId], references: [id])
+  userId       String
+  client       Client?  @relation(fields: [clientId], references: [id])
+  clientId     String?
+  type         String   // card, bank_transfer, paypal, etc.
+  externalId String @unique   // Stripe payment method ID
+  brand        String   // visa, mastercard...
+  last4        String   // last 4 digits only
+  expMonth     Int?     // expiration month
+  expYear      Int?     // expiration year
+  country      String?  // country of the card
+  isDefault    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
 model AIJobQueue {
   id           String   @id @default(cuid())
   type         String
