@@ -48,6 +48,10 @@ import { LeadModule } from './lead/lead.module';
 import { OAuthModule } from './oauth/oauth.module';
 import { UsageLimitModule } from './usage-limit/usage-limit.module';
 import { PaymentsModule } from './payments/payments.module';
+import { TaskModule } from './task/task.module';
+import { SprintModule } from './sprint/sprint.module';
+import { AnalyticsModule } from './analytics/analytics.module';
+import { ProjectModule } from './project/project.module';
 
 @Module({
   imports: [
@@ -103,6 +107,10 @@ import { PaymentsModule } from './payments/payments.module';
     OAuthModule,
     UsageLimitModule,
     PaymentsModule,
+    TaskModule,
+    SprintModule,
+    AnalyticsModule,
+    ProjectModule,
   ],
   controllers: [AppController],
   providers: [

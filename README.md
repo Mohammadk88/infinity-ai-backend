@@ -38,6 +38,28 @@ Infinity AI System is a comprehensive AI-powered platform that integrates social
 - **Small to Medium Businesses**
 - **Freelancers**
 
+## 🚀 Quick Start
+
+### Option 1: Automated Setup (Recommended)
+```bash
+# Clone the repository
+git clone <repository-url>
+cd infinity-ai-backend
+
+# Run the automated setup script
+./start.sh
+```
+
+The script will:
+- Check and create environment configuration
+- Install dependencies
+- Generate Prisma client
+- Run database migrations
+- Seed the database
+- Start the development server
+
+### Option 2: Manual Setup
+
 ## Installation and Setup
 
 ### Prerequisites

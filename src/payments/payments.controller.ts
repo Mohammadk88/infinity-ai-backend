@@ -51,7 +51,7 @@ export class PaymentsController {
       const checkoutUrl = await this.paymentsService.createPaddleCheckout(
         {
           ...plan,
-          paddleProductId: plan.paddleProductId as string,
+          paddleProductId: plan.paddleProductId,
         },
         {
           id: user.id,

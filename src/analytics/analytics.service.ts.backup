@@ -1,0 +1,683 @@
+import { Injectable, ForbiddenException } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
+
+@Injectable()
+export class AnalyticsService {
+  constructor(private prisma: PrismaService) {}
+
+  async getCompanyDashboard(companyId: string, userId: string) {
+    // Verify user has access to the company
+    const member = await this.prisma.companyMember.findFirst({
+      where: {
+        userId,
+        companyId,
+      },
+    });
+
+    if (!member) {
+      throw new ForbiddenException('You do not have access to this company');
+    }
+
+    const [
+      projectsCount,
+      tasksCount,
+      sprintsCount,
+      clientsCount,
+      leadsCount,
+      campaignsCount,
+      recentTasks,
+      projectProgress,
+      teamPerformance,
+      monthlyStats,
+    ] = await Promise.all([
+      // Total counts
+      this.prisma.project.count({ where: { companyId } }),
+      this.prisma.task.count({ 
+        where: { project: { companyId } } 
+      }),
+      this.prisma.sprint.count({ 
+        where: { project: { companyId } } 
+      }),
+      this.prisma.client.count({ where: { agencyId: companyId } }),
+      this.prisma.lead.count(),
+      this.prisma.marketingCampaign.count(),
+
+      // Recent tasks
+      this.prisma.task.findMany({
+        where: { project: { companyId } },
+        include: {
+          project: { select: { name: true } },
+          assignee: {
+            select: { name: true, email: true },
+          },
+        },
+        orderBy: { createdAt: 'desc' },
+        take: 10,
+      }),
+
+      // Project progress
+      this.getProjectProgress(companyId),
+
+      // Team performance
+      this.getTeamPerformance(companyId),
+
+      // Monthly stats
+      this.getMonthlyStats(companyId),
+    ]);
+
+    return {
+      overview: {
+        projectsCount,
+        tasksCount,
+        sprintsCount,
+        clientsCount,
+        leadsCount,
+        campaignsCount,
+      },
+      recentTasks,
+      projectProgress,
+      teamPerformance,
+      monthlyStats,
+    };
+  }
+
+  async getProjectAnalytics(projectId: string, userId: string) {
+    // Verify user has access to the project
+    const project = await this.prisma.project.findUnique({
+      where: { id: projectId },
+      include: { 
+        company: { 
+          include: { 
+            members: { where: { userId } } 
+          } 
+        } 
+      },
+    });
+
+    if (!project || project.company.members.length === 0) {
+      throw new ForbiddenException('You do not have access to this project');
+    }
+
+    const [
+      taskStats,
+      sprintStats,
+      timelineData,
+      teamWorkload,
+      burndownChart,
+    ] = await Promise.all([
+      this.getTaskStats(projectId),
+      this.getSprintStats(projectId),
+      this.getProjectTimeline(projectId),
+      this.getTeamWorkload(projectId),
+      this.getBurndownChart(projectId),
+    ]);
+
+    return {
+      project: {
+        id: project.id,
+        name: project.name,
+        description: project.description,
+        status: project.status,
+        startDate: project.startDate,
+        endDate: project.endDate,
+      },
+      taskStats,
+      sprintStats,
+      timelineData,
+      teamWorkload,
+      burndownChart,
+    };
+  }
+
+  async getMarketingAnalytics(companyId: string, userId: string) {
+    // Verify user has access to the company
+    const member = await this.prisma.companyMember.findFirst({
+      where: {
+        userId,
+        companyId,
+      },
+    });
+
+    if (!member) {
+      throw new ForbiddenException('You do not have access to this company');
+    }
+
+    const [
+      campaignStats,
+      socialMediaStats,
+      contentStats,
+      leadStats,
+      conversionFunnel,
+    ] = await Promise.all([
+      this.getCampaignStats(companyId),
+      this.getSocialMediaStats(companyId),
+      this.getContentStats(companyId),
+      this.getLeadStats(companyId),
+      this.getConversionFunnel(companyId),
+    ]);
+
+    return {
+      campaignStats,
+      socialMediaStats,
+      contentStats,
+      leadStats,
+      conversionFunnel,
+    };
+  }
+
+  async getUserAnalytics(userId: string) {
+    const [
+      myTasks,
+      myProjects,
+      productivity,
+      recentActivity,
+    ] = await Promise.all([
+      this.getUserTasks(userId),
+      this.getUserProjects(userId),
+      this.getUserProductivity(userId),
+      this.getUserActivity(userId),
+    ]);
+
+    return {
+      myTasks,
+      myProjects,
+      productivity,
+      recentActivity,
+    };
+  }
+
+  private async getProjectProgress(companyId: string) {
+    const projects = await this.prisma.project.findMany({
+      where: { companyId },
+      include: {
+        tasks: {
+          select: { status: true },
+        },
+        _count: {
+          select: { tasks: true },
+        },
+      },
+    });
+
+    return projects.map(project => {
+      const totalTasks = project._count.tasks;
+      const completedTasks = project.tasks.filter(t => t.status === 'DONE').length;
+      const progress = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+
+      return {
+        id: project.id,
+        name: project.name,
+        totalTasks,
+        completedTasks,
+        progress: Math.round(progress),
+        status: project.status,
+      };
+    });
+  }
+
+  private async getTeamPerformance(companyId: string) {
+    const members = await this.prisma.companyMember.findMany({
+      where: { companyId },
+      include: {
+        user: {
+          select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+          },
+        },
+      },
+    });
+
+    const performance = await Promise.all(
+      members.map(async (member) => {
+        const [assignedTasks, completedTasks, overdueTasks] = await Promise.all([
+          this.prisma.task.count({
+            where: {
+              assignedToId: member.userId,
+              project: { companyId },
+            },
+          }),
+          this.prisma.task.count({
+            where: {
+              assignedToId: member.userId,
+              project: { companyId },
+              status: 'DONE',
+            },
+          }),
+          this.prisma.task.count({
+            where: {
+              assignedToId: member.userId,
+              project: { companyId },
+              dueDate: { lt: new Date() },
+              status: { notIn: ['DONE', 'CANCELLED'] },
+            },
+          }),
+        ]);
+
+        const completionRate = assignedTasks > 0 ? (completedTasks / assignedTasks) * 100 : 0;
+
+        return {
+          user: member.user,
+          assignedTasks,
+          completedTasks,
+          overdueTasks,
+          completionRate: Math.round(completionRate),
+        };
+      })
+    );
+
+    return performance;
+  }
+
+  private async getMonthlyStats(companyId: string) {
+    const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+
+    const [
+      tasksCreated,
+      tasksCompleted,
+      projectsCreated,
+      leadsGenerated,
+    ] = await Promise.all([
+      this.prisma.task.count({
+        where: {
+          project: { companyId },
+          createdAt: {
+            gte: startOfMonth,
+            lte: endOfMonth,
+          },
+        },
+      }),
+      this.prisma.task.count({
+        where: {
+          project: { companyId },
+          status: 'DONE',
+          updatedAt: {
+            gte: startOfMonth,
+            lte: endOfMonth,
+          },
+        },
+      }),
+      this.prisma.project.count({
+        where: {
+          companyId,
+          createdAt: {
+            gte: startOfMonth,
+            lte: endOfMonth,
+          },
+        },
+      }),
+      this.prisma.lead.count({
+        where: {
+          companyId,
+          createdAt: {
+            gte: startOfMonth,
+            lte: endOfMonth,
+          },
+        },
+      }),
+    ]);
+
+    return {
+      month: now.toLocaleString('default', { month: 'long', year: 'numeric' }),
+      tasksCreated,
+      tasksCompleted,
+      projectsCreated,
+      leadsGenerated,
+    };
+  }
+
+  private async getTaskStats(projectId: string) {
+    const stats = await this.prisma.task.groupBy({
+      by: ['status', 'priority'],
+      where: { projectId },
+      _count: {
+        status: true,
+      },
+    });
+
+    const statusStats = await this.prisma.task.groupBy({
+      by: ['status'],
+      where: { projectId },
+      _count: { status: true },
+    });
+
+    const priorityStats = await this.prisma.task.groupBy({
+      by: ['priority'],
+      where: { projectId },
+      _count: { priority: true },
+    });
+
+    return {
+      statusStats,
+      priorityStats,
+      detailedStats: stats,
+    };
+  }
+
+  private async getSprintStats(projectId: string) {
+    const sprints = await this.prisma.sprint.findMany({
+      where: { projectId },
+      include: {
+        tasks: {
+          select: { status: true },
+        },
+        _count: {
+          select: { tasks: true },
+        },
+      },
+    });
+
+    return sprints.map(sprint => {
+      const totalTasks = sprint._count.tasks;
+      const completedTasks = sprint.tasks.filter(t => t.status === 'DONE').length;
+      const progress = totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0;
+
+      return {
+        id: sprint.id,
+        name: sprint.name,
+        totalTasks,
+        completedTasks,
+        progress: Math.round(progress),
+        status: sprint.status,
+        startDate: sprint.startDate,
+        endDate: sprint.endDate,
+      };
+    });
+  }
+
+  private async getProjectTimeline(projectId: string) {
+    const tasks = await this.prisma.task.findMany({
+      where: { projectId },
+      select: {
+        id: true,
+        title: true,
+        status: true,
+        createdAt: true,
+        dueDate: true,
+        updatedAt: true,
+      },
+      orderBy: { createdAt: 'asc' },
+    });
+
+    return tasks;
+  }
+
+  private async getTeamWorkload(projectId: string) {
+    const workload = await this.prisma.task.groupBy({
+      by: ['assignedToId'],
+      where: { projectId, assignedToId: { not: null } },
+      _count: {
+        assignedToId: true,
+      },
+    });
+
+    const workloadWithUsers = await Promise.all(
+      workload.map(async (item) => {
+        const user = await this.prisma.user.findUnique({
+          where: { id: item.assignedToId! },
+          select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+          },
+        });
+
+        return {
+          user,
+          taskCount: item._count.assignedToId,
+        };
+      })
+    );
+
+    return workloadWithUsers;
+  }
+
+  private async getBurndownChart(projectId: string) {
+    // This would require more complex queries to track task completion over time
+    // For now, return a basic structure
+    const totalTasks = await this.prisma.task.count({
+      where: { projectId },
+    });
+
+    const completedTasks = await this.prisma.task.count({
+      where: { projectId, status: 'DONE' },
+    });
+
+    return {
+      totalTasks,
+      completedTasks,
+      remainingTasks: totalTasks - completedTasks,
+      // Additional burndown data would go here
+    };
+  }
+
+  private async getCampaignStats(companyId: string) {
+    const campaigns = await this.prisma.marketingCampaign.findMany({
+      where: { companyId },
+      include: {
+        _count: {
+          select: {
+            posts: true,
+          },
+        },
+      },
+    });
+
+    return campaigns.map(campaign => ({
+      id: campaign.id,
+      name: campaign.name,
+      status: campaign.status,
+      postsCount: campaign._count.posts,
+      startDate: campaign.startDate,
+      endDate: campaign.endDate,
+    }));
+  }
+
+  private async getSocialMediaStats(companyId: string) {
+    const accounts = await this.prisma.socialAccount.findMany({
+      where: { companyId },
+      include: {
+        _count: {
+          select: {
+            posts: true,
+          },
+        },
+      },
+    });
+
+    return accounts.map(account => ({
+      id: account.id,
+      platform: account.platform,
+      username: account.username,
+      postsCount: account._count.posts,
+      isActive: account.isActive,
+    }));
+  }
+
+  private async getContentStats(companyId: string) {
+    const totalPosts = await this.prisma.socialPost.count({
+      where: { companyId },
+    });
+
+    const publishedPosts = await this.prisma.socialPost.count({
+      where: { companyId, status: 'PUBLISHED' },
+    });
+
+    const scheduledPosts = await this.prisma.socialPost.count({
+      where: { companyId, status: 'SCHEDULED' },
+    });
+
+    return {
+      totalPosts,
+      publishedPosts,
+      scheduledPosts,
+      draftPosts: totalPosts - publishedPosts - scheduledPosts,
+    };
+  }
+
+  private async getLeadStats(companyId: string) {
+    const totalLeads = await this.prisma.lead.count({
+      where: { companyId },
+    });
+
+    const statusStats = await this.prisma.lead.groupBy({
+      by: ['status'],
+      where: { companyId },
+      _count: { status: true },
+    });
+
+    return {
+      totalLeads,
+      statusStats,
+    };
+  }
+
+  private async getConversionFunnel(companyId: string) {
+    // This would require more complex business logic
+    // For now, return basic lead conversion data
+    const leads = await this.prisma.lead.count({
+      where: { companyId },
+    });
+
+    const clients = await this.prisma.client.count({
+      where: { companyId },
+    });
+
+    const conversionRate = leads > 0 ? (clients / leads) * 100 : 0;
+
+    return {
+      leads,
+      clients,
+      conversionRate: Math.round(conversionRate),
+    };
+  }
+
+  private async getUserTasks(userId: string) {
+    const totalTasks = await this.prisma.task.count({
+      where: { assignedToId: userId },
+    });
+
+    const completedTasks = await this.prisma.task.count({
+      where: { assignedToId: userId, status: 'DONE' },
+    });
+
+    const pendingTasks = await this.prisma.task.count({
+      where: { 
+        assignedToId: userId, 
+        status: { in: ['TODO', 'IN_PROGRESS', 'IN_REVIEW'] } 
+      },
+    });
+
+    const overdueTasks = await this.prisma.task.count({
+      where: {
+        assignedToId: userId,
+        dueDate: { lt: new Date() },
+        status: { notIn: ['DONE', 'CANCELLED'] },
+      },
+    });
+
+    return {
+      totalTasks,
+      completedTasks,
+      pendingTasks,
+      overdueTasks,
+    };
+  }
+
+  private async getUserProjects(userId: string) {
+    const projects = await this.prisma.project.findMany({
+      where: {
+        OR: [
+          { createdBy: userId },
+          {
+            company: {
+              members: {
+                some: { userId },
+              },
+            },
+          },
+        ],
+      },
+      select: {
+        id: true,
+        name: true,
+        status: true,
+        _count: {
+          select: {
+            tasks: true,
+          },
+        },
+      },
+    });
+
+    return projects;
+  }
+
+  private async getUserProductivity(userId: string) {
+    const now = new Date();
+    const startOfWeek = new Date(now.setDate(now.getDate() - now.getDay()));
+    const endOfWeek = new Date(now.setDate(now.getDate() - now.getDay() + 6));
+
+    const tasksCompletedThisWeek = await this.prisma.task.count({
+      where: {
+        assignedToId: userId,
+        status: 'DONE',
+        updatedAt: {
+          gte: startOfWeek,
+          lte: endOfWeek,
+        },
+      },
+    });
+
+    const tasksCreatedThisWeek = await this.prisma.task.count({
+      where: {
+        createdBy: userId,
+        createdAt: {
+          gte: startOfWeek,
+          lte: endOfWeek,
+        },
+      },
+    });
+
+    return {
+      tasksCompletedThisWeek,
+      tasksCreatedThisWeek,
+      week: `${startOfWeek.toDateString()} - ${endOfWeek.toDateString()}`,
+    };
+  }
+
+  private async getUserActivity(userId: string) {
+    // Return recent activity - this would be expanded with proper activity logging
+    const recentTasks = await this.prisma.task.findMany({
+      where: {
+        OR: [
+          { assignedToId: userId },
+          { createdBy: userId },
+        ],
+      },
+      include: {
+        project: {
+          select: {
+            name: true,
+          },
+        },
+      },
+      orderBy: { updatedAt: 'desc' },
+      take: 10,
+    });
+
+    return recentTasks.map(task => ({
+      id: task.id,
+      title: task.title,
+      status: task.status,
+      project: task.project.name,
+      updatedAt: task.updatedAt,
+      type: 'task',
+    }));
+  }
+}

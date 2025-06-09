@@ -55,7 +55,7 @@ export class FacebookAuthService {
   async handleCallback(code: string, state: string) {
     try {
       console.log(`🔄 Starting Facebook OAuth callback for state: ${state}`);
-      
+
       const [userId, clientId] = state.split(':');
       const stored = await this.sessionStore.get(`facebook:${state}`);
       if (!stored) {
@@ -70,7 +70,7 @@ export class FacebookAuthService {
       );
 
       console.log(`🔑 Exchanging code for access token for user: ${userId}`);
-      
+
       const tokenRes = await axios.get<{ access_token: string }>(
         'https://graph.facebook.com/v18.0/oauth/access_token',
         {
@@ -91,7 +91,7 @@ export class FacebookAuthService {
         throw new UnauthorizedException('Invalid token response from Facebook');
       }
       const accessToken = tokenRes.data.access_token;
-      
+
       console.log(`✅ Successfully obtained access token for user: ${userId}`);
 
       interface FacebookPagesResponse {
@@ -115,7 +115,7 @@ export class FacebookAuthService {
       );
 
       const pages = pagesRes.data.data;
-      
+
       if (!pages || pages.length === 0) {
         console.log(`⚠️ No Facebook pages found for user: ${userId}`);
         return {
@@ -128,7 +128,7 @@ export class FacebookAuthService {
           message: 'No Facebook pages found for this account',
         };
       }
-      
+
       console.log(
         `📊 Found ${pages.length} Facebook pages for user: ${userId}`,
       );
