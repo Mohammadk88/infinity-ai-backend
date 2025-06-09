@@ -1,0 +1,1934 @@
+{
+  "project": "Infinity AI System Backend",
+  "version": "1.0.0",
+  "totalEndpoints": 214,
+  "extractedAt": "2025-06-09T20:24:12.645Z",
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/",
+      "handler": "getHello",
+      "summary": "",
+      "tags": "app.controller.ts",
+      "module": "app.controller.ts",
+      "file": "app.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/affiliate/commissions",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Affiliate / Commissions",
+      "module": "commission",
+      "file": "commission/commission.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/affiliate/commissions",
+      "handler": "UseGuards",
+      "summary": "Get user commissions",
+      "tags": "Affiliate / Commissions",
+      "module": "commission",
+      "file": "commission/commission.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/affiliate/me",
+      "handler": "ApiOkResponse",
+      "summary": "",
+      "tags": "Affiliate",
+      "module": "affiliate",
+      "file": "affiliate/affiliate.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/affiliate/referrals",
+      "handler": "ApiOkResponse",
+      "summary": "",
+      "tags": "Affiliate",
+      "module": "referral",
+      "file": "referral/referral.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/affiliate/referrals/earnings",
+      "handler": "getEarningsSummary",
+      "summary": "",
+      "tags": "Affiliate",
+      "module": "referral",
+      "file": "referral/referral.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/affiliate/request",
+      "handler": "ApiOperation",
+      "summary": "Get current user affiliate info",
+      "tags": "Affiliate",
+      "module": "affiliate",
+      "file": "affiliate/affiliate.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/ai-generator/generate",
+      "handler": "UseGuards",
+      "summary": "",
+      "tags": "AI Generator",
+      "module": "ai-generator",
+      "file": "ai-generator/ai-generator.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/ai-provider-config",
+      "handler": "findAll",
+      "summary": "",
+      "tags": "AI Provider Config",
+      "module": "aiprovider-config",
+      "file": "aiprovider-config/aiprovider-config.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/ai-provider-config",
+      "handler": "create",
+      "summary": "",
+      "tags": "AI Provider Config",
+      "module": "aiprovider-config",
+      "file": "aiprovider-config/aiprovider-config.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/ai-provider-config/:id",
+      "handler": "remove",
+      "summary": "",
+      "tags": "AI Provider Config",
+      "module": "aiprovider-config",
+      "file": "aiprovider-config/aiprovider-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/ai-provider-config/:id",
+      "handler": "findOne",
+      "summary": "",
+      "tags": "AI Provider Config",
+      "module": "aiprovider-config",
+      "file": "aiprovider-config/aiprovider-config.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/ai-provider-config/:id",
+      "handler": "update",
+      "summary": "",
+      "tags": "AI Provider Config",
+      "module": "aiprovider-config",
+      "file": "aiprovider-config/aiprovider-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/ai-provider-config/active",
+      "handler": "getActiveProvider",
+      "summary": "",
+      "tags": "AI Provider Config",
+      "module": "aiprovider-config",
+      "file": "aiprovider-config/aiprovider-config.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/analytics/dashboard/:companyId",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "analytics",
+      "module": "analytics",
+      "file": "analytics/analytics.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/analytics/marketing/:companyId",
+      "handler": "ApiOperation",
+      "summary": "Get company dashboard analytics",
+      "tags": "analytics",
+      "module": "analytics",
+      "file": "analytics/analytics.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/analytics/project/:projectId",
+      "handler": "ApiOperation",
+      "summary": "Get company dashboard analytics",
+      "tags": "analytics",
+      "module": "analytics",
+      "file": "analytics/analytics.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/analytics/user",
+      "handler": "ApiOperation",
+      "summary": "Get company dashboard analytics",
+      "tags": "analytics",
+      "module": "analytics",
+      "file": "analytics/analytics.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/csrf-token",
+      "handler": "getCsrfToken",
+      "summary": "Register a new company with owner",
+      "tags": "auth",
+      "module": "auth",
+      "file": "auth/auth.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/login",
+      "handler": "login",
+      "summary": "Register a new company with owner",
+      "tags": "auth",
+      "module": "auth",
+      "file": "auth/auth.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/logout",
+      "handler": "logout",
+      "summary": "Register a new company with owner",
+      "tags": "auth",
+      "module": "auth",
+      "file": "auth/auth.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/auth/me",
+      "handler": "UseGuards",
+      "summary": "Register a new company with owner",
+      "tags": "auth",
+      "module": "auth",
+      "file": "auth/auth.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/register",
+      "handler": "register",
+      "summary": "",
+      "tags": "auth",
+      "module": "auth",
+      "file": "auth/auth.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/register-company",
+      "handler": "HttpCode",
+      "summary": "",
+      "tags": "auth",
+      "module": "auth",
+      "file": "auth/auth.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/auth/register-from-invitation",
+      "handler": "ApiOperation",
+      "summary": "Register a new company with owner",
+      "tags": "auth",
+      "module": "auth",
+      "file": "auth/auth.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/awards",
+      "handler": "ApiOperation",
+      "summary": "Create a new award",
+      "tags": "Awards",
+      "module": "award",
+      "file": "award/award.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/awards",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Awards",
+      "module": "award",
+      "file": "award/award.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/awards/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new award",
+      "tags": "Awards",
+      "module": "award",
+      "file": "award/award.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/awards/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new award",
+      "tags": "Awards",
+      "module": "award",
+      "file": "award/award.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/awards/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new award",
+      "tags": "Awards",
+      "module": "award",
+      "file": "award/award.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/awards/points",
+      "handler": "getUserPoints",
+      "summary": "Create a new award",
+      "tags": "Awards",
+      "module": "award",
+      "file": "award/award.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/awards/points/history",
+      "handler": "getUserPointHistory",
+      "summary": "Create a new award",
+      "tags": "Awards",
+      "module": "award",
+      "file": "award/award.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/awards/rewards/redeem",
+      "handler": "redeemAward",
+      "summary": "Create a new award",
+      "tags": "Awards",
+      "module": "award",
+      "file": "award/award.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/awards/rewards/redemptions",
+      "handler": "getUserRedemptions",
+      "summary": "Create a new award",
+      "tags": "Awards",
+      "module": "award",
+      "file": "award/award.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/campaign-performance",
+      "handler": "ApiOperation",
+      "summary": "Create performance metric",
+      "tags": "Campaign Performance",
+      "module": "campaign-performance",
+      "file": "campaign-performance/campaign-performance.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/campaign-performance",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Campaign Performance",
+      "module": "campaign-performance",
+      "file": "campaign-performance/campaign-performance.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/campaign-performance/:id",
+      "handler": "ApiOperation",
+      "summary": "Create performance metric",
+      "tags": "Campaign Performance",
+      "module": "campaign-performance",
+      "file": "campaign-performance/campaign-performance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/campaign-performance/:id",
+      "handler": "ApiOperation",
+      "summary": "Create performance metric",
+      "tags": "Campaign Performance",
+      "module": "campaign-performance",
+      "file": "campaign-performance/campaign-performance.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/campaign-performance/:id",
+      "handler": "ApiOperation",
+      "summary": "Create performance metric",
+      "tags": "Campaign Performance",
+      "module": "campaign-performance",
+      "file": "campaign-performance/campaign-performance.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/campaign-posts",
+      "handler": "ApiOperation",
+      "summary": "Create a campaign post",
+      "tags": "Campaign Posts",
+      "module": "campaign-post",
+      "file": "campaign-post/campaign-post.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/campaign-posts",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Campaign Posts",
+      "module": "campaign-post",
+      "file": "campaign-post/campaign-post.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/campaign-posts/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a campaign post",
+      "tags": "Campaign Posts",
+      "module": "campaign-post",
+      "file": "campaign-post/campaign-post.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/campaign-posts/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a campaign post",
+      "tags": "Campaign Posts",
+      "module": "campaign-post",
+      "file": "campaign-post/campaign-post.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/campaign-posts/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a campaign post",
+      "tags": "Campaign Posts",
+      "module": "campaign-post",
+      "file": "campaign-post/campaign-post.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/categories",
+      "handler": "ApiOperation",
+      "summary": "Create new category",
+      "tags": "Categories",
+      "module": "categories",
+      "file": "categories/categories.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/categories",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Categories",
+      "module": "categories",
+      "file": "categories/categories.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/categories/:id",
+      "handler": "ApiOperation",
+      "summary": "Create new category",
+      "tags": "Categories",
+      "module": "categories",
+      "file": "categories/categories.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/categories/:id",
+      "handler": "ApiOperation",
+      "summary": "Create new category",
+      "tags": "Categories",
+      "module": "categories",
+      "file": "categories/categories.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/categories/:id",
+      "handler": "ApiOperation",
+      "summary": "Create new category",
+      "tags": "Categories",
+      "module": "categories",
+      "file": "categories/categories.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/client-notes",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Client Notes",
+      "module": "client-note",
+      "file": "client-note/client-note.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/client-notes/:id",
+      "handler": "ApiOperation",
+      "summary": "إضافة ملاحظة جديدة لعميل",
+      "tags": "Client Notes",
+      "module": "client-note",
+      "file": "client-note/client-note.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/client-notes/:id",
+      "handler": "ApiOperation",
+      "summary": "إضافة ملاحظة جديدة لعميل",
+      "tags": "Client Notes",
+      "module": "client-note",
+      "file": "client-note/client-note.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/client-notes/:id",
+      "handler": "ApiOperation",
+      "summary": "إضافة ملاحظة جديدة لعميل",
+      "tags": "Client Notes",
+      "module": "client-note",
+      "file": "client-note/client-note.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/client-notes/client/:clientId",
+      "handler": "ApiOperation",
+      "summary": "إضافة ملاحظة جديدة لعميل",
+      "tags": "Client Notes",
+      "module": "client-note",
+      "file": "client-note/client-note.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/clients",
+      "handler": "ApiOperation",
+      "summary": "إنشاء عميل جديد",
+      "tags": "Clients",
+      "module": "clients",
+      "file": "clients/clients.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/clients",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Clients",
+      "module": "clients",
+      "file": "clients/clients.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/clients/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء عميل جديد",
+      "tags": "Clients",
+      "module": "clients",
+      "file": "clients/clients.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/clients/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء عميل جديد",
+      "tags": "Clients",
+      "module": "clients",
+      "file": "clients/clients.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/clients/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء عميل جديد",
+      "tags": "Clients",
+      "module": "clients",
+      "file": "clients/clients.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/clients/:id/assign-subscription",
+      "handler": "ApiOperation",
+      "summary": "إنشاء عميل جديد",
+      "tags": "Clients",
+      "module": "clients",
+      "file": "clients/clients.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/companies/:id",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Companies",
+      "module": "company",
+      "file": "company/company.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/companies/:id",
+      "handler": "HttpCode",
+      "summary": "Get company by ID including settings",
+      "tags": "Companies",
+      "module": "company",
+      "file": "company/company.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/companies/:id/setting",
+      "handler": "HttpCode",
+      "summary": "",
+      "tags": "Company Settings",
+      "module": "company-setting",
+      "file": "company-setting/company-setting.controller.ts"
+    },
+    {
+      "method": "PUT",
+      "path": "/companies/:id/setting",
+      "handler": "HttpCode",
+      "summary": "Get company settings by company ID",
+      "tags": "Company Settings",
+      "module": "company-setting",
+      "file": "company-setting/company-setting.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/company-members",
+      "handler": "create",
+      "summary": "",
+      "tags": "Company Members",
+      "module": "company-member",
+      "file": "company-member/company-member.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/company-members/:companyId",
+      "handler": "findAll",
+      "summary": "",
+      "tags": "Company Members",
+      "module": "company-member",
+      "file": "company-member/company-member.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/company-members/:id",
+      "handler": "findOne",
+      "summary": "",
+      "tags": "Company Members",
+      "module": "company-member",
+      "file": "company-member/company-member.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/company-members/:id",
+      "handler": "update",
+      "summary": "",
+      "tags": "Company Members",
+      "module": "company-member",
+      "file": "company-member/company-member.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/company-members/:memberId",
+      "handler": "remove",
+      "summary": "",
+      "tags": "Company Members",
+      "module": "company-member",
+      "file": "company-member/company-member.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/company-members/:memberId/role",
+      "handler": "updateRole",
+      "summary": "",
+      "tags": "Company Members",
+      "module": "company-member",
+      "file": "company-member/company-member.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/company-members/:memberId/toggle-status",
+      "handler": "toggleStatus",
+      "summary": "",
+      "tags": "Company Members",
+      "module": "company-member",
+      "file": "company-member/company-member.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/company-members/add-member",
+      "handler": "addMember",
+      "summary": "",
+      "tags": "Company Members",
+      "module": "company-member",
+      "file": "company-member/company-member.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/content-schedule",
+      "handler": "ApiOperation",
+      "summary": "Create content schedule",
+      "tags": "Content Schedule",
+      "module": "content-schedule",
+      "file": "content-schedule/content-schedule.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/content-schedule",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Content Schedule",
+      "module": "content-schedule",
+      "file": "content-schedule/content-schedule.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/content-schedule/:id",
+      "handler": "ApiOperation",
+      "summary": "Create content schedule",
+      "tags": "Content Schedule",
+      "module": "content-schedule",
+      "file": "content-schedule/content-schedule.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/content-schedule/:id",
+      "handler": "ApiOperation",
+      "summary": "Create content schedule",
+      "tags": "Content Schedule",
+      "module": "content-schedule",
+      "file": "content-schedule/content-schedule.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/content-schedule/:id",
+      "handler": "ApiOperation",
+      "summary": "Create content schedule",
+      "tags": "Content Schedule",
+      "module": "content-schedule",
+      "file": "content-schedule/content-schedule.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/content-scheduler",
+      "handler": "ApiOperation",
+      "summary": "تشغيل الجدولة يدويًا (نشر المحتوى المجدول)",
+      "tags": "Content Scheduler",
+      "module": "content-scheduler",
+      "file": "content-scheduler/content-scheduler.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/content-scheduler/check",
+      "handler": "ApiOperation",
+      "summary": "تشغيل الجدولة يدويًا (نشر المحتوى المجدول)",
+      "tags": "Content Scheduler",
+      "module": "content-scheduler",
+      "file": "content-scheduler/content-scheduler.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/content-scheduler/manual-publish",
+      "handler": "ApiOperation",
+      "summary": "تشغيل الجدولة يدويًا (نشر المحتوى المجدول)",
+      "tags": "Content Scheduler",
+      "module": "content-scheduler",
+      "file": "content-scheduler/content-scheduler.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/content-scheduler/run-now",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Content Scheduler",
+      "module": "content-scheduler",
+      "file": "content-scheduler/content-scheduler.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/countries",
+      "handler": "findAll",
+      "summary": "",
+      "tags": "Countries",
+      "module": "country",
+      "file": "country/country.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/facebook/auth-url",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Facebook Auth",
+      "module": "lib",
+      "file": "lib/social-providers/facebook/facebook.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/facebook/callback",
+      "handler": "UsePipes",
+      "summary": "Get Facebook OAuth URL",
+      "tags": "Facebook Auth",
+      "module": "lib",
+      "file": "lib/social-providers/facebook/facebook.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/file-upload",
+      "handler": "ApiOperation",
+      "summary": "Upload a new file",
+      "tags": "FileUpload",
+      "module": "file-upload",
+      "file": "file-upload/file-upload.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/file-upload",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "FileUpload",
+      "module": "file-upload",
+      "file": "file-upload/file-upload.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/file-upload/:id",
+      "handler": "ApiOperation",
+      "summary": "Upload a new file",
+      "tags": "FileUpload",
+      "module": "file-upload",
+      "file": "file-upload/file-upload.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/file-upload/:id",
+      "handler": "ApiOperation",
+      "summary": "Upload a new file",
+      "tags": "FileUpload",
+      "module": "file-upload",
+      "file": "file-upload/file-upload.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/file-upload/:id",
+      "handler": "ApiOperation",
+      "summary": "Upload a new file",
+      "tags": "FileUpload",
+      "module": "file-upload",
+      "file": "file-upload/file-upload.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/instagram/auth-url",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Instagram",
+      "module": "lib",
+      "file": "lib/social-providers/Instagram/instagram.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/instagram/callback",
+      "handler": "ApiOperation",
+      "summary": "Generate Instagram OAuth URL",
+      "tags": "Instagram",
+      "module": "lib",
+      "file": "lib/social-providers/Instagram/instagram.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/interactions",
+      "handler": "findAll",
+      "summary": "Create a new interaction",
+      "tags": "Interactions",
+      "module": "interaction",
+      "file": "interaction/interaction.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/interactions",
+      "handler": "UseGuards",
+      "summary": "Create a new interaction",
+      "tags": "Interactions",
+      "module": "interaction",
+      "file": "interaction/interaction.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/interactions/:id",
+      "handler": "remove",
+      "summary": "Create a new interaction",
+      "tags": "Interactions",
+      "module": "interaction",
+      "file": "interaction/interaction.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/interactions/:id",
+      "handler": "findOne",
+      "summary": "Create a new interaction",
+      "tags": "Interactions",
+      "module": "interaction",
+      "file": "interaction/interaction.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/interactions/:id",
+      "handler": "update",
+      "summary": "Create a new interaction",
+      "tags": "Interactions",
+      "module": "interaction",
+      "file": "interaction/interaction.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/invitations",
+      "handler": "HttpCode",
+      "summary": "",
+      "tags": "Invitations",
+      "module": "invitation",
+      "file": "invitation/invitation.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/invitations/:token",
+      "handler": "ApiOperation",
+      "summary": "Create new company invitation",
+      "tags": "Invitations",
+      "module": "invitation",
+      "file": "invitation/invitation.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/invitations/:token/accept",
+      "handler": "HttpCode",
+      "summary": "Create new company invitation",
+      "tags": "Invitations",
+      "module": "invitation",
+      "file": "invitation/invitation.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/invitations/:token/cancel",
+      "handler": "HttpCode",
+      "summary": "Create new company invitation",
+      "tags": "Invitations",
+      "module": "invitation",
+      "file": "invitation/invitation.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/leads",
+      "handler": "ApiOperation",
+      "summary": "إنشاء lead جديد",
+      "tags": "Leads",
+      "module": "lead",
+      "file": "lead/lead.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/leads",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Leads",
+      "module": "lead",
+      "file": "lead/lead.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/leads/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء lead جديد",
+      "tags": "Leads",
+      "module": "lead",
+      "file": "lead/lead.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/leads/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء lead جديد",
+      "tags": "Leads",
+      "module": "lead",
+      "file": "lead/lead.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/leads/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء lead جديد",
+      "tags": "Leads",
+      "module": "lead",
+      "file": "lead/lead.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/linkedin/auth-url",
+      "handler": "UseGuards",
+      "summary": "",
+      "tags": "LinkedIn",
+      "module": "lib",
+      "file": "lib/social-providers/linkedin/linkedin.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/linkedin/callback",
+      "handler": "HttpCode",
+      "summary": "Get LinkedIn auth URL",
+      "tags": "LinkedIn",
+      "module": "lib",
+      "file": "lib/social-providers/linkedin/linkedin.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/linkedin/callback",
+      "handler": "HttpCode",
+      "summary": "Get LinkedIn auth URL",
+      "tags": "LinkedIn",
+      "module": "lib",
+      "file": "lib/social-providers/linkedin/linkedin.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/linkedin/publish",
+      "handler": "UseGuards",
+      "summary": "Get LinkedIn auth URL",
+      "tags": "LinkedIn",
+      "module": "lib",
+      "file": "lib/social-providers/linkedin/linkedin.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/marketing-campaigns",
+      "handler": "ApiOperation",
+      "summary": "Create a new marketing campaign",
+      "tags": "Marketing Campaigns",
+      "module": "marketing-campaign",
+      "file": "marketing-campaign/marketing-campaign.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/marketing-campaigns",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Marketing Campaigns",
+      "module": "marketing-campaign",
+      "file": "marketing-campaign/marketing-campaign.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/marketing-campaigns/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new marketing campaign",
+      "tags": "Marketing Campaigns",
+      "module": "marketing-campaign",
+      "file": "marketing-campaign/marketing-campaign.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/marketing-campaigns/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new marketing campaign",
+      "tags": "Marketing Campaigns",
+      "module": "marketing-campaign",
+      "file": "marketing-campaign/marketing-campaign.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/marketing-campaigns/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new marketing campaign",
+      "tags": "Marketing Campaigns",
+      "module": "marketing-campaign",
+      "file": "marketing-campaign/marketing-campaign.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/me",
+      "handler": "ApiBearerAuth",
+      "summary": "",
+      "tags": "me",
+      "module": "me",
+      "file": "me/me.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/me/affiliates/referrals",
+      "handler": "ApiBearerAuth",
+      "summary": "",
+      "tags": "me",
+      "module": "me",
+      "file": "me/me.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/notifications",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Notifications",
+      "module": "notification",
+      "file": "notification/notification.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/notifications/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new notification",
+      "tags": "Notifications",
+      "module": "notification",
+      "file": "notification/notification.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/notifications/:id/read",
+      "handler": "ApiOperation",
+      "summary": "Create a new notification",
+      "tags": "Notifications",
+      "module": "notification",
+      "file": "notification/notification.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/notifications/client/:clientId",
+      "handler": "ApiOperation",
+      "summary": "Create a new notification",
+      "tags": "Notifications",
+      "module": "notification",
+      "file": "notification/notification.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/notifications/user/:userId",
+      "handler": "ApiOperation",
+      "summary": "Create a new notification",
+      "tags": "Notifications",
+      "module": "notification",
+      "file": "notification/notification.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/notifications/user/:userId/unread",
+      "handler": "ApiOperation",
+      "summary": "Create a new notification",
+      "tags": "Notifications",
+      "module": "notification",
+      "file": "notification/notification.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payments/paddle/create-checkout",
+      "handler": "createPaddleCheckout",
+      "summary": "",
+      "tags": "payments",
+      "module": "payments",
+      "file": "payments/payments.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/payments/webhooks/paddle",
+      "handler": "handlePaddleWebhook",
+      "summary": "",
+      "tags": "payments",
+      "module": "payments",
+      "file": "payments/payments.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/pipeline-stages",
+      "handler": "ApiOperation",
+      "summary": "إنشاء مرحلة جديدة ضمن المسار",
+      "tags": "Pipeline Stages",
+      "module": "pipeline-stage",
+      "file": "pipeline-stage/pipeline-stage.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline-stages",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Pipeline Stages",
+      "module": "pipeline-stage",
+      "file": "pipeline-stage/pipeline-stage.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/pipeline-stages/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء مرحلة جديدة ضمن المسار",
+      "tags": "Pipeline Stages",
+      "module": "pipeline-stage",
+      "file": "pipeline-stage/pipeline-stage.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/pipeline-stages/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء مرحلة جديدة ضمن المسار",
+      "tags": "Pipeline Stages",
+      "module": "pipeline-stage",
+      "file": "pipeline-stage/pipeline-stage.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/pipeline-stages/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء مرحلة جديدة ضمن المسار",
+      "tags": "Pipeline Stages",
+      "module": "pipeline-stage",
+      "file": "pipeline-stage/pipeline-stage.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline-stages/reorder",
+      "handler": "ApiOperation",
+      "summary": "إنشاء مرحلة جديدة ضمن المسار",
+      "tags": "Pipeline Stages",
+      "module": "pipeline-stage",
+      "file": "pipeline-stage/pipeline-stage.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/point-events",
+      "handler": "ApiOperation",
+      "summary": "Create a new point event",
+      "tags": "Point Events",
+      "module": "point-event",
+      "file": "point-event/point-event.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/point-events",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Point Events",
+      "module": "point-event",
+      "file": "point-event/point-event.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/point-events/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new point event",
+      "tags": "Point Events",
+      "module": "point-event",
+      "file": "point-event/point-event.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/point-events/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new point event",
+      "tags": "Point Events",
+      "module": "point-event",
+      "file": "point-event/point-event.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/point-events/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new point event",
+      "tags": "Point Events",
+      "module": "point-event",
+      "file": "point-event/point-event.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/projects",
+      "handler": "ApiOperation",
+      "summary": "Create a new project",
+      "tags": "projects",
+      "module": "project",
+      "file": "project/project.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/projects",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "projects",
+      "module": "project",
+      "file": "project/project.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/projects/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new project",
+      "tags": "projects",
+      "module": "project",
+      "file": "project/project.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/projects/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new project",
+      "tags": "projects",
+      "module": "project",
+      "file": "project/project.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/projects/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new project",
+      "tags": "projects",
+      "module": "project",
+      "file": "project/project.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/projects/:id/stats",
+      "handler": "ApiOperation",
+      "summary": "Create a new project",
+      "tags": "projects",
+      "module": "project",
+      "file": "project/project.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/projects/my-projects",
+      "handler": "ApiOperation",
+      "summary": "Create a new project",
+      "tags": "projects",
+      "module": "project",
+      "file": "project/project.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/rewards",
+      "handler": "ApiOperation",
+      "summary": "Redeem an award using points",
+      "tags": "Reward Redemptions",
+      "module": "reward-redemption",
+      "file": "reward-redemption/reward-redemption.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/rewards/me",
+      "handler": "ApiOperation",
+      "summary": "Redeem an award using points",
+      "tags": "Reward Redemptions",
+      "module": "reward-redemption",
+      "file": "reward-redemption/reward-redemption.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/rewards/redeem/:awardId",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Reward Redemptions",
+      "module": "reward-redemption",
+      "file": "reward-redemption/reward-redemption.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/roles",
+      "handler": "getRolesByCompany",
+      "summary": "",
+      "tags": "role",
+      "module": "role",
+      "file": "role/role.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/roles",
+      "handler": "findAll",
+      "summary": "",
+      "tags": "role",
+      "module": "role",
+      "file": "role/role.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/roles",
+      "handler": "create",
+      "summary": "",
+      "tags": "role",
+      "module": "role",
+      "file": "role/role.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/roles/:id",
+      "handler": "remove",
+      "summary": "",
+      "tags": "role",
+      "module": "role",
+      "file": "role/role.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/roles/:id",
+      "handler": "findOne",
+      "summary": "",
+      "tags": "role",
+      "module": "role",
+      "file": "role/role.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/roles/:id",
+      "handler": "update",
+      "summary": "",
+      "tags": "role",
+      "module": "role",
+      "file": "role/role.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/social-accounts",
+      "handler": "ApiOperation",
+      "summary": "Link a new social account",
+      "tags": "Social Accounts",
+      "module": "social-accounts",
+      "file": "social-accounts/social-accounts.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/social-accounts",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Social Accounts",
+      "module": "social-accounts",
+      "file": "social-accounts/social-accounts.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/social-accounts/:id",
+      "handler": "ApiOperation",
+      "summary": "Link a new social account",
+      "tags": "Social Accounts",
+      "module": "social-accounts",
+      "file": "social-accounts/social-accounts.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/social-accounts/:id",
+      "handler": "ApiOperation",
+      "summary": "Link a new social account",
+      "tags": "Social Accounts",
+      "module": "social-accounts",
+      "file": "social-accounts/social-accounts.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/social-accounts/:id",
+      "handler": "ApiOperation",
+      "summary": "Link a new social account",
+      "tags": "Social Accounts",
+      "module": "social-accounts",
+      "file": "social-accounts/social-accounts.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/social-accounts/get-account-stats",
+      "handler": "ApiOperation",
+      "summary": "Link a new social account",
+      "tags": "Social Accounts",
+      "module": "social-accounts",
+      "file": "social-accounts/social-accounts.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/social-accounts/grouped",
+      "handler": "UseGuards",
+      "summary": "",
+      "tags": "Social Accounts",
+      "module": "social-accounts",
+      "file": "social-accounts/social-accounts.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/social-accounts/my-social-accounts",
+      "handler": "ApiOperation",
+      "summary": "Link a new social account",
+      "tags": "Social Accounts",
+      "module": "social-accounts",
+      "file": "social-accounts/social-accounts.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/social-accounts/oauth/:platform/authorize",
+      "handler": "getOAuthUrl",
+      "summary": "Link a new social account",
+      "tags": "Social Accounts",
+      "module": "social-accounts",
+      "file": "social-accounts/social-accounts.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/social-accounts/oauth/:platform/callback",
+      "handler": "handleOAuthCallback",
+      "summary": "Link a new social account",
+      "tags": "Social Accounts",
+      "module": "social-accounts",
+      "file": "social-accounts/social-accounts.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/social-posts",
+      "handler": "ApiOperation",
+      "summary": "Create new post",
+      "tags": "Social Posts",
+      "module": "social-post",
+      "file": "social-post/social-post.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/social-posts",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Social Posts",
+      "module": "social-post",
+      "file": "social-post/social-post.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/social-posts/:id",
+      "handler": "ApiOperation",
+      "summary": "Create new post",
+      "tags": "Social Posts",
+      "module": "social-post",
+      "file": "social-post/social-post.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/social-posts/:id",
+      "handler": "ApiOperation",
+      "summary": "Create new post",
+      "tags": "Social Posts",
+      "module": "social-post",
+      "file": "social-post/social-post.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/social-posts/:id",
+      "handler": "ApiOperation",
+      "summary": "Create new post",
+      "tags": "Social Posts",
+      "module": "social-post",
+      "file": "social-post/social-post.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/social-posts/generate-only",
+      "handler": "UseGuards",
+      "summary": "Create new post",
+      "tags": "Social Posts",
+      "module": "social-post",
+      "file": "social-post/social-post.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/sprints",
+      "handler": "ApiOperation",
+      "summary": "Create a new sprint",
+      "tags": "sprints",
+      "module": "sprint",
+      "file": "sprint/sprint.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/sprints",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "sprints",
+      "module": "sprint",
+      "file": "sprint/sprint.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/sprints/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new sprint",
+      "tags": "sprints",
+      "module": "sprint",
+      "file": "sprint/sprint.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/sprints/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new sprint",
+      "tags": "sprints",
+      "module": "sprint",
+      "file": "sprint/sprint.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/sprints/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new sprint",
+      "tags": "sprints",
+      "module": "sprint",
+      "file": "sprint/sprint.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/sprints/:id/stats",
+      "handler": "ApiOperation",
+      "summary": "Create a new sprint",
+      "tags": "sprints",
+      "module": "sprint",
+      "file": "sprint/sprint.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/subscription-plans",
+      "handler": "ApiOperation",
+      "summary": "Create a new subscription plan",
+      "tags": "Subscription Plans",
+      "module": "subscription-plan",
+      "file": "subscription-plan/subscription-plan.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/subscription-plans",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Subscription Plans",
+      "module": "subscription-plan",
+      "file": "subscription-plan/subscription-plan.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/subscription-plans/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new subscription plan",
+      "tags": "Subscription Plans",
+      "module": "subscription-plan",
+      "file": "subscription-plan/subscription-plan.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/subscription-plans/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new subscription plan",
+      "tags": "Subscription Plans",
+      "module": "subscription-plan",
+      "file": "subscription-plan/subscription-plan.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/subscription-plans/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new subscription plan",
+      "tags": "Subscription Plans",
+      "module": "subscription-plan",
+      "file": "subscription-plan/subscription-plan.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/subscriptions",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Subscriptions",
+      "module": "subscription",
+      "file": "subscription/subscription.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/subscriptions/:id",
+      "handler": "UseGuards",
+      "summary": "Create a new subscription",
+      "tags": "Subscriptions",
+      "module": "subscription",
+      "file": "subscription/subscription.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/subscriptions/:id",
+      "handler": "ApiOperation",
+      "summary": "Create a new subscription",
+      "tags": "Subscriptions",
+      "module": "subscription",
+      "file": "subscription/subscription.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/subscriptions/:id",
+      "handler": "UseGuards",
+      "summary": "Create a new subscription",
+      "tags": "Subscriptions",
+      "module": "subscription",
+      "file": "subscription/subscription.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/subscriptions/activate",
+      "handler": "UseGuards",
+      "summary": "Create a new subscription",
+      "tags": "Subscriptions",
+      "module": "subscription",
+      "file": "subscription/subscription.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/subscriptions/me",
+      "handler": "getMySubscription",
+      "summary": "",
+      "tags": "Subscriptions",
+      "module": "subscription",
+      "file": "subscription/subscription.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/tags",
+      "handler": "ApiOperation",
+      "summary": "Create new tag",
+      "tags": "Tags",
+      "module": "tags",
+      "file": "tags/tags.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/tags",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Tags",
+      "module": "tags",
+      "file": "tags/tags.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/tags/:id",
+      "handler": "ApiOperation",
+      "summary": "Create new tag",
+      "tags": "Tags",
+      "module": "tags",
+      "file": "tags/tags.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/tags/:id",
+      "handler": "ApiOperation",
+      "summary": "Create new tag",
+      "tags": "Tags",
+      "module": "tags",
+      "file": "tags/tags.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/tags/:id",
+      "handler": "ApiOperation",
+      "summary": "Create new tag",
+      "tags": "Tags",
+      "module": "tags",
+      "file": "tags/tags.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/tasks",
+      "handler": "ApiOperation",
+      "summary": "إنشاء مهمة جديدة",
+      "tags": "المهام",
+      "module": "task",
+      "file": "task/task.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/tasks",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "المهام",
+      "module": "task",
+      "file": "task/task.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/tasks/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء مهمة جديدة",
+      "tags": "المهام",
+      "module": "task",
+      "file": "task/task.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/tasks/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء مهمة جديدة",
+      "tags": "المهام",
+      "module": "task",
+      "file": "task/task.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/tasks/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء مهمة جديدة",
+      "tags": "المهام",
+      "module": "task",
+      "file": "task/task.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/tasks/:id/assign/:assigneeId",
+      "handler": "ApiOperation",
+      "summary": "إنشاء مهمة جديدة",
+      "tags": "المهام",
+      "module": "task",
+      "file": "task/task.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/tasks/:id/status/:status",
+      "handler": "ApiOperation",
+      "summary": "إنشاء مهمة جديدة",
+      "tags": "المهام",
+      "module": "task",
+      "file": "task/task.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/tasks/project/:projectId",
+      "handler": "ApiOperation",
+      "summary": "إنشاء مهمة جديدة",
+      "tags": "المهام",
+      "module": "task",
+      "file": "task/task.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/tasks/status/:status",
+      "handler": "ApiOperation",
+      "summary": "إنشاء مهمة جديدة",
+      "tags": "المهام",
+      "module": "task",
+      "file": "task/task.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/twitter/auth-url",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Social Providers – Twitter",
+      "module": "lib",
+      "file": "lib/social-providers/twitter/twitter.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/twitter/callback",
+      "handler": "ApiOperation",
+      "summary": "Get Twitter OAuth URL",
+      "tags": "Social Providers – Twitter",
+      "module": "lib",
+      "file": "lib/social-providers/twitter/twitter.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/twitter/publish",
+      "handler": "ApiOperation",
+      "summary": "Get Twitter OAuth URL",
+      "tags": "Social Providers – Twitter",
+      "module": "lib",
+      "file": "lib/social-providers/twitter/twitter.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/usage-limit",
+      "handler": "getLimits",
+      "summary": "",
+      "tags": "usage-limit",
+      "module": "usage-limit",
+      "file": "usage-limit/usage-limit.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/usage-limit/increment",
+      "handler": "incrementUsage",
+      "summary": "",
+      "tags": "usage-limit",
+      "module": "usage-limit",
+      "file": "usage-limit/usage-limit.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/user-points",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "User Points",
+      "module": "user-point",
+      "file": "user-point/user-point.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/user-points",
+      "handler": "ApiOperation",
+      "summary": "Get all user points",
+      "tags": "User Points",
+      "module": "user-point",
+      "file": "user-point/user-point.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/user-points/:userId",
+      "handler": "ApiOperation",
+      "summary": "Get all user points",
+      "tags": "User Points",
+      "module": "user-point",
+      "file": "user-point/user-point.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/user-points/:userId",
+      "handler": "ApiOperation",
+      "summary": "Get all user points",
+      "tags": "User Points",
+      "module": "user-point",
+      "file": "user-point/user-point.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/user-points/:userId/add",
+      "handler": "ApiOperation",
+      "summary": "Get all user points",
+      "tags": "User Points",
+      "module": "user-point",
+      "file": "user-point/user-point.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/user-points/:userId/deduct",
+      "handler": "ApiOperation",
+      "summary": "Get all user points",
+      "tags": "User Points",
+      "module": "user-point",
+      "file": "user-point/user-point.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/web-content",
+      "handler": "ApiOperation",
+      "summary": "إنشاء محتوى ويب جديد",
+      "tags": "Web Content",
+      "module": "web-content",
+      "file": "web-content/web-content.controller.ts"
+    },
+    {
+      "method": "POST",
+      "path": "/web-content",
+      "handler": "ApiOperation",
+      "summary": "",
+      "tags": "Web Content",
+      "module": "web-content",
+      "file": "web-content/web-content.controller.ts"
+    },
+    {
+      "method": "DELETE",
+      "path": "/web-content/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء محتوى ويب جديد",
+      "tags": "Web Content",
+      "module": "web-content",
+      "file": "web-content/web-content.controller.ts"
+    },
+    {
+      "method": "GET",
+      "path": "/web-content/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء محتوى ويب جديد",
+      "tags": "Web Content",
+      "module": "web-content",
+      "file": "web-content/web-content.controller.ts"
+    },
+    {
+      "method": "PATCH",
+      "path": "/web-content/:id",
+      "handler": "ApiOperation",
+      "summary": "إنشاء محتوى ويب جديد",
+      "tags": "Web Content",
+      "module": "web-content",
+      "file": "web-content/web-content.controller.ts"
+    }
+  ]
+}

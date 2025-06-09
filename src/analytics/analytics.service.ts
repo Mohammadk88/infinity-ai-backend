@@ -90,7 +90,7 @@ export class AnalyticsService {
       this.getSprintStats(projectId),
       this.getProjectTimeline(projectId),
       this.getTeamWorkload(projectId),
-      this.getBurndownChart(projectId),
+      this.getBurndownChart(),
     ]);
 
     return {
@@ -116,10 +116,10 @@ export class AnalyticsService {
       leadSourceStats,
       clientInsights,
     ] = await Promise.all([
-      this.getCampaignStats(companyId),
-      this.getSocialAccountStats(companyId),
-      this.getContentStats(companyId),
-      this.getLeadSourceStats(companyId),
+      this.getCampaignStats(),
+      this.getSocialAccountStats(),
+      this.getContentStats(),
+      this.getLeadSourceStats(),
       this.getClientInsights(companyId),
     ]);
 
@@ -178,11 +178,11 @@ export class AnalyticsService {
       name: project.name,
       status: project.status,
       totalTasks: project._count.tasks,
-      progress: this.calculateProjectProgress(project as any),
+      progress: this.calculateProjectProgress(),
     }));
   }
 
-  private calculateProjectProgress(project: any): number {
+  private calculateProjectProgress(): number {
     // This would need actual task completion data
     // For now, return a placeholder
     return Math.floor(Math.random() * 100);
@@ -335,7 +335,7 @@ export class AnalyticsService {
     return workloadData;
   }
 
-  private async getBurndownChart(projectId: string) {
+  private getBurndownChart() {
     // This would typically involve historical data
     // For now, return sample data structure
     return {
@@ -345,7 +345,7 @@ export class AnalyticsService {
     };
   }
 
-  private async getCampaignStats(companyId: string) {
+  private async getCampaignStats() {
     const campaigns = await this.prisma.marketingCampaign.findMany({
       include: {
         _count: {
@@ -367,7 +367,7 @@ export class AnalyticsService {
     }));
   }
 
-  private async getSocialAccountStats(companyId: string) {
+  private async getSocialAccountStats() {
     const accounts = await this.prisma.socialAccount.findMany({
       include: {
         _count: {
@@ -387,7 +387,7 @@ export class AnalyticsService {
     }));
   }
 
-  private async getContentStats(companyId: string) {
+  private async getContentStats() {
     const [totalPosts, publishedPosts, scheduledPosts] = await Promise.all([
       this.prisma.socialPost.count(),
       this.prisma.socialPost.count({ where: { status: 'PUBLISHED' } }),
@@ -402,7 +402,7 @@ export class AnalyticsService {
     };
   }
 
-  private async getLeadSourceStats(companyId: string) {
+  private async getLeadSourceStats() {
     const leadSources = await this.prisma.lead.groupBy({
       by: ['source'],
       _count: {

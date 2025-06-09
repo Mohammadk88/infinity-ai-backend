@@ -1,0 +1,1288 @@
+# API Endpoints - all: all
+
+**Total Endpoints:** 214
+
+## GET /
+- **Handler:** getHello
+- **Summary:** 
+- **Module:** app.controller.ts
+- **Tags:** app.controller.ts
+
+## GET /affiliate/commissions
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** commission
+- **Tags:** Affiliate / Commissions
+
+## POST /affiliate/commissions
+- **Handler:** UseGuards
+- **Summary:** Get user commissions
+- **Module:** commission
+- **Tags:** Affiliate / Commissions
+
+## GET /affiliate/me
+- **Handler:** ApiOkResponse
+- **Summary:** 
+- **Module:** affiliate
+- **Tags:** Affiliate
+
+## GET /affiliate/referrals
+- **Handler:** ApiOkResponse
+- **Summary:** 
+- **Module:** referral
+- **Tags:** Affiliate
+
+## GET /affiliate/referrals/earnings
+- **Handler:** getEarningsSummary
+- **Summary:** 
+- **Module:** referral
+- **Tags:** Affiliate
+
+## POST /affiliate/request
+- **Handler:** ApiOperation
+- **Summary:** Get current user affiliate info
+- **Module:** affiliate
+- **Tags:** Affiliate
+
+## POST /ai-generator/generate
+- **Handler:** UseGuards
+- **Summary:** 
+- **Module:** ai-generator
+- **Tags:** AI Generator
+
+## GET /ai-provider-config
+- **Handler:** findAll
+- **Summary:** 
+- **Module:** aiprovider-config
+- **Tags:** AI Provider Config
+
+## POST /ai-provider-config
+- **Handler:** create
+- **Summary:** 
+- **Module:** aiprovider-config
+- **Tags:** AI Provider Config
+
+## DELETE /ai-provider-config/:id
+- **Handler:** remove
+- **Summary:** 
+- **Module:** aiprovider-config
+- **Tags:** AI Provider Config
+
+## GET /ai-provider-config/:id
+- **Handler:** findOne
+- **Summary:** 
+- **Module:** aiprovider-config
+- **Tags:** AI Provider Config
+
+## PATCH /ai-provider-config/:id
+- **Handler:** update
+- **Summary:** 
+- **Module:** aiprovider-config
+- **Tags:** AI Provider Config
+
+## GET /ai-provider-config/active
+- **Handler:** getActiveProvider
+- **Summary:** 
+- **Module:** aiprovider-config
+- **Tags:** AI Provider Config
+
+## GET /analytics/dashboard/:companyId
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** analytics
+- **Tags:** analytics
+
+## GET /analytics/marketing/:companyId
+- **Handler:** ApiOperation
+- **Summary:** Get company dashboard analytics
+- **Module:** analytics
+- **Tags:** analytics
+
+## GET /analytics/project/:projectId
+- **Handler:** ApiOperation
+- **Summary:** Get company dashboard analytics
+- **Module:** analytics
+- **Tags:** analytics
+
+## GET /analytics/user
+- **Handler:** ApiOperation
+- **Summary:** Get company dashboard analytics
+- **Module:** analytics
+- **Tags:** analytics
+
+## GET /auth/csrf-token
+- **Handler:** getCsrfToken
+- **Summary:** Register a new company with owner
+- **Module:** auth
+- **Tags:** auth
+
+## POST /auth/login
+- **Handler:** login
+- **Summary:** Register a new company with owner
+- **Module:** auth
+- **Tags:** auth
+
+## POST /auth/logout
+- **Handler:** logout
+- **Summary:** Register a new company with owner
+- **Module:** auth
+- **Tags:** auth
+
+## GET /auth/me
+- **Handler:** UseGuards
+- **Summary:** Register a new company with owner
+- **Module:** auth
+- **Tags:** auth
+
+## POST /auth/register
+- **Handler:** register
+- **Summary:** 
+- **Module:** auth
+- **Tags:** auth
+
+## POST /auth/register-company
+- **Handler:** HttpCode
+- **Summary:** 
+- **Module:** auth
+- **Tags:** auth
+
+## POST /auth/register-from-invitation
+- **Handler:** ApiOperation
+- **Summary:** Register a new company with owner
+- **Module:** auth
+- **Tags:** auth
+
+## GET /awards
+- **Handler:** ApiOperation
+- **Summary:** Create a new award
+- **Module:** award
+- **Tags:** Awards
+
+## POST /awards
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** award
+- **Tags:** Awards
+
+## DELETE /awards/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new award
+- **Module:** award
+- **Tags:** Awards
+
+## GET /awards/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new award
+- **Module:** award
+- **Tags:** Awards
+
+## PATCH /awards/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new award
+- **Module:** award
+- **Tags:** Awards
+
+## GET /awards/points
+- **Handler:** getUserPoints
+- **Summary:** Create a new award
+- **Module:** award
+- **Tags:** Awards
+
+## GET /awards/points/history
+- **Handler:** getUserPointHistory
+- **Summary:** Create a new award
+- **Module:** award
+- **Tags:** Awards
+
+## POST /awards/rewards/redeem
+- **Handler:** redeemAward
+- **Summary:** Create a new award
+- **Module:** award
+- **Tags:** Awards
+
+## GET /awards/rewards/redemptions
+- **Handler:** getUserRedemptions
+- **Summary:** Create a new award
+- **Module:** award
+- **Tags:** Awards
+
+## GET /campaign-performance
+- **Handler:** ApiOperation
+- **Summary:** Create performance metric
+- **Module:** campaign-performance
+- **Tags:** Campaign Performance
+
+## POST /campaign-performance
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** campaign-performance
+- **Tags:** Campaign Performance
+
+## DELETE /campaign-performance/:id
+- **Handler:** ApiOperation
+- **Summary:** Create performance metric
+- **Module:** campaign-performance
+- **Tags:** Campaign Performance
+
+## GET /campaign-performance/:id
+- **Handler:** ApiOperation
+- **Summary:** Create performance metric
+- **Module:** campaign-performance
+- **Tags:** Campaign Performance
+
+## PATCH /campaign-performance/:id
+- **Handler:** ApiOperation
+- **Summary:** Create performance metric
+- **Module:** campaign-performance
+- **Tags:** Campaign Performance
+
+## GET /campaign-posts
+- **Handler:** ApiOperation
+- **Summary:** Create a campaign post
+- **Module:** campaign-post
+- **Tags:** Campaign Posts
+
+## POST /campaign-posts
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** campaign-post
+- **Tags:** Campaign Posts
+
+## DELETE /campaign-posts/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a campaign post
+- **Module:** campaign-post
+- **Tags:** Campaign Posts
+
+## GET /campaign-posts/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a campaign post
+- **Module:** campaign-post
+- **Tags:** Campaign Posts
+
+## PATCH /campaign-posts/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a campaign post
+- **Module:** campaign-post
+- **Tags:** Campaign Posts
+
+## GET /categories
+- **Handler:** ApiOperation
+- **Summary:** Create new category
+- **Module:** categories
+- **Tags:** Categories
+
+## POST /categories
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** categories
+- **Tags:** Categories
+
+## DELETE /categories/:id
+- **Handler:** ApiOperation
+- **Summary:** Create new category
+- **Module:** categories
+- **Tags:** Categories
+
+## GET /categories/:id
+- **Handler:** ApiOperation
+- **Summary:** Create new category
+- **Module:** categories
+- **Tags:** Categories
+
+## PATCH /categories/:id
+- **Handler:** ApiOperation
+- **Summary:** Create new category
+- **Module:** categories
+- **Tags:** Categories
+
+## POST /client-notes
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** client-note
+- **Tags:** Client Notes
+
+## DELETE /client-notes/:id
+- **Handler:** ApiOperation
+- **Summary:** إضافة ملاحظة جديدة لعميل
+- **Module:** client-note
+- **Tags:** Client Notes
+
+## GET /client-notes/:id
+- **Handler:** ApiOperation
+- **Summary:** إضافة ملاحظة جديدة لعميل
+- **Module:** client-note
+- **Tags:** Client Notes
+
+## PATCH /client-notes/:id
+- **Handler:** ApiOperation
+- **Summary:** إضافة ملاحظة جديدة لعميل
+- **Module:** client-note
+- **Tags:** Client Notes
+
+## GET /client-notes/client/:clientId
+- **Handler:** ApiOperation
+- **Summary:** إضافة ملاحظة جديدة لعميل
+- **Module:** client-note
+- **Tags:** Client Notes
+
+## GET /clients
+- **Handler:** ApiOperation
+- **Summary:** إنشاء عميل جديد
+- **Module:** clients
+- **Tags:** Clients
+
+## POST /clients
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** clients
+- **Tags:** Clients
+
+## DELETE /clients/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء عميل جديد
+- **Module:** clients
+- **Tags:** Clients
+
+## GET /clients/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء عميل جديد
+- **Module:** clients
+- **Tags:** Clients
+
+## PATCH /clients/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء عميل جديد
+- **Module:** clients
+- **Tags:** Clients
+
+## PATCH /clients/:id/assign-subscription
+- **Handler:** ApiOperation
+- **Summary:** إنشاء عميل جديد
+- **Module:** clients
+- **Tags:** Clients
+
+## GET /companies/:id
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** company
+- **Tags:** Companies
+
+## PUT /companies/:id
+- **Handler:** HttpCode
+- **Summary:** Get company by ID including settings
+- **Module:** company
+- **Tags:** Companies
+
+## GET /companies/:id/setting
+- **Handler:** HttpCode
+- **Summary:** 
+- **Module:** company-setting
+- **Tags:** Company Settings
+
+## PUT /companies/:id/setting
+- **Handler:** HttpCode
+- **Summary:** Get company settings by company ID
+- **Module:** company-setting
+- **Tags:** Company Settings
+
+## POST /company-members
+- **Handler:** create
+- **Summary:** 
+- **Module:** company-member
+- **Tags:** Company Members
+
+## GET /company-members/:companyId
+- **Handler:** findAll
+- **Summary:** 
+- **Module:** company-member
+- **Tags:** Company Members
+
+## GET /company-members/:id
+- **Handler:** findOne
+- **Summary:** 
+- **Module:** company-member
+- **Tags:** Company Members
+
+## PATCH /company-members/:id
+- **Handler:** update
+- **Summary:** 
+- **Module:** company-member
+- **Tags:** Company Members
+
+## DELETE /company-members/:memberId
+- **Handler:** remove
+- **Summary:** 
+- **Module:** company-member
+- **Tags:** Company Members
+
+## PATCH /company-members/:memberId/role
+- **Handler:** updateRole
+- **Summary:** 
+- **Module:** company-member
+- **Tags:** Company Members
+
+## PATCH /company-members/:memberId/toggle-status
+- **Handler:** toggleStatus
+- **Summary:** 
+- **Module:** company-member
+- **Tags:** Company Members
+
+## POST /company-members/add-member
+- **Handler:** addMember
+- **Summary:** 
+- **Module:** company-member
+- **Tags:** Company Members
+
+## GET /content-schedule
+- **Handler:** ApiOperation
+- **Summary:** Create content schedule
+- **Module:** content-schedule
+- **Tags:** Content Schedule
+
+## POST /content-schedule
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** content-schedule
+- **Tags:** Content Schedule
+
+## DELETE /content-schedule/:id
+- **Handler:** ApiOperation
+- **Summary:** Create content schedule
+- **Module:** content-schedule
+- **Tags:** Content Schedule
+
+## GET /content-schedule/:id
+- **Handler:** ApiOperation
+- **Summary:** Create content schedule
+- **Module:** content-schedule
+- **Tags:** Content Schedule
+
+## PATCH /content-schedule/:id
+- **Handler:** ApiOperation
+- **Summary:** Create content schedule
+- **Module:** content-schedule
+- **Tags:** Content Schedule
+
+## GET /content-scheduler
+- **Handler:** ApiOperation
+- **Summary:** تشغيل الجدولة يدويًا (نشر المحتوى المجدول)
+- **Module:** content-scheduler
+- **Tags:** Content Scheduler
+
+## POST /content-scheduler/check
+- **Handler:** ApiOperation
+- **Summary:** تشغيل الجدولة يدويًا (نشر المحتوى المجدول)
+- **Module:** content-scheduler
+- **Tags:** Content Scheduler
+
+## POST /content-scheduler/manual-publish
+- **Handler:** ApiOperation
+- **Summary:** تشغيل الجدولة يدويًا (نشر المحتوى المجدول)
+- **Module:** content-scheduler
+- **Tags:** Content Scheduler
+
+## POST /content-scheduler/run-now
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** content-scheduler
+- **Tags:** Content Scheduler
+
+## GET /countries
+- **Handler:** findAll
+- **Summary:** 
+- **Module:** country
+- **Tags:** Countries
+
+## GET /facebook/auth-url
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** lib
+- **Tags:** Facebook Auth
+
+## GET /facebook/callback
+- **Handler:** UsePipes
+- **Summary:** Get Facebook OAuth URL
+- **Module:** lib
+- **Tags:** Facebook Auth
+
+## GET /file-upload
+- **Handler:** ApiOperation
+- **Summary:** Upload a new file
+- **Module:** file-upload
+- **Tags:** FileUpload
+
+## POST /file-upload
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** file-upload
+- **Tags:** FileUpload
+
+## DELETE /file-upload/:id
+- **Handler:** ApiOperation
+- **Summary:** Upload a new file
+- **Module:** file-upload
+- **Tags:** FileUpload
+
+## GET /file-upload/:id
+- **Handler:** ApiOperation
+- **Summary:** Upload a new file
+- **Module:** file-upload
+- **Tags:** FileUpload
+
+## PATCH /file-upload/:id
+- **Handler:** ApiOperation
+- **Summary:** Upload a new file
+- **Module:** file-upload
+- **Tags:** FileUpload
+
+## GET /instagram/auth-url
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** lib
+- **Tags:** Instagram
+
+## GET /instagram/callback
+- **Handler:** ApiOperation
+- **Summary:** Generate Instagram OAuth URL
+- **Module:** lib
+- **Tags:** Instagram
+
+## GET /interactions
+- **Handler:** findAll
+- **Summary:** Create a new interaction
+- **Module:** interaction
+- **Tags:** Interactions
+
+## POST /interactions
+- **Handler:** UseGuards
+- **Summary:** Create a new interaction
+- **Module:** interaction
+- **Tags:** Interactions
+
+## DELETE /interactions/:id
+- **Handler:** remove
+- **Summary:** Create a new interaction
+- **Module:** interaction
+- **Tags:** Interactions
+
+## GET /interactions/:id
+- **Handler:** findOne
+- **Summary:** Create a new interaction
+- **Module:** interaction
+- **Tags:** Interactions
+
+## PATCH /interactions/:id
+- **Handler:** update
+- **Summary:** Create a new interaction
+- **Module:** interaction
+- **Tags:** Interactions
+
+## POST /invitations
+- **Handler:** HttpCode
+- **Summary:** 
+- **Module:** invitation
+- **Tags:** Invitations
+
+## GET /invitations/:token
+- **Handler:** ApiOperation
+- **Summary:** Create new company invitation
+- **Module:** invitation
+- **Tags:** Invitations
+
+## POST /invitations/:token/accept
+- **Handler:** HttpCode
+- **Summary:** Create new company invitation
+- **Module:** invitation
+- **Tags:** Invitations
+
+## POST /invitations/:token/cancel
+- **Handler:** HttpCode
+- **Summary:** Create new company invitation
+- **Module:** invitation
+- **Tags:** Invitations
+
+## GET /leads
+- **Handler:** ApiOperation
+- **Summary:** إنشاء lead جديد
+- **Module:** lead
+- **Tags:** Leads
+
+## POST /leads
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** lead
+- **Tags:** Leads
+
+## DELETE /leads/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء lead جديد
+- **Module:** lead
+- **Tags:** Leads
+
+## GET /leads/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء lead جديد
+- **Module:** lead
+- **Tags:** Leads
+
+## PATCH /leads/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء lead جديد
+- **Module:** lead
+- **Tags:** Leads
+
+## GET /linkedin/auth-url
+- **Handler:** UseGuards
+- **Summary:** 
+- **Module:** lib
+- **Tags:** LinkedIn
+
+## GET /linkedin/callback
+- **Handler:** HttpCode
+- **Summary:** Get LinkedIn auth URL
+- **Module:** lib
+- **Tags:** LinkedIn
+
+## GET /linkedin/callback
+- **Handler:** HttpCode
+- **Summary:** Get LinkedIn auth URL
+- **Module:** lib
+- **Tags:** LinkedIn
+
+## POST /linkedin/publish
+- **Handler:** UseGuards
+- **Summary:** Get LinkedIn auth URL
+- **Module:** lib
+- **Tags:** LinkedIn
+
+## GET /marketing-campaigns
+- **Handler:** ApiOperation
+- **Summary:** Create a new marketing campaign
+- **Module:** marketing-campaign
+- **Tags:** Marketing Campaigns
+
+## POST /marketing-campaigns
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** marketing-campaign
+- **Tags:** Marketing Campaigns
+
+## DELETE /marketing-campaigns/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new marketing campaign
+- **Module:** marketing-campaign
+- **Tags:** Marketing Campaigns
+
+## GET /marketing-campaigns/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new marketing campaign
+- **Module:** marketing-campaign
+- **Tags:** Marketing Campaigns
+
+## PATCH /marketing-campaigns/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new marketing campaign
+- **Module:** marketing-campaign
+- **Tags:** Marketing Campaigns
+
+## GET /me
+- **Handler:** ApiBearerAuth
+- **Summary:** 
+- **Module:** me
+- **Tags:** me
+
+## GET /me/affiliates/referrals
+- **Handler:** ApiBearerAuth
+- **Summary:** 
+- **Module:** me
+- **Tags:** me
+
+## POST /notifications
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** notification
+- **Tags:** Notifications
+
+## DELETE /notifications/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new notification
+- **Module:** notification
+- **Tags:** Notifications
+
+## PATCH /notifications/:id/read
+- **Handler:** ApiOperation
+- **Summary:** Create a new notification
+- **Module:** notification
+- **Tags:** Notifications
+
+## GET /notifications/client/:clientId
+- **Handler:** ApiOperation
+- **Summary:** Create a new notification
+- **Module:** notification
+- **Tags:** Notifications
+
+## GET /notifications/user/:userId
+- **Handler:** ApiOperation
+- **Summary:** Create a new notification
+- **Module:** notification
+- **Tags:** Notifications
+
+## GET /notifications/user/:userId/unread
+- **Handler:** ApiOperation
+- **Summary:** Create a new notification
+- **Module:** notification
+- **Tags:** Notifications
+
+## POST /payments/paddle/create-checkout
+- **Handler:** createPaddleCheckout
+- **Summary:** 
+- **Module:** payments
+- **Tags:** payments
+
+## POST /payments/webhooks/paddle
+- **Handler:** handlePaddleWebhook
+- **Summary:** 
+- **Module:** payments
+- **Tags:** payments
+
+## GET /pipeline-stages
+- **Handler:** ApiOperation
+- **Summary:** إنشاء مرحلة جديدة ضمن المسار
+- **Module:** pipeline-stage
+- **Tags:** Pipeline Stages
+
+## POST /pipeline-stages
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** pipeline-stage
+- **Tags:** Pipeline Stages
+
+## DELETE /pipeline-stages/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء مرحلة جديدة ضمن المسار
+- **Module:** pipeline-stage
+- **Tags:** Pipeline Stages
+
+## GET /pipeline-stages/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء مرحلة جديدة ضمن المسار
+- **Module:** pipeline-stage
+- **Tags:** Pipeline Stages
+
+## PATCH /pipeline-stages/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء مرحلة جديدة ضمن المسار
+- **Module:** pipeline-stage
+- **Tags:** Pipeline Stages
+
+## POST /pipeline-stages/reorder
+- **Handler:** ApiOperation
+- **Summary:** إنشاء مرحلة جديدة ضمن المسار
+- **Module:** pipeline-stage
+- **Tags:** Pipeline Stages
+
+## GET /point-events
+- **Handler:** ApiOperation
+- **Summary:** Create a new point event
+- **Module:** point-event
+- **Tags:** Point Events
+
+## POST /point-events
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** point-event
+- **Tags:** Point Events
+
+## DELETE /point-events/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new point event
+- **Module:** point-event
+- **Tags:** Point Events
+
+## GET /point-events/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new point event
+- **Module:** point-event
+- **Tags:** Point Events
+
+## PATCH /point-events/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new point event
+- **Module:** point-event
+- **Tags:** Point Events
+
+## GET /projects
+- **Handler:** ApiOperation
+- **Summary:** Create a new project
+- **Module:** project
+- **Tags:** projects
+
+## POST /projects
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** project
+- **Tags:** projects
+
+## DELETE /projects/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new project
+- **Module:** project
+- **Tags:** projects
+
+## GET /projects/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new project
+- **Module:** project
+- **Tags:** projects
+
+## PATCH /projects/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new project
+- **Module:** project
+- **Tags:** projects
+
+## GET /projects/:id/stats
+- **Handler:** ApiOperation
+- **Summary:** Create a new project
+- **Module:** project
+- **Tags:** projects
+
+## GET /projects/my-projects
+- **Handler:** ApiOperation
+- **Summary:** Create a new project
+- **Module:** project
+- **Tags:** projects
+
+## GET /rewards
+- **Handler:** ApiOperation
+- **Summary:** Redeem an award using points
+- **Module:** reward-redemption
+- **Tags:** Reward Redemptions
+
+## GET /rewards/me
+- **Handler:** ApiOperation
+- **Summary:** Redeem an award using points
+- **Module:** reward-redemption
+- **Tags:** Reward Redemptions
+
+## POST /rewards/redeem/:awardId
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** reward-redemption
+- **Tags:** Reward Redemptions
+
+## GET /roles
+- **Handler:** getRolesByCompany
+- **Summary:** 
+- **Module:** role
+- **Tags:** role
+
+## GET /roles
+- **Handler:** findAll
+- **Summary:** 
+- **Module:** role
+- **Tags:** role
+
+## POST /roles
+- **Handler:** create
+- **Summary:** 
+- **Module:** role
+- **Tags:** role
+
+## DELETE /roles/:id
+- **Handler:** remove
+- **Summary:** 
+- **Module:** role
+- **Tags:** role
+
+## GET /roles/:id
+- **Handler:** findOne
+- **Summary:** 
+- **Module:** role
+- **Tags:** role
+
+## PATCH /roles/:id
+- **Handler:** update
+- **Summary:** 
+- **Module:** role
+- **Tags:** role
+
+## GET /social-accounts
+- **Handler:** ApiOperation
+- **Summary:** Link a new social account
+- **Module:** social-accounts
+- **Tags:** Social Accounts
+
+## POST /social-accounts
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** social-accounts
+- **Tags:** Social Accounts
+
+## DELETE /social-accounts/:id
+- **Handler:** ApiOperation
+- **Summary:** Link a new social account
+- **Module:** social-accounts
+- **Tags:** Social Accounts
+
+## GET /social-accounts/:id
+- **Handler:** ApiOperation
+- **Summary:** Link a new social account
+- **Module:** social-accounts
+- **Tags:** Social Accounts
+
+## PATCH /social-accounts/:id
+- **Handler:** ApiOperation
+- **Summary:** Link a new social account
+- **Module:** social-accounts
+- **Tags:** Social Accounts
+
+## POST /social-accounts/get-account-stats
+- **Handler:** ApiOperation
+- **Summary:** Link a new social account
+- **Module:** social-accounts
+- **Tags:** Social Accounts
+
+## GET /social-accounts/grouped
+- **Handler:** UseGuards
+- **Summary:** 
+- **Module:** social-accounts
+- **Tags:** Social Accounts
+
+## POST /social-accounts/my-social-accounts
+- **Handler:** ApiOperation
+- **Summary:** Link a new social account
+- **Module:** social-accounts
+- **Tags:** Social Accounts
+
+## GET /social-accounts/oauth/:platform/authorize
+- **Handler:** getOAuthUrl
+- **Summary:** Link a new social account
+- **Module:** social-accounts
+- **Tags:** Social Accounts
+
+## POST /social-accounts/oauth/:platform/callback
+- **Handler:** handleOAuthCallback
+- **Summary:** Link a new social account
+- **Module:** social-accounts
+- **Tags:** Social Accounts
+
+## GET /social-posts
+- **Handler:** ApiOperation
+- **Summary:** Create new post
+- **Module:** social-post
+- **Tags:** Social Posts
+
+## POST /social-posts
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** social-post
+- **Tags:** Social Posts
+
+## DELETE /social-posts/:id
+- **Handler:** ApiOperation
+- **Summary:** Create new post
+- **Module:** social-post
+- **Tags:** Social Posts
+
+## GET /social-posts/:id
+- **Handler:** ApiOperation
+- **Summary:** Create new post
+- **Module:** social-post
+- **Tags:** Social Posts
+
+## PATCH /social-posts/:id
+- **Handler:** ApiOperation
+- **Summary:** Create new post
+- **Module:** social-post
+- **Tags:** Social Posts
+
+## POST /social-posts/generate-only
+- **Handler:** UseGuards
+- **Summary:** Create new post
+- **Module:** social-post
+- **Tags:** Social Posts
+
+## GET /sprints
+- **Handler:** ApiOperation
+- **Summary:** Create a new sprint
+- **Module:** sprint
+- **Tags:** sprints
+
+## POST /sprints
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** sprint
+- **Tags:** sprints
+
+## DELETE /sprints/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new sprint
+- **Module:** sprint
+- **Tags:** sprints
+
+## GET /sprints/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new sprint
+- **Module:** sprint
+- **Tags:** sprints
+
+## PATCH /sprints/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new sprint
+- **Module:** sprint
+- **Tags:** sprints
+
+## GET /sprints/:id/stats
+- **Handler:** ApiOperation
+- **Summary:** Create a new sprint
+- **Module:** sprint
+- **Tags:** sprints
+
+## GET /subscription-plans
+- **Handler:** ApiOperation
+- **Summary:** Create a new subscription plan
+- **Module:** subscription-plan
+- **Tags:** Subscription Plans
+
+## POST /subscription-plans
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** subscription-plan
+- **Tags:** Subscription Plans
+
+## DELETE /subscription-plans/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new subscription plan
+- **Module:** subscription-plan
+- **Tags:** Subscription Plans
+
+## GET /subscription-plans/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new subscription plan
+- **Module:** subscription-plan
+- **Tags:** Subscription Plans
+
+## PATCH /subscription-plans/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new subscription plan
+- **Module:** subscription-plan
+- **Tags:** Subscription Plans
+
+## POST /subscriptions
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** subscription
+- **Tags:** Subscriptions
+
+## DELETE /subscriptions/:id
+- **Handler:** UseGuards
+- **Summary:** Create a new subscription
+- **Module:** subscription
+- **Tags:** Subscriptions
+
+## GET /subscriptions/:id
+- **Handler:** ApiOperation
+- **Summary:** Create a new subscription
+- **Module:** subscription
+- **Tags:** Subscriptions
+
+## PATCH /subscriptions/:id
+- **Handler:** UseGuards
+- **Summary:** Create a new subscription
+- **Module:** subscription
+- **Tags:** Subscriptions
+
+## POST /subscriptions/activate
+- **Handler:** UseGuards
+- **Summary:** Create a new subscription
+- **Module:** subscription
+- **Tags:** Subscriptions
+
+## GET /subscriptions/me
+- **Handler:** getMySubscription
+- **Summary:** 
+- **Module:** subscription
+- **Tags:** Subscriptions
+
+## GET /tags
+- **Handler:** ApiOperation
+- **Summary:** Create new tag
+- **Module:** tags
+- **Tags:** Tags
+
+## POST /tags
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** tags
+- **Tags:** Tags
+
+## DELETE /tags/:id
+- **Handler:** ApiOperation
+- **Summary:** Create new tag
+- **Module:** tags
+- **Tags:** Tags
+
+## GET /tags/:id
+- **Handler:** ApiOperation
+- **Summary:** Create new tag
+- **Module:** tags
+- **Tags:** Tags
+
+## PATCH /tags/:id
+- **Handler:** ApiOperation
+- **Summary:** Create new tag
+- **Module:** tags
+- **Tags:** Tags
+
+## GET /tasks
+- **Handler:** ApiOperation
+- **Summary:** إنشاء مهمة جديدة
+- **Module:** task
+- **Tags:** المهام
+
+## POST /tasks
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** task
+- **Tags:** المهام
+
+## DELETE /tasks/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء مهمة جديدة
+- **Module:** task
+- **Tags:** المهام
+
+## GET /tasks/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء مهمة جديدة
+- **Module:** task
+- **Tags:** المهام
+
+## PATCH /tasks/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء مهمة جديدة
+- **Module:** task
+- **Tags:** المهام
+
+## PATCH /tasks/:id/assign/:assigneeId
+- **Handler:** ApiOperation
+- **Summary:** إنشاء مهمة جديدة
+- **Module:** task
+- **Tags:** المهام
+
+## PATCH /tasks/:id/status/:status
+- **Handler:** ApiOperation
+- **Summary:** إنشاء مهمة جديدة
+- **Module:** task
+- **Tags:** المهام
+
+## GET /tasks/project/:projectId
+- **Handler:** ApiOperation
+- **Summary:** إنشاء مهمة جديدة
+- **Module:** task
+- **Tags:** المهام
+
+## GET /tasks/status/:status
+- **Handler:** ApiOperation
+- **Summary:** إنشاء مهمة جديدة
+- **Module:** task
+- **Tags:** المهام
+
+## GET /twitter/auth-url
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** lib
+- **Tags:** Social Providers – Twitter
+
+## GET /twitter/callback
+- **Handler:** ApiOperation
+- **Summary:** Get Twitter OAuth URL
+- **Module:** lib
+- **Tags:** Social Providers – Twitter
+
+## POST /twitter/publish
+- **Handler:** ApiOperation
+- **Summary:** Get Twitter OAuth URL
+- **Module:** lib
+- **Tags:** Social Providers – Twitter
+
+## GET /usage-limit
+- **Handler:** getLimits
+- **Summary:** 
+- **Module:** usage-limit
+- **Tags:** usage-limit
+
+## POST /usage-limit/increment
+- **Handler:** incrementUsage
+- **Summary:** 
+- **Module:** usage-limit
+- **Tags:** usage-limit
+
+## GET /user-points
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** user-point
+- **Tags:** User Points
+
+## POST /user-points
+- **Handler:** ApiOperation
+- **Summary:** Get all user points
+- **Module:** user-point
+- **Tags:** User Points
+
+## GET /user-points/:userId
+- **Handler:** ApiOperation
+- **Summary:** Get all user points
+- **Module:** user-point
+- **Tags:** User Points
+
+## PATCH /user-points/:userId
+- **Handler:** ApiOperation
+- **Summary:** Get all user points
+- **Module:** user-point
+- **Tags:** User Points
+
+## PATCH /user-points/:userId/add
+- **Handler:** ApiOperation
+- **Summary:** Get all user points
+- **Module:** user-point
+- **Tags:** User Points
+
+## PATCH /user-points/:userId/deduct
+- **Handler:** ApiOperation
+- **Summary:** Get all user points
+- **Module:** user-point
+- **Tags:** User Points
+
+## GET /web-content
+- **Handler:** ApiOperation
+- **Summary:** إنشاء محتوى ويب جديد
+- **Module:** web-content
+- **Tags:** Web Content
+
+## POST /web-content
+- **Handler:** ApiOperation
+- **Summary:** 
+- **Module:** web-content
+- **Tags:** Web Content
+
+## DELETE /web-content/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء محتوى ويب جديد
+- **Module:** web-content
+- **Tags:** Web Content
+
+## GET /web-content/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء محتوى ويب جديد
+- **Module:** web-content
+- **Tags:** Web Content
+
+## PATCH /web-content/:id
+- **Handler:** ApiOperation
+- **Summary:** إنشاء محتوى ويب جديد
+- **Module:** web-content
+- **Tags:** Web Content
+

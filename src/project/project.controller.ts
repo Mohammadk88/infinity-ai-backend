@@ -21,6 +21,7 @@ import { ProjectService } from './project.service';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { AuthenticatedRequest } from '../types/auth.types';
 
 @ApiTags('projects')
 @ApiBearerAuth()
@@ -33,7 +34,10 @@ export class ProjectController {
   @ApiOperation({ summary: 'Create a new project' })
   @ApiResponse({ status: 201, description: 'Project created successfully' })
   @ApiResponse({ status: 403, description: 'Forbidden - No access to company' })
-  create(@Body() createProjectDto: CreateProjectDto, @Request() req) {
+  create(
+    @Body() createProjectDto: CreateProjectDto,
+    @Request() req: AuthenticatedRequest,
+  ) {
     return this.projectService.create(createProjectDto, req.user.id);
   }
 
@@ -51,7 +55,7 @@ export class ProjectController {
   })
   @ApiResponse({ status: 200, description: 'List of projects' })
   findAll(
-    @Request() req: any,
+    @Request() req: AuthenticatedRequest,
     @Query('companyId') companyId?: string,
     @Query('status') status?: string,
   ) {
@@ -61,7 +65,7 @@ export class ProjectController {
   @Get('my-projects')
   @ApiOperation({ summary: 'Get current user projects' })
   @ApiResponse({ status: 200, description: 'List of user projects' })
-  getMyProjects(@Request() req: any) {
+  getMyProjects(@Request() req: AuthenticatedRequest) {
     return this.projectService.findUserProjects(req.user.id);
   }
 
@@ -69,14 +73,14 @@ export class ProjectController {
   @ApiOperation({ summary: 'Get project by ID' })
   @ApiResponse({ status: 200, description: 'Project details' })
   @ApiResponse({ status: 404, description: 'Project not found' })
-  findOne(@Param('id') id: string, @Request() req: any) {
+  findOne(@Param('id') id: string, @Request() req: AuthenticatedRequest) {
     return this.projectService.findOne(id, req.user.id);
   }
 
   @Get(':id/stats')
   @ApiOperation({ summary: 'Get project statistics' })
   @ApiResponse({ status: 200, description: 'Project statistics' })
-  getStats(@Param('id') id: string, @Request() req) {
+  getStats(@Param('id') id: string, @Request() req: AuthenticatedRequest) {
     return this.projectService.getProjectStats(id, req.user.id);
   }
 
@@ -87,7 +91,7 @@ export class ProjectController {
   update(
     @Param('id') id: string,
     @Body() updateProjectDto: UpdateProjectDto,
-    @Request() req,
+    @Request() req: AuthenticatedRequest,
   ) {
     return this.projectService.update(id, updateProjectDto, req.user.id);
   }
@@ -99,7 +103,7 @@ export class ProjectController {
     status: 403,
     description: 'Cannot delete project with active tasks',
   })
-  remove(@Param('id') id: string, @Request() req) {
+  remove(@Param('id') id: string, @Request() req: AuthenticatedRequest) {
     return this.projectService.remove(id, req.user.id);
   }
 }

@@ -6,6 +6,7 @@ import {
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateSprintDto } from './dto/create-sprint.dto';
 import { UpdateSprintDto } from './dto/update-sprint.dto';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class SprintService {
@@ -44,10 +45,8 @@ export class SprintService {
       },
     });
   }
-
   async findAll(projectId?: string, userId?: string) {
-    const where: any = {};
-
+    const where: Prisma.SprintWhereInput = {};
     if (projectId) {
       // Verify user has access to the project
       const project = await this.prisma.project.findUnique({

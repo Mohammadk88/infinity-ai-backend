@@ -13,63 +13,79 @@ import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  const config = new DocumentBuilder()
-    .setTitle('Infinity AI System')
-    .setDescription('Full API documentation for our marketing system')
-    .setVersion('1.0')
-    .addBearerAuth() // عشان توثيق JWT
-    .build();
+
+  // Configure CORS first
+  app.enableCors({
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:4040',
+      `http://localhost:${process.env.PORT ?? 3000}`,
+    ],
+    credentials: true,
+  });
+
+  // Security middleware
+  app.use(helmet());
+  app.use(cookieParser());
+
+  // Static assets
   app.useStaticAssets(
     process.env.NODE_ENV === 'production'
-      ? join(__dirname, '..', 'uploads') // وقت الإنتاج ناخد من dist/uploads
-      : join(__dirname, 'uploads'), // وقت التطوير ناخد من src/uploads العادية
+      ? join(__dirname, '..', 'uploads')
+      : join(__dirname, 'uploads'),
     {
       prefix: '/public/',
     },
   );
-  const document = SwaggerModule.createDocument(app, config);
-  if (process.env.NODE_ENV !== 'production') {
-    SwaggerModule.setup('docs', app, document); // /docs بتفتح منه التوثيق
-  }
+
+  // Global validation pipe
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true, // يشيل أي حقول مش معرفة في DTO
+      whitelist: true,
       forbidNonWhitelisted: false,
-      transform: true, // يحوّل البيانات تلقائيًا للـ DTOs
+      transform: true,
     }),
   );
 
-  app.enableCors({
-    origin: 'http://localhost:3000', // رابط الفرونت
-    credentials: true, // مهم لدعم الكوكيز
-  });
-  app.use(cookieParser()); // لازم قبله
-  app.use(
-    csurf({
-      cookie: {
-        httpOnly: false,
-        secure: process.env.NODE_ENV === 'production',
+  // Swagger documentation
+  const config = new DocumentBuilder()
+    .setTitle('Infinity AI System')
+    .setDescription('Full API documentation for our marketing system')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  if (process.env.NODE_ENV !== 'production') {
+    SwaggerModule.setup('docs', app, document);
+  }
+
+  // CSRF protection (disabled for API endpoints in development)
+  if (process.env.NODE_ENV === 'production') {
+    app.use(
+      csurf({
+        cookie: {
+          httpOnly: false,
+          secure: true,
+        },
+      }),
+    );
+
+    app.use(
+      (
+        req: Express.Request,
+        res: Express.Response,
+        next: Express.NextFunction,
+      ) => {
+        res.cookie('XSRF-TOKEN', req.csrfToken(), { httpOnly: false });
+        next();
       },
-    }),
-  );
-  app.use(csurf({ cookie: true }));
+    );
+  }
 
-  app.use(
-    (
-      req: Express.Request,
-      res: Express.Response,
-      next: Express.NextFunction,
-    ) => {
-      res.cookie('XSRF-TOKEN', req.csrfToken(), { httpOnly: false }); // يجب أن يكون httpOnly: false لتستطيع قراءته بالفرونت
-      next();
-    },
-  );
-  app.use(helmet()); // مهم جدًا لحماية الـ Headers
-  app.enableCors({
-    origin: [`http://localhost:${process.env.PORT ?? 4040}`], // رابط الـ Frontend
-    credentials: true,
-  });
-
-  await app.listen(process.env.PORT ?? 4040);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+  console.log(`🚀 Application is running on: http://localhost:${port}`);
+  console.log(`📚 Swagger docs available at: http://localhost:${port}/docs`);
 }
 bootstrap().catch((err) => console.error('Failed to start application:', err));

@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { PrismaService } from '../../prisma/prisma.service';
+import { AuthenticatedRequest } from '../../types/auth.types';
 
 export interface RequiredPermission {
   resource: string;
@@ -31,7 +32,7 @@ export class PermissionGuard implements CanActivate {
       return true;
     }
 
-    const request = context.switchToHttp().getRequest();
+    const request = context.switchToHttp().getRequest<AuthenticatedRequest>();
     const userId = request.user?.id;
 
     if (!userId) {
@@ -42,7 +43,7 @@ export class PermissionGuard implements CanActivate {
       const hasPermission = await this.checkPermission(
         userId,
         permission,
-        request.params,
+        request.params as Record<string, string>,
       );
 
       if (!hasPermission) {
@@ -58,7 +59,7 @@ export class PermissionGuard implements CanActivate {
   private async checkPermission(
     userId: string,
     permission: RequiredPermission,
-    params: any,
+    params: Record<string, string>,
   ): Promise<boolean> {
     const { resource, action } = permission;
     let { companyId, projectId } = permission;

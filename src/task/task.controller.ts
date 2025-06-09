@@ -23,6 +23,14 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { TaskStatus } from '@prisma/client';
 
+interface AuthenticatedRequest extends Request {
+  user: {
+    userId: string;
+    email: string;
+    roleId: string;
+  };
+}
+
 @ApiTags('المهام')
 @ApiBearerAuth()
 @UseGuards(JwtAuthGuard)
@@ -40,7 +48,10 @@ export class TaskController {
     status: 404,
     description: 'المشروع غير موجود أو ليس لديك صلاحية للوصول إليه',
   })
-  create(@Body() createTaskDto: CreateTaskDto, @Request() req: any) {
+  create(
+    @Body() createTaskDto: CreateTaskDto,
+    @Request() req: AuthenticatedRequest,
+  ) {
     return this.taskService.create(createTaskDto, req.user.userId);
   }
 
@@ -58,7 +69,7 @@ export class TaskController {
     description: 'تم جلب المهام بنجاح',
   })
   findAll(
-    @Request() req: any,
+    @Request() req: AuthenticatedRequest,
     @Query('projectId') projectId?: string,
     @Query('status') status?: TaskStatus,
   ) {
@@ -75,7 +86,7 @@ export class TaskController {
     status: 404,
     description: 'المهمة غير موجودة أو ليس لديك صلاحية للوصول إليها',
   })
-  findOne(@Param('id') id: string, @Request() req: any) {
+  findOne(@Param('id') id: string, @Request() req: AuthenticatedRequest) {
     return this.taskService.findOne(id, req.user.userId);
   }
 
@@ -96,7 +107,7 @@ export class TaskController {
   update(
     @Param('id') id: string,
     @Body() updateTaskDto: UpdateTaskDto,
-    @Request() req: any,
+    @Request() req: AuthenticatedRequest,
   ) {
     return this.taskService.update(id, updateTaskDto, req.user.userId);
   }
@@ -115,7 +126,7 @@ export class TaskController {
     status: 404,
     description: 'المهمة غير موجودة',
   })
-  remove(@Param('id') id: string, @Request() req: any) {
+  remove(@Param('id') id: string, @Request() req: AuthenticatedRequest) {
     return this.taskService.remove(id, req.user.userId);
   }
 
@@ -127,7 +138,7 @@ export class TaskController {
   })
   getTasksByProject(
     @Param('projectId') projectId: string,
-    @Request() req: any,
+    @Request() req: AuthenticatedRequest,
   ) {
     return this.taskService.getTasksByProject(projectId, req.user.userId);
   }
@@ -138,7 +149,10 @@ export class TaskController {
     status: 200,
     description: 'تم جلب المهام بنجاح',
   })
-  getTasksByStatus(@Param('status') status: TaskStatus, @Request() req: any) {
+  getTasksByStatus(
+    @Param('status') status: TaskStatus,
+    @Request() req: AuthenticatedRequest,
+  ) {
     return this.taskService.getTasksByStatus(status, req.user.userId);
   }
 
@@ -155,7 +169,7 @@ export class TaskController {
   assignTask(
     @Param('id') taskId: string,
     @Param('assigneeId') assigneeId: string,
-    @Request() req: any,
+    @Request() req: AuthenticatedRequest,
   ) {
     return this.taskService.assignTask(taskId, assigneeId, req.user.userId);
   }
@@ -173,7 +187,7 @@ export class TaskController {
   updateStatus(
     @Param('id') taskId: string,
     @Param('status') status: TaskStatus,
-    @Request() req: any,
+    @Request() req: AuthenticatedRequest,
   ) {
     return this.taskService.updateStatus(taskId, status, req.user.userId);
   }

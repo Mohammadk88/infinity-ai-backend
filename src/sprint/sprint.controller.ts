@@ -20,6 +20,7 @@ import { SprintService } from './sprint.service';
 import { CreateSprintDto } from './dto/create-sprint.dto';
 import { UpdateSprintDto } from './dto/update-sprint.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { AuthenticatedRequest } from '../types/auth.types';
 
 @ApiTags('sprints')
 @ApiBearerAuth()
@@ -32,29 +33,35 @@ export class SprintController {
   @ApiOperation({ summary: 'Create a new sprint' })
   @ApiResponse({ status: 201, description: 'Sprint created successfully' })
   @ApiResponse({ status: 403, description: 'Forbidden - No access to project' })
-  create(@Body() createSprintDto: CreateSprintDto, @Request() req) {
+  create(
+    @Body() createSprintDto: CreateSprintDto,
+    @Request() req: AuthenticatedRequest,
+  ) {
     return this.sprintService.create(createSprintDto, req.user.id);
   }
 
   @Get()
   @ApiOperation({ summary: 'Get all sprints' })
   @ApiResponse({ status: 200, description: 'List of sprints' })
-  findAll(@Query('projectId') projectId?: string, @Request() req?) {
-    return this.sprintService.findAll(projectId, req.user.id);
+  findAll(
+    @Query('projectId') projectId?: string,
+    @Request() req?: AuthenticatedRequest,
+  ) {
+    return this.sprintService.findAll(projectId, req?.user.id);
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Get sprint by ID' })
   @ApiResponse({ status: 200, description: 'Sprint details' })
   @ApiResponse({ status: 404, description: 'Sprint not found' })
-  findOne(@Param('id') id: string, @Request() req) {
+  findOne(@Param('id') id: string, @Request() req: AuthenticatedRequest) {
     return this.sprintService.findOne(id, req.user.id);
   }
 
   @Get(':id/stats')
   @ApiOperation({ summary: 'Get sprint statistics' })
   @ApiResponse({ status: 200, description: 'Sprint statistics' })
-  getStats(@Param('id') id: string, @Request() req) {
+  getStats(@Param('id') id: string, @Request() req: AuthenticatedRequest) {
     return this.sprintService.getSprintStats(id, req.user.id);
   }
 
@@ -65,7 +72,7 @@ export class SprintController {
   update(
     @Param('id') id: string,
     @Body() updateSprintDto: UpdateSprintDto,
-    @Request() req,
+    @Request() req: AuthenticatedRequest,
   ) {
     return this.sprintService.update(id, updateSprintDto, req.user.id);
   }
@@ -77,7 +84,7 @@ export class SprintController {
     status: 403,
     description: 'Cannot delete sprint with active tasks',
   })
-  remove(@Param('id') id: string, @Request() req) {
+  remove(@Param('id') id: string, @Request() req: AuthenticatedRequest) {
     return this.sprintService.remove(id, req.user.id);
   }
 }

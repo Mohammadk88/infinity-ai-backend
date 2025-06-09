@@ -1,0 +1,215 @@
+Method,Path,Handler,Summary,Tags,Module,File
+GET,/,getHello,"",app.controller.ts,app.controller.ts,app.controller.ts
+GET,/affiliate/commissions,ApiOperation,"",Affiliate / Commissions,commission,commission/commission.controller.ts
+POST,/affiliate/commissions,UseGuards,"Get user commissions",Affiliate / Commissions,commission,commission/commission.controller.ts
+GET,/affiliate/me,ApiOkResponse,"",Affiliate,affiliate,affiliate/affiliate.controller.ts
+GET,/affiliate/referrals,ApiOkResponse,"",Affiliate,referral,referral/referral.controller.ts
+GET,/affiliate/referrals/earnings,getEarningsSummary,"",Affiliate,referral,referral/referral.controller.ts
+POST,/affiliate/request,ApiOperation,"Get current user affiliate info",Affiliate,affiliate,affiliate/affiliate.controller.ts
+POST,/ai-generator/generate,UseGuards,"",AI Generator,ai-generator,ai-generator/ai-generator.controller.ts
+GET,/ai-provider-config,findAll,"",AI Provider Config,aiprovider-config,aiprovider-config/aiprovider-config.controller.ts
+POST,/ai-provider-config,create,"",AI Provider Config,aiprovider-config,aiprovider-config/aiprovider-config.controller.ts
+DELETE,/ai-provider-config/:id,remove,"",AI Provider Config,aiprovider-config,aiprovider-config/aiprovider-config.controller.ts
+GET,/ai-provider-config/:id,findOne,"",AI Provider Config,aiprovider-config,aiprovider-config/aiprovider-config.controller.ts
+PATCH,/ai-provider-config/:id,update,"",AI Provider Config,aiprovider-config,aiprovider-config/aiprovider-config.controller.ts
+GET,/ai-provider-config/active,getActiveProvider,"",AI Provider Config,aiprovider-config,aiprovider-config/aiprovider-config.controller.ts
+GET,/analytics/dashboard/:companyId,ApiOperation,"",analytics,analytics,analytics/analytics.controller.ts
+GET,/analytics/marketing/:companyId,ApiOperation,"Get company dashboard analytics",analytics,analytics,analytics/analytics.controller.ts
+GET,/analytics/project/:projectId,ApiOperation,"Get company dashboard analytics",analytics,analytics,analytics/analytics.controller.ts
+GET,/analytics/user,ApiOperation,"Get company dashboard analytics",analytics,analytics,analytics/analytics.controller.ts
+GET,/auth/csrf-token,getCsrfToken,"Register a new company with owner",auth,auth,auth/auth.controller.ts
+POST,/auth/login,login,"Register a new company with owner",auth,auth,auth/auth.controller.ts
+POST,/auth/logout,logout,"Register a new company with owner",auth,auth,auth/auth.controller.ts
+GET,/auth/me,UseGuards,"Register a new company with owner",auth,auth,auth/auth.controller.ts
+POST,/auth/register,register,"",auth,auth,auth/auth.controller.ts
+POST,/auth/register-company,HttpCode,"",auth,auth,auth/auth.controller.ts
+POST,/auth/register-from-invitation,ApiOperation,"Register a new company with owner",auth,auth,auth/auth.controller.ts
+GET,/awards,ApiOperation,"Create a new award",Awards,award,award/award.controller.ts
+POST,/awards,ApiOperation,"",Awards,award,award/award.controller.ts
+DELETE,/awards/:id,ApiOperation,"Create a new award",Awards,award,award/award.controller.ts
+GET,/awards/:id,ApiOperation,"Create a new award",Awards,award,award/award.controller.ts
+PATCH,/awards/:id,ApiOperation,"Create a new award",Awards,award,award/award.controller.ts
+GET,/awards/points,getUserPoints,"Create a new award",Awards,award,award/award.controller.ts
+GET,/awards/points/history,getUserPointHistory,"Create a new award",Awards,award,award/award.controller.ts
+POST,/awards/rewards/redeem,redeemAward,"Create a new award",Awards,award,award/award.controller.ts
+GET,/awards/rewards/redemptions,getUserRedemptions,"Create a new award",Awards,award,award/award.controller.ts
+GET,/campaign-performance,ApiOperation,"Create performance metric",Campaign Performance,campaign-performance,campaign-performance/campaign-performance.controller.ts
+POST,/campaign-performance,ApiOperation,"",Campaign Performance,campaign-performance,campaign-performance/campaign-performance.controller.ts
+DELETE,/campaign-performance/:id,ApiOperation,"Create performance metric",Campaign Performance,campaign-performance,campaign-performance/campaign-performance.controller.ts
+GET,/campaign-performance/:id,ApiOperation,"Create performance metric",Campaign Performance,campaign-performance,campaign-performance/campaign-performance.controller.ts
+PATCH,/campaign-performance/:id,ApiOperation,"Create performance metric",Campaign Performance,campaign-performance,campaign-performance/campaign-performance.controller.ts
+GET,/campaign-posts,ApiOperation,"Create a campaign post",Campaign Posts,campaign-post,campaign-post/campaign-post.controller.ts
+POST,/campaign-posts,ApiOperation,"",Campaign Posts,campaign-post,campaign-post/campaign-post.controller.ts
+DELETE,/campaign-posts/:id,ApiOperation,"Create a campaign post",Campaign Posts,campaign-post,campaign-post/campaign-post.controller.ts
+GET,/campaign-posts/:id,ApiOperation,"Create a campaign post",Campaign Posts,campaign-post,campaign-post/campaign-post.controller.ts
+PATCH,/campaign-posts/:id,ApiOperation,"Create a campaign post",Campaign Posts,campaign-post,campaign-post/campaign-post.controller.ts
+GET,/categories,ApiOperation,"Create new category",Categories,categories,categories/categories.controller.ts
+POST,/categories,ApiOperation,"",Categories,categories,categories/categories.controller.ts
+DELETE,/categories/:id,ApiOperation,"Create new category",Categories,categories,categories/categories.controller.ts
+GET,/categories/:id,ApiOperation,"Create new category",Categories,categories,categories/categories.controller.ts
+PATCH,/categories/:id,ApiOperation,"Create new category",Categories,categories,categories/categories.controller.ts
+POST,/client-notes,ApiOperation,"",Client Notes,client-note,client-note/client-note.controller.ts
+DELETE,/client-notes/:id,ApiOperation,"إضافة ملاحظة جديدة لعميل",Client Notes,client-note,client-note/client-note.controller.ts
+GET,/client-notes/:id,ApiOperation,"إضافة ملاحظة جديدة لعميل",Client Notes,client-note,client-note/client-note.controller.ts
+PATCH,/client-notes/:id,ApiOperation,"إضافة ملاحظة جديدة لعميل",Client Notes,client-note,client-note/client-note.controller.ts
+GET,/client-notes/client/:clientId,ApiOperation,"إضافة ملاحظة جديدة لعميل",Client Notes,client-note,client-note/client-note.controller.ts
+GET,/clients,ApiOperation,"إنشاء عميل جديد",Clients,clients,clients/clients.controller.ts
+POST,/clients,ApiOperation,"",Clients,clients,clients/clients.controller.ts
+DELETE,/clients/:id,ApiOperation,"إنشاء عميل جديد",Clients,clients,clients/clients.controller.ts
+GET,/clients/:id,ApiOperation,"إنشاء عميل جديد",Clients,clients,clients/clients.controller.ts
+PATCH,/clients/:id,ApiOperation,"إنشاء عميل جديد",Clients,clients,clients/clients.controller.ts
+PATCH,/clients/:id/assign-subscription,ApiOperation,"إنشاء عميل جديد",Clients,clients,clients/clients.controller.ts
+GET,/companies/:id,ApiOperation,"",Companies,company,company/company.controller.ts
+PUT,/companies/:id,HttpCode,"Get company by ID including settings",Companies,company,company/company.controller.ts
+GET,/companies/:id/setting,HttpCode,"",Company Settings,company-setting,company-setting/company-setting.controller.ts
+PUT,/companies/:id/setting,HttpCode,"Get company settings by company ID",Company Settings,company-setting,company-setting/company-setting.controller.ts
+POST,/company-members,create,"",Company Members,company-member,company-member/company-member.controller.ts
+GET,/company-members/:companyId,findAll,"",Company Members,company-member,company-member/company-member.controller.ts
+GET,/company-members/:id,findOne,"",Company Members,company-member,company-member/company-member.controller.ts
+PATCH,/company-members/:id,update,"",Company Members,company-member,company-member/company-member.controller.ts
+DELETE,/company-members/:memberId,remove,"",Company Members,company-member,company-member/company-member.controller.ts
+PATCH,/company-members/:memberId/role,updateRole,"",Company Members,company-member,company-member/company-member.controller.ts
+PATCH,/company-members/:memberId/toggle-status,toggleStatus,"",Company Members,company-member,company-member/company-member.controller.ts
+POST,/company-members/add-member,addMember,"",Company Members,company-member,company-member/company-member.controller.ts
+GET,/content-schedule,ApiOperation,"Create content schedule",Content Schedule,content-schedule,content-schedule/content-schedule.controller.ts
+POST,/content-schedule,ApiOperation,"",Content Schedule,content-schedule,content-schedule/content-schedule.controller.ts
+DELETE,/content-schedule/:id,ApiOperation,"Create content schedule",Content Schedule,content-schedule,content-schedule/content-schedule.controller.ts
+GET,/content-schedule/:id,ApiOperation,"Create content schedule",Content Schedule,content-schedule,content-schedule/content-schedule.controller.ts
+PATCH,/content-schedule/:id,ApiOperation,"Create content schedule",Content Schedule,content-schedule,content-schedule/content-schedule.controller.ts
+GET,/content-scheduler,ApiOperation,"تشغيل الجدولة يدويًا (نشر المحتوى المجدول)",Content Scheduler,content-scheduler,content-scheduler/content-scheduler.controller.ts
+POST,/content-scheduler/check,ApiOperation,"تشغيل الجدولة يدويًا (نشر المحتوى المجدول)",Content Scheduler,content-scheduler,content-scheduler/content-scheduler.controller.ts
+POST,/content-scheduler/manual-publish,ApiOperation,"تشغيل الجدولة يدويًا (نشر المحتوى المجدول)",Content Scheduler,content-scheduler,content-scheduler/content-scheduler.controller.ts
+POST,/content-scheduler/run-now,ApiOperation,"",Content Scheduler,content-scheduler,content-scheduler/content-scheduler.controller.ts
+GET,/countries,findAll,"",Countries,country,country/country.controller.ts
+GET,/facebook/auth-url,ApiOperation,"",Facebook Auth,lib,lib/social-providers/facebook/facebook.controller.ts
+GET,/facebook/callback,UsePipes,"Get Facebook OAuth URL",Facebook Auth,lib,lib/social-providers/facebook/facebook.controller.ts
+GET,/file-upload,ApiOperation,"Upload a new file",FileUpload,file-upload,file-upload/file-upload.controller.ts
+POST,/file-upload,ApiOperation,"",FileUpload,file-upload,file-upload/file-upload.controller.ts
+DELETE,/file-upload/:id,ApiOperation,"Upload a new file",FileUpload,file-upload,file-upload/file-upload.controller.ts
+GET,/file-upload/:id,ApiOperation,"Upload a new file",FileUpload,file-upload,file-upload/file-upload.controller.ts
+PATCH,/file-upload/:id,ApiOperation,"Upload a new file",FileUpload,file-upload,file-upload/file-upload.controller.ts
+GET,/instagram/auth-url,ApiOperation,"",Instagram,lib,lib/social-providers/Instagram/instagram.controller.ts
+GET,/instagram/callback,ApiOperation,"Generate Instagram OAuth URL",Instagram,lib,lib/social-providers/Instagram/instagram.controller.ts
+GET,/interactions,findAll,"Create a new interaction",Interactions,interaction,interaction/interaction.controller.ts
+POST,/interactions,UseGuards,"Create a new interaction",Interactions,interaction,interaction/interaction.controller.ts
+DELETE,/interactions/:id,remove,"Create a new interaction",Interactions,interaction,interaction/interaction.controller.ts
+GET,/interactions/:id,findOne,"Create a new interaction",Interactions,interaction,interaction/interaction.controller.ts
+PATCH,/interactions/:id,update,"Create a new interaction",Interactions,interaction,interaction/interaction.controller.ts
+POST,/invitations,HttpCode,"",Invitations,invitation,invitation/invitation.controller.ts
+GET,/invitations/:token,ApiOperation,"Create new company invitation",Invitations,invitation,invitation/invitation.controller.ts
+POST,/invitations/:token/accept,HttpCode,"Create new company invitation",Invitations,invitation,invitation/invitation.controller.ts
+POST,/invitations/:token/cancel,HttpCode,"Create new company invitation",Invitations,invitation,invitation/invitation.controller.ts
+GET,/leads,ApiOperation,"إنشاء lead جديد",Leads,lead,lead/lead.controller.ts
+POST,/leads,ApiOperation,"",Leads,lead,lead/lead.controller.ts
+DELETE,/leads/:id,ApiOperation,"إنشاء lead جديد",Leads,lead,lead/lead.controller.ts
+GET,/leads/:id,ApiOperation,"إنشاء lead جديد",Leads,lead,lead/lead.controller.ts
+PATCH,/leads/:id,ApiOperation,"إنشاء lead جديد",Leads,lead,lead/lead.controller.ts
+GET,/linkedin/auth-url,UseGuards,"",LinkedIn,lib,lib/social-providers/linkedin/linkedin.controller.ts
+GET,/linkedin/callback,HttpCode,"Get LinkedIn auth URL",LinkedIn,lib,lib/social-providers/linkedin/linkedin.controller.ts
+GET,/linkedin/callback,HttpCode,"Get LinkedIn auth URL",LinkedIn,lib,lib/social-providers/linkedin/linkedin.controller.ts
+POST,/linkedin/publish,UseGuards,"Get LinkedIn auth URL",LinkedIn,lib,lib/social-providers/linkedin/linkedin.controller.ts
+GET,/marketing-campaigns,ApiOperation,"Create a new marketing campaign",Marketing Campaigns,marketing-campaign,marketing-campaign/marketing-campaign.controller.ts
+POST,/marketing-campaigns,ApiOperation,"",Marketing Campaigns,marketing-campaign,marketing-campaign/marketing-campaign.controller.ts
+DELETE,/marketing-campaigns/:id,ApiOperation,"Create a new marketing campaign",Marketing Campaigns,marketing-campaign,marketing-campaign/marketing-campaign.controller.ts
+GET,/marketing-campaigns/:id,ApiOperation,"Create a new marketing campaign",Marketing Campaigns,marketing-campaign,marketing-campaign/marketing-campaign.controller.ts
+PATCH,/marketing-campaigns/:id,ApiOperation,"Create a new marketing campaign",Marketing Campaigns,marketing-campaign,marketing-campaign/marketing-campaign.controller.ts
+GET,/me,ApiBearerAuth,"",me,me,me/me.controller.ts
+GET,/me/affiliates/referrals,ApiBearerAuth,"",me,me,me/me.controller.ts
+POST,/notifications,ApiOperation,"",Notifications,notification,notification/notification.controller.ts
+DELETE,/notifications/:id,ApiOperation,"Create a new notification",Notifications,notification,notification/notification.controller.ts
+PATCH,/notifications/:id/read,ApiOperation,"Create a new notification",Notifications,notification,notification/notification.controller.ts
+GET,/notifications/client/:clientId,ApiOperation,"Create a new notification",Notifications,notification,notification/notification.controller.ts
+GET,/notifications/user/:userId,ApiOperation,"Create a new notification",Notifications,notification,notification/notification.controller.ts
+GET,/notifications/user/:userId/unread,ApiOperation,"Create a new notification",Notifications,notification,notification/notification.controller.ts
+POST,/payments/paddle/create-checkout,createPaddleCheckout,"",payments,payments,payments/payments.controller.ts
+POST,/payments/webhooks/paddle,handlePaddleWebhook,"",payments,payments,payments/payments.controller.ts
+GET,/pipeline-stages,ApiOperation,"إنشاء مرحلة جديدة ضمن المسار",Pipeline Stages,pipeline-stage,pipeline-stage/pipeline-stage.controller.ts
+POST,/pipeline-stages,ApiOperation,"",Pipeline Stages,pipeline-stage,pipeline-stage/pipeline-stage.controller.ts
+DELETE,/pipeline-stages/:id,ApiOperation,"إنشاء مرحلة جديدة ضمن المسار",Pipeline Stages,pipeline-stage,pipeline-stage/pipeline-stage.controller.ts
+GET,/pipeline-stages/:id,ApiOperation,"إنشاء مرحلة جديدة ضمن المسار",Pipeline Stages,pipeline-stage,pipeline-stage/pipeline-stage.controller.ts
+PATCH,/pipeline-stages/:id,ApiOperation,"إنشاء مرحلة جديدة ضمن المسار",Pipeline Stages,pipeline-stage,pipeline-stage/pipeline-stage.controller.ts
+POST,/pipeline-stages/reorder,ApiOperation,"إنشاء مرحلة جديدة ضمن المسار",Pipeline Stages,pipeline-stage,pipeline-stage/pipeline-stage.controller.ts
+GET,/point-events,ApiOperation,"Create a new point event",Point Events,point-event,point-event/point-event.controller.ts
+POST,/point-events,ApiOperation,"",Point Events,point-event,point-event/point-event.controller.ts
+DELETE,/point-events/:id,ApiOperation,"Create a new point event",Point Events,point-event,point-event/point-event.controller.ts
+GET,/point-events/:id,ApiOperation,"Create a new point event",Point Events,point-event,point-event/point-event.controller.ts
+PATCH,/point-events/:id,ApiOperation,"Create a new point event",Point Events,point-event,point-event/point-event.controller.ts
+GET,/projects,ApiOperation,"Create a new project",projects,project,project/project.controller.ts
+POST,/projects,ApiOperation,"",projects,project,project/project.controller.ts
+DELETE,/projects/:id,ApiOperation,"Create a new project",projects,project,project/project.controller.ts
+GET,/projects/:id,ApiOperation,"Create a new project",projects,project,project/project.controller.ts
+PATCH,/projects/:id,ApiOperation,"Create a new project",projects,project,project/project.controller.ts
+GET,/projects/:id/stats,ApiOperation,"Create a new project",projects,project,project/project.controller.ts
+GET,/projects/my-projects,ApiOperation,"Create a new project",projects,project,project/project.controller.ts
+GET,/rewards,ApiOperation,"Redeem an award using points",Reward Redemptions,reward-redemption,reward-redemption/reward-redemption.controller.ts
+GET,/rewards/me,ApiOperation,"Redeem an award using points",Reward Redemptions,reward-redemption,reward-redemption/reward-redemption.controller.ts
+POST,/rewards/redeem/:awardId,ApiOperation,"",Reward Redemptions,reward-redemption,reward-redemption/reward-redemption.controller.ts
+GET,/roles,getRolesByCompany,"",role,role,role/role.controller.ts
+GET,/roles,findAll,"",role,role,role/role.controller.ts
+POST,/roles,create,"",role,role,role/role.controller.ts
+DELETE,/roles/:id,remove,"",role,role,role/role.controller.ts
+GET,/roles/:id,findOne,"",role,role,role/role.controller.ts
+PATCH,/roles/:id,update,"",role,role,role/role.controller.ts
+GET,/social-accounts,ApiOperation,"Link a new social account",Social Accounts,social-accounts,social-accounts/social-accounts.controller.ts
+POST,/social-accounts,ApiOperation,"",Social Accounts,social-accounts,social-accounts/social-accounts.controller.ts
+DELETE,/social-accounts/:id,ApiOperation,"Link a new social account",Social Accounts,social-accounts,social-accounts/social-accounts.controller.ts
+GET,/social-accounts/:id,ApiOperation,"Link a new social account",Social Accounts,social-accounts,social-accounts/social-accounts.controller.ts
+PATCH,/social-accounts/:id,ApiOperation,"Link a new social account",Social Accounts,social-accounts,social-accounts/social-accounts.controller.ts
+POST,/social-accounts/get-account-stats,ApiOperation,"Link a new social account",Social Accounts,social-accounts,social-accounts/social-accounts.controller.ts
+GET,/social-accounts/grouped,UseGuards,"",Social Accounts,social-accounts,social-accounts/social-accounts.controller.ts
+POST,/social-accounts/my-social-accounts,ApiOperation,"Link a new social account",Social Accounts,social-accounts,social-accounts/social-accounts.controller.ts
+GET,/social-accounts/oauth/:platform/authorize,getOAuthUrl,"Link a new social account",Social Accounts,social-accounts,social-accounts/social-accounts.controller.ts
+POST,/social-accounts/oauth/:platform/callback,handleOAuthCallback,"Link a new social account",Social Accounts,social-accounts,social-accounts/social-accounts.controller.ts
+GET,/social-posts,ApiOperation,"Create new post",Social Posts,social-post,social-post/social-post.controller.ts
+POST,/social-posts,ApiOperation,"",Social Posts,social-post,social-post/social-post.controller.ts
+DELETE,/social-posts/:id,ApiOperation,"Create new post",Social Posts,social-post,social-post/social-post.controller.ts
+GET,/social-posts/:id,ApiOperation,"Create new post",Social Posts,social-post,social-post/social-post.controller.ts
+PATCH,/social-posts/:id,ApiOperation,"Create new post",Social Posts,social-post,social-post/social-post.controller.ts
+POST,/social-posts/generate-only,UseGuards,"Create new post",Social Posts,social-post,social-post/social-post.controller.ts
+GET,/sprints,ApiOperation,"Create a new sprint",sprints,sprint,sprint/sprint.controller.ts
+POST,/sprints,ApiOperation,"",sprints,sprint,sprint/sprint.controller.ts
+DELETE,/sprints/:id,ApiOperation,"Create a new sprint",sprints,sprint,sprint/sprint.controller.ts
+GET,/sprints/:id,ApiOperation,"Create a new sprint",sprints,sprint,sprint/sprint.controller.ts
+PATCH,/sprints/:id,ApiOperation,"Create a new sprint",sprints,sprint,sprint/sprint.controller.ts
+GET,/sprints/:id/stats,ApiOperation,"Create a new sprint",sprints,sprint,sprint/sprint.controller.ts
+GET,/subscription-plans,ApiOperation,"Create a new subscription plan",Subscription Plans,subscription-plan,subscription-plan/subscription-plan.controller.ts
+POST,/subscription-plans,ApiOperation,"",Subscription Plans,subscription-plan,subscription-plan/subscription-plan.controller.ts
+DELETE,/subscription-plans/:id,ApiOperation,"Create a new subscription plan",Subscription Plans,subscription-plan,subscription-plan/subscription-plan.controller.ts
+GET,/subscription-plans/:id,ApiOperation,"Create a new subscription plan",Subscription Plans,subscription-plan,subscription-plan/subscription-plan.controller.ts
+PATCH,/subscription-plans/:id,ApiOperation,"Create a new subscription plan",Subscription Plans,subscription-plan,subscription-plan/subscription-plan.controller.ts
+POST,/subscriptions,ApiOperation,"",Subscriptions,subscription,subscription/subscription.controller.ts
+DELETE,/subscriptions/:id,UseGuards,"Create a new subscription",Subscriptions,subscription,subscription/subscription.controller.ts
+GET,/subscriptions/:id,ApiOperation,"Create a new subscription",Subscriptions,subscription,subscription/subscription.controller.ts
+PATCH,/subscriptions/:id,UseGuards,"Create a new subscription",Subscriptions,subscription,subscription/subscription.controller.ts
+POST,/subscriptions/activate,UseGuards,"Create a new subscription",Subscriptions,subscription,subscription/subscription.controller.ts
+GET,/subscriptions/me,getMySubscription,"",Subscriptions,subscription,subscription/subscription.controller.ts
+GET,/tags,ApiOperation,"Create new tag",Tags,tags,tags/tags.controller.ts
+POST,/tags,ApiOperation,"",Tags,tags,tags/tags.controller.ts
+DELETE,/tags/:id,ApiOperation,"Create new tag",Tags,tags,tags/tags.controller.ts
+GET,/tags/:id,ApiOperation,"Create new tag",Tags,tags,tags/tags.controller.ts
+PATCH,/tags/:id,ApiOperation,"Create new tag",Tags,tags,tags/tags.controller.ts
+GET,/tasks,ApiOperation,"إنشاء مهمة جديدة",المهام,task,task/task.controller.ts
+POST,/tasks,ApiOperation,"",المهام,task,task/task.controller.ts
+DELETE,/tasks/:id,ApiOperation,"إنشاء مهمة جديدة",المهام,task,task/task.controller.ts
+GET,/tasks/:id,ApiOperation,"إنشاء مهمة جديدة",المهام,task,task/task.controller.ts
+PATCH,/tasks/:id,ApiOperation,"إنشاء مهمة جديدة",المهام,task,task/task.controller.ts
+PATCH,/tasks/:id/assign/:assigneeId,ApiOperation,"إنشاء مهمة جديدة",المهام,task,task/task.controller.ts
+PATCH,/tasks/:id/status/:status,ApiOperation,"إنشاء مهمة جديدة",المهام,task,task/task.controller.ts
+GET,/tasks/project/:projectId,ApiOperation,"إنشاء مهمة جديدة",المهام,task,task/task.controller.ts
+GET,/tasks/status/:status,ApiOperation,"إنشاء مهمة جديدة",المهام,task,task/task.controller.ts
+GET,/twitter/auth-url,ApiOperation,"",Social Providers – Twitter,lib,lib/social-providers/twitter/twitter.controller.ts
+GET,/twitter/callback,ApiOperation,"Get Twitter OAuth URL",Social Providers – Twitter,lib,lib/social-providers/twitter/twitter.controller.ts
+POST,/twitter/publish,ApiOperation,"Get Twitter OAuth URL",Social Providers – Twitter,lib,lib/social-providers/twitter/twitter.controller.ts
+GET,/usage-limit,getLimits,"",usage-limit,usage-limit,usage-limit/usage-limit.controller.ts
+POST,/usage-limit/increment,incrementUsage,"",usage-limit,usage-limit,usage-limit/usage-limit.controller.ts
+GET,/user-points,ApiOperation,"",User Points,user-point,user-point/user-point.controller.ts
+POST,/user-points,ApiOperation,"Get all user points",User Points,user-point,user-point/user-point.controller.ts
+GET,/user-points/:userId,ApiOperation,"Get all user points",User Points,user-point,user-point/user-point.controller.ts
+PATCH,/user-points/:userId,ApiOperation,"Get all user points",User Points,user-point,user-point/user-point.controller.ts
+PATCH,/user-points/:userId/add,ApiOperation,"Get all user points",User Points,user-point,user-point/user-point.controller.ts
+PATCH,/user-points/:userId/deduct,ApiOperation,"Get all user points",User Points,user-point,user-point/user-point.controller.ts
+GET,/web-content,ApiOperation,"إنشاء محتوى ويب جديد",Web Content,web-content,web-content/web-content.controller.ts
+POST,/web-content,ApiOperation,"",Web Content,web-content,web-content/web-content.controller.ts
+DELETE,/web-content/:id,ApiOperation,"إنشاء محتوى ويب جديد",Web Content,web-content,web-content/web-content.controller.ts
+GET,/web-content/:id,ApiOperation,"إنشاء محتوى ويب جديد",Web Content,web-content,web-content/web-content.controller.ts
+PATCH,/web-content/:id,ApiOperation,"إنشاء محتوى ويب جديد",Web Content,web-content,web-content/web-content.controller.ts

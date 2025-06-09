@@ -1,0 +1,1381 @@
+# cURL Commands for Infinity AI System API
+
+# Set your base URL and token
+BASE_URL="http://localhost:3000"
+TOKEN="your_jwt_token_here"
+
+# getHello
+curl -X GET \
+  "$BASE_URL/" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X GET \
+  "$BASE_URL/affiliate/commissions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get user commissions
+curl -X POST \
+  "$BASE_URL/affiliate/commissions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# ApiOkResponse
+curl -X GET \
+  "$BASE_URL/affiliate/me" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOkResponse
+curl -X GET \
+  "$BASE_URL/affiliate/referrals" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# getEarningsSummary
+curl -X GET \
+  "$BASE_URL/affiliate/referrals/earnings" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get current user affiliate info
+curl -X POST \
+  "$BASE_URL/affiliate/request" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# UseGuards
+curl -X POST \
+  "$BASE_URL/ai-generator/generate" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# findAll
+curl -X GET \
+  "$BASE_URL/ai-provider-config" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# create
+curl -X POST \
+  "$BASE_URL/ai-provider-config" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# remove
+curl -X DELETE \
+  "$BASE_URL/ai-provider-config/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# findOne
+curl -X GET \
+  "$BASE_URL/ai-provider-config/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# update
+curl -X PATCH \
+  "$BASE_URL/ai-provider-config/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# getActiveProvider
+curl -X GET \
+  "$BASE_URL/ai-provider-config/active" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X GET \
+  "$BASE_URL/analytics/dashboard/:companyId" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get company dashboard analytics
+curl -X GET \
+  "$BASE_URL/analytics/marketing/:companyId" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get company dashboard analytics
+curl -X GET \
+  "$BASE_URL/analytics/project/:projectId" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get company dashboard analytics
+curl -X GET \
+  "$BASE_URL/analytics/user" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Register a new company with owner
+curl -X GET \
+  "$BASE_URL/auth/csrf-token" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Register a new company with owner
+curl -X POST \
+  "$BASE_URL/auth/login" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Register a new company with owner
+curl -X POST \
+  "$BASE_URL/auth/logout" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Register a new company with owner
+curl -X GET \
+  "$BASE_URL/auth/me" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# register
+curl -X POST \
+  "$BASE_URL/auth/register" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# HttpCode
+curl -X POST \
+  "$BASE_URL/auth/register-company" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Register a new company with owner
+curl -X POST \
+  "$BASE_URL/auth/register-from-invitation" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new award
+curl -X GET \
+  "$BASE_URL/awards" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/awards" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new award
+curl -X DELETE \
+  "$BASE_URL/awards/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new award
+curl -X GET \
+  "$BASE_URL/awards/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new award
+curl -X PATCH \
+  "$BASE_URL/awards/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new award
+curl -X GET \
+  "$BASE_URL/awards/points" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new award
+curl -X GET \
+  "$BASE_URL/awards/points/history" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new award
+curl -X POST \
+  "$BASE_URL/awards/rewards/redeem" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new award
+curl -X GET \
+  "$BASE_URL/awards/rewards/redemptions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create performance metric
+curl -X GET \
+  "$BASE_URL/campaign-performance" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/campaign-performance" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create performance metric
+curl -X DELETE \
+  "$BASE_URL/campaign-performance/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create performance metric
+curl -X GET \
+  "$BASE_URL/campaign-performance/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create performance metric
+curl -X PATCH \
+  "$BASE_URL/campaign-performance/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a campaign post
+curl -X GET \
+  "$BASE_URL/campaign-posts" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/campaign-posts" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a campaign post
+curl -X DELETE \
+  "$BASE_URL/campaign-posts/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a campaign post
+curl -X GET \
+  "$BASE_URL/campaign-posts/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a campaign post
+curl -X PATCH \
+  "$BASE_URL/campaign-posts/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create new category
+curl -X GET \
+  "$BASE_URL/categories" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/categories" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create new category
+curl -X DELETE \
+  "$BASE_URL/categories/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create new category
+curl -X GET \
+  "$BASE_URL/categories/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create new category
+curl -X PATCH \
+  "$BASE_URL/categories/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/client-notes" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إضافة ملاحظة جديدة لعميل
+curl -X DELETE \
+  "$BASE_URL/client-notes/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# إضافة ملاحظة جديدة لعميل
+curl -X GET \
+  "$BASE_URL/client-notes/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# إضافة ملاحظة جديدة لعميل
+curl -X PATCH \
+  "$BASE_URL/client-notes/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إضافة ملاحظة جديدة لعميل
+curl -X GET \
+  "$BASE_URL/client-notes/client/:clientId" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# إنشاء عميل جديد
+curl -X GET \
+  "$BASE_URL/clients" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/clients" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إنشاء عميل جديد
+curl -X DELETE \
+  "$BASE_URL/clients/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# إنشاء عميل جديد
+curl -X GET \
+  "$BASE_URL/clients/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# إنشاء عميل جديد
+curl -X PATCH \
+  "$BASE_URL/clients/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إنشاء عميل جديد
+curl -X PATCH \
+  "$BASE_URL/clients/:id/assign-subscription" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# ApiOperation
+curl -X GET \
+  "$BASE_URL/companies/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get company by ID including settings
+curl -X PUT \
+  "$BASE_URL/companies/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# HttpCode
+curl -X GET \
+  "$BASE_URL/companies/:id/setting" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get company settings by company ID
+curl -X PUT \
+  "$BASE_URL/companies/:id/setting" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# create
+curl -X POST \
+  "$BASE_URL/company-members" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# findAll
+curl -X GET \
+  "$BASE_URL/company-members/:companyId" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# findOne
+curl -X GET \
+  "$BASE_URL/company-members/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# update
+curl -X PATCH \
+  "$BASE_URL/company-members/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# remove
+curl -X DELETE \
+  "$BASE_URL/company-members/:memberId" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# updateRole
+curl -X PATCH \
+  "$BASE_URL/company-members/:memberId/role" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# toggleStatus
+curl -X PATCH \
+  "$BASE_URL/company-members/:memberId/toggle-status" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# addMember
+curl -X POST \
+  "$BASE_URL/company-members/add-member" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create content schedule
+curl -X GET \
+  "$BASE_URL/content-schedule" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/content-schedule" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create content schedule
+curl -X DELETE \
+  "$BASE_URL/content-schedule/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create content schedule
+curl -X GET \
+  "$BASE_URL/content-schedule/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create content schedule
+curl -X PATCH \
+  "$BASE_URL/content-schedule/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# تشغيل الجدولة يدويًا (نشر المحتوى المجدول)
+curl -X GET \
+  "$BASE_URL/content-scheduler" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# تشغيل الجدولة يدويًا (نشر المحتوى المجدول)
+curl -X POST \
+  "$BASE_URL/content-scheduler/check" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# تشغيل الجدولة يدويًا (نشر المحتوى المجدول)
+curl -X POST \
+  "$BASE_URL/content-scheduler/manual-publish" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/content-scheduler/run-now" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# findAll
+curl -X GET \
+  "$BASE_URL/countries" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X GET \
+  "$BASE_URL/facebook/auth-url" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get Facebook OAuth URL
+curl -X GET \
+  "$BASE_URL/facebook/callback" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Upload a new file
+curl -X GET \
+  "$BASE_URL/file-upload" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/file-upload" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Upload a new file
+curl -X DELETE \
+  "$BASE_URL/file-upload/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Upload a new file
+curl -X GET \
+  "$BASE_URL/file-upload/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Upload a new file
+curl -X PATCH \
+  "$BASE_URL/file-upload/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# ApiOperation
+curl -X GET \
+  "$BASE_URL/instagram/auth-url" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Generate Instagram OAuth URL
+curl -X GET \
+  "$BASE_URL/instagram/callback" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new interaction
+curl -X GET \
+  "$BASE_URL/interactions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new interaction
+curl -X POST \
+  "$BASE_URL/interactions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new interaction
+curl -X DELETE \
+  "$BASE_URL/interactions/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new interaction
+curl -X GET \
+  "$BASE_URL/interactions/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new interaction
+curl -X PATCH \
+  "$BASE_URL/interactions/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# HttpCode
+curl -X POST \
+  "$BASE_URL/invitations" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create new company invitation
+curl -X GET \
+  "$BASE_URL/invitations/:token" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create new company invitation
+curl -X POST \
+  "$BASE_URL/invitations/:token/accept" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create new company invitation
+curl -X POST \
+  "$BASE_URL/invitations/:token/cancel" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إنشاء lead جديد
+curl -X GET \
+  "$BASE_URL/leads" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/leads" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إنشاء lead جديد
+curl -X DELETE \
+  "$BASE_URL/leads/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# إنشاء lead جديد
+curl -X GET \
+  "$BASE_URL/leads/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# إنشاء lead جديد
+curl -X PATCH \
+  "$BASE_URL/leads/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# UseGuards
+curl -X GET \
+  "$BASE_URL/linkedin/auth-url" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get LinkedIn auth URL
+curl -X GET \
+  "$BASE_URL/linkedin/callback" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get LinkedIn auth URL
+curl -X GET \
+  "$BASE_URL/linkedin/callback" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get LinkedIn auth URL
+curl -X POST \
+  "$BASE_URL/linkedin/publish" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new marketing campaign
+curl -X GET \
+  "$BASE_URL/marketing-campaigns" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/marketing-campaigns" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new marketing campaign
+curl -X DELETE \
+  "$BASE_URL/marketing-campaigns/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new marketing campaign
+curl -X GET \
+  "$BASE_URL/marketing-campaigns/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new marketing campaign
+curl -X PATCH \
+  "$BASE_URL/marketing-campaigns/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# ApiBearerAuth
+curl -X GET \
+  "$BASE_URL/me" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiBearerAuth
+curl -X GET \
+  "$BASE_URL/me/affiliates/referrals" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/notifications" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new notification
+curl -X DELETE \
+  "$BASE_URL/notifications/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new notification
+curl -X PATCH \
+  "$BASE_URL/notifications/:id/read" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new notification
+curl -X GET \
+  "$BASE_URL/notifications/client/:clientId" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new notification
+curl -X GET \
+  "$BASE_URL/notifications/user/:userId" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new notification
+curl -X GET \
+  "$BASE_URL/notifications/user/:userId/unread" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# createPaddleCheckout
+curl -X POST \
+  "$BASE_URL/payments/paddle/create-checkout" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# handlePaddleWebhook
+curl -X POST \
+  "$BASE_URL/payments/webhooks/paddle" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إنشاء مرحلة جديدة ضمن المسار
+curl -X GET \
+  "$BASE_URL/pipeline-stages" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/pipeline-stages" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إنشاء مرحلة جديدة ضمن المسار
+curl -X DELETE \
+  "$BASE_URL/pipeline-stages/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# إنشاء مرحلة جديدة ضمن المسار
+curl -X GET \
+  "$BASE_URL/pipeline-stages/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# إنشاء مرحلة جديدة ضمن المسار
+curl -X PATCH \
+  "$BASE_URL/pipeline-stages/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إنشاء مرحلة جديدة ضمن المسار
+curl -X POST \
+  "$BASE_URL/pipeline-stages/reorder" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new point event
+curl -X GET \
+  "$BASE_URL/point-events" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/point-events" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new point event
+curl -X DELETE \
+  "$BASE_URL/point-events/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new point event
+curl -X GET \
+  "$BASE_URL/point-events/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new point event
+curl -X PATCH \
+  "$BASE_URL/point-events/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new project
+curl -X GET \
+  "$BASE_URL/projects" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/projects" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new project
+curl -X DELETE \
+  "$BASE_URL/projects/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new project
+curl -X GET \
+  "$BASE_URL/projects/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new project
+curl -X PATCH \
+  "$BASE_URL/projects/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new project
+curl -X GET \
+  "$BASE_URL/projects/:id/stats" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new project
+curl -X GET \
+  "$BASE_URL/projects/my-projects" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Redeem an award using points
+curl -X GET \
+  "$BASE_URL/rewards" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Redeem an award using points
+curl -X GET \
+  "$BASE_URL/rewards/me" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/rewards/redeem/:awardId" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# getRolesByCompany
+curl -X GET \
+  "$BASE_URL/roles" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# findAll
+curl -X GET \
+  "$BASE_URL/roles" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# create
+curl -X POST \
+  "$BASE_URL/roles" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# remove
+curl -X DELETE \
+  "$BASE_URL/roles/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# findOne
+curl -X GET \
+  "$BASE_URL/roles/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# update
+curl -X PATCH \
+  "$BASE_URL/roles/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Link a new social account
+curl -X GET \
+  "$BASE_URL/social-accounts" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/social-accounts" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Link a new social account
+curl -X DELETE \
+  "$BASE_URL/social-accounts/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Link a new social account
+curl -X GET \
+  "$BASE_URL/social-accounts/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Link a new social account
+curl -X PATCH \
+  "$BASE_URL/social-accounts/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Link a new social account
+curl -X POST \
+  "$BASE_URL/social-accounts/get-account-stats" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# UseGuards
+curl -X GET \
+  "$BASE_URL/social-accounts/grouped" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Link a new social account
+curl -X POST \
+  "$BASE_URL/social-accounts/my-social-accounts" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Link a new social account
+curl -X GET \
+  "$BASE_URL/social-accounts/oauth/:platform/authorize" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Link a new social account
+curl -X POST \
+  "$BASE_URL/social-accounts/oauth/:platform/callback" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create new post
+curl -X GET \
+  "$BASE_URL/social-posts" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/social-posts" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create new post
+curl -X DELETE \
+  "$BASE_URL/social-posts/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create new post
+curl -X GET \
+  "$BASE_URL/social-posts/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create new post
+curl -X PATCH \
+  "$BASE_URL/social-posts/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create new post
+curl -X POST \
+  "$BASE_URL/social-posts/generate-only" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new sprint
+curl -X GET \
+  "$BASE_URL/sprints" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/sprints" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new sprint
+curl -X DELETE \
+  "$BASE_URL/sprints/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new sprint
+curl -X GET \
+  "$BASE_URL/sprints/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new sprint
+curl -X PATCH \
+  "$BASE_URL/sprints/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new sprint
+curl -X GET \
+  "$BASE_URL/sprints/:id/stats" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new subscription plan
+curl -X GET \
+  "$BASE_URL/subscription-plans" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/subscription-plans" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new subscription plan
+curl -X DELETE \
+  "$BASE_URL/subscription-plans/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new subscription plan
+curl -X GET \
+  "$BASE_URL/subscription-plans/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new subscription plan
+curl -X PATCH \
+  "$BASE_URL/subscription-plans/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/subscriptions" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new subscription
+curl -X DELETE \
+  "$BASE_URL/subscriptions/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new subscription
+curl -X GET \
+  "$BASE_URL/subscriptions/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create a new subscription
+curl -X PATCH \
+  "$BASE_URL/subscriptions/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create a new subscription
+curl -X POST \
+  "$BASE_URL/subscriptions/activate" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# getMySubscription
+curl -X GET \
+  "$BASE_URL/subscriptions/me" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create new tag
+curl -X GET \
+  "$BASE_URL/tags" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/tags" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Create new tag
+curl -X DELETE \
+  "$BASE_URL/tags/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create new tag
+curl -X GET \
+  "$BASE_URL/tags/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Create new tag
+curl -X PATCH \
+  "$BASE_URL/tags/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إنشاء مهمة جديدة
+curl -X GET \
+  "$BASE_URL/tasks" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/tasks" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إنشاء مهمة جديدة
+curl -X DELETE \
+  "$BASE_URL/tasks/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# إنشاء مهمة جديدة
+curl -X GET \
+  "$BASE_URL/tasks/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# إنشاء مهمة جديدة
+curl -X PATCH \
+  "$BASE_URL/tasks/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إنشاء مهمة جديدة
+curl -X PATCH \
+  "$BASE_URL/tasks/:id/assign/:assigneeId" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إنشاء مهمة جديدة
+curl -X PATCH \
+  "$BASE_URL/tasks/:id/status/:status" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إنشاء مهمة جديدة
+curl -X GET \
+  "$BASE_URL/tasks/project/:projectId" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# إنشاء مهمة جديدة
+curl -X GET \
+  "$BASE_URL/tasks/status/:status" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X GET \
+  "$BASE_URL/twitter/auth-url" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get Twitter OAuth URL
+curl -X GET \
+  "$BASE_URL/twitter/callback" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get Twitter OAuth URL
+curl -X POST \
+  "$BASE_URL/twitter/publish" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# getLimits
+curl -X GET \
+  "$BASE_URL/usage-limit" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# incrementUsage
+curl -X POST \
+  "$BASE_URL/usage-limit/increment" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# ApiOperation
+curl -X GET \
+  "$BASE_URL/user-points" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get all user points
+curl -X POST \
+  "$BASE_URL/user-points" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Get all user points
+curl -X GET \
+  "$BASE_URL/user-points/:userId" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# Get all user points
+curl -X PATCH \
+  "$BASE_URL/user-points/:userId" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Get all user points
+curl -X PATCH \
+  "$BASE_URL/user-points/:userId/add" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# Get all user points
+curl -X PATCH \
+  "$BASE_URL/user-points/:userId/deduct" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إنشاء محتوى ويب جديد
+curl -X GET \
+  "$BASE_URL/web-content" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# ApiOperation
+curl -X POST \
+  "$BASE_URL/web-content" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+
+# إنشاء محتوى ويب جديد
+curl -X DELETE \
+  "$BASE_URL/web-content/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# إنشاء محتوى ويب جديد
+curl -X GET \
+  "$BASE_URL/web-content/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN"
+
+# إنشاء محتوى ويب جديد
+curl -X PATCH \
+  "$BASE_URL/web-content/:id" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{}'
+

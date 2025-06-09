@@ -1,0 +1,5992 @@
+{
+  "info": {
+    "name": "Infinity AI System API",
+    "description": "API Collection for Infinity AI System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "App.controller.ts",
+      "item": [
+        {
+          "name": "GET /",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": []
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Commission",
+      "item": [
+        {
+          "name": "GET /affiliate/commissions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/affiliate/commissions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "affiliate",
+                "commissions"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /affiliate/commissions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/affiliate/commissions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "affiliate",
+                "commissions"
+              ]
+            },
+            "description": "Get user commissions"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Affiliate",
+      "item": [
+        {
+          "name": "GET /affiliate/me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/affiliate/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "affiliate",
+                "me"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /affiliate/request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/affiliate/request",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "affiliate",
+                "request"
+              ]
+            },
+            "description": "Get current user affiliate info"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Referral",
+      "item": [
+        {
+          "name": "GET /affiliate/referrals",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/affiliate/referrals",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "affiliate",
+                "referrals"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /affiliate/referrals/earnings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/affiliate/referrals/earnings",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "affiliate",
+                "referrals",
+                "earnings"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Ai-generator",
+      "item": [
+        {
+          "name": "POST /ai-generator/generate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ai-generator/generate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ai-generator",
+                "generate"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Aiprovider-config",
+      "item": [
+        {
+          "name": "GET /ai-provider-config",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ai-provider-config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ai-provider-config"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /ai-provider-config",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ai-provider-config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ai-provider-config"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /ai-provider-config/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ai-provider-config/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ai-provider-config",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /ai-provider-config/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ai-provider-config/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ai-provider-config",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PATCH /ai-provider-config/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ai-provider-config/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ai-provider-config",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /ai-provider-config/active",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ai-provider-config/active",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ai-provider-config",
+                "active"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "GET /analytics/dashboard/:companyId",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/dashboard/:companyId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analytics",
+                "dashboard",
+                ":companyId"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /analytics/marketing/:companyId",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/marketing/:companyId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analytics",
+                "marketing",
+                ":companyId"
+              ]
+            },
+            "description": "Get company dashboard analytics"
+          }
+        },
+        {
+          "name": "GET /analytics/project/:projectId",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/project/:projectId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analytics",
+                "project",
+                ":projectId"
+              ]
+            },
+            "description": "Get company dashboard analytics"
+          }
+        },
+        {
+          "name": "GET /analytics/user",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/analytics/user",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "analytics",
+                "user"
+              ]
+            },
+            "description": "Get company dashboard analytics"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "GET /auth/csrf-token",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/csrf-token",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "csrf-token"
+              ]
+            },
+            "description": "Register a new company with owner"
+          }
+        },
+        {
+          "name": "POST /auth/login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Register a new company with owner"
+          }
+        },
+        {
+          "name": "POST /auth/logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            },
+            "description": "Register a new company with owner"
+          }
+        },
+        {
+          "name": "GET /auth/me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            },
+            "description": "Register a new company with owner"
+          }
+        },
+        {
+          "name": "POST /auth/register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /auth/register-company",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register-company",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register-company"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /auth/register-from-invitation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register-from-invitation",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register-from-invitation"
+              ]
+            },
+            "description": "Register a new company with owner"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Award",
+      "item": [
+        {
+          "name": "GET /awards",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/awards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "awards"
+              ]
+            },
+            "description": "Create a new award"
+          }
+        },
+        {
+          "name": "POST /awards",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/awards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "awards"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /awards/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/awards/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "awards",
+                ":id"
+              ]
+            },
+            "description": "Create a new award"
+          }
+        },
+        {
+          "name": "GET /awards/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/awards/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "awards",
+                ":id"
+              ]
+            },
+            "description": "Create a new award"
+          }
+        },
+        {
+          "name": "PATCH /awards/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/awards/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "awards",
+                ":id"
+              ]
+            },
+            "description": "Create a new award"
+          }
+        },
+        {
+          "name": "GET /awards/points",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/awards/points",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "awards",
+                "points"
+              ]
+            },
+            "description": "Create a new award"
+          }
+        },
+        {
+          "name": "GET /awards/points/history",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/awards/points/history",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "awards",
+                "points",
+                "history"
+              ]
+            },
+            "description": "Create a new award"
+          }
+        },
+        {
+          "name": "POST /awards/rewards/redeem",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/awards/rewards/redeem",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "awards",
+                "rewards",
+                "redeem"
+              ]
+            },
+            "description": "Create a new award"
+          }
+        },
+        {
+          "name": "GET /awards/rewards/redemptions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/awards/rewards/redemptions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "awards",
+                "rewards",
+                "redemptions"
+              ]
+            },
+            "description": "Create a new award"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Campaign-performance",
+      "item": [
+        {
+          "name": "GET /campaign-performance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/campaign-performance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "campaign-performance"
+              ]
+            },
+            "description": "Create performance metric"
+          }
+        },
+        {
+          "name": "POST /campaign-performance",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/campaign-performance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "campaign-performance"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /campaign-performance/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/campaign-performance/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "campaign-performance",
+                ":id"
+              ]
+            },
+            "description": "Create performance metric"
+          }
+        },
+        {
+          "name": "GET /campaign-performance/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/campaign-performance/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "campaign-performance",
+                ":id"
+              ]
+            },
+            "description": "Create performance metric"
+          }
+        },
+        {
+          "name": "PATCH /campaign-performance/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/campaign-performance/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "campaign-performance",
+                ":id"
+              ]
+            },
+            "description": "Create performance metric"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Campaign-post",
+      "item": [
+        {
+          "name": "GET /campaign-posts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/campaign-posts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "campaign-posts"
+              ]
+            },
+            "description": "Create a campaign post"
+          }
+        },
+        {
+          "name": "POST /campaign-posts",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/campaign-posts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "campaign-posts"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /campaign-posts/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/campaign-posts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "campaign-posts",
+                ":id"
+              ]
+            },
+            "description": "Create a campaign post"
+          }
+        },
+        {
+          "name": "GET /campaign-posts/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/campaign-posts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "campaign-posts",
+                ":id"
+              ]
+            },
+            "description": "Create a campaign post"
+          }
+        },
+        {
+          "name": "PATCH /campaign-posts/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/campaign-posts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "campaign-posts",
+                ":id"
+              ]
+            },
+            "description": "Create a campaign post"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "GET /categories",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            },
+            "description": "Create new category"
+          }
+        },
+        {
+          "name": "POST /categories",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /categories/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                ":id"
+              ]
+            },
+            "description": "Create new category"
+          }
+        },
+        {
+          "name": "GET /categories/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                ":id"
+              ]
+            },
+            "description": "Create new category"
+          }
+        },
+        {
+          "name": "PATCH /categories/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/categories/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "categories",
+                ":id"
+              ]
+            },
+            "description": "Create new category"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Client-note",
+      "item": [
+        {
+          "name": "POST /client-notes",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/client-notes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "client-notes"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /client-notes/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/client-notes/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "client-notes",
+                ":id"
+              ]
+            },
+            "description": "إضافة ملاحظة جديدة لعميل"
+          }
+        },
+        {
+          "name": "GET /client-notes/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/client-notes/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "client-notes",
+                ":id"
+              ]
+            },
+            "description": "إضافة ملاحظة جديدة لعميل"
+          }
+        },
+        {
+          "name": "PATCH /client-notes/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/client-notes/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "client-notes",
+                ":id"
+              ]
+            },
+            "description": "إضافة ملاحظة جديدة لعميل"
+          }
+        },
+        {
+          "name": "GET /client-notes/client/:clientId",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/client-notes/client/:clientId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "client-notes",
+                "client",
+                ":clientId"
+              ]
+            },
+            "description": "إضافة ملاحظة جديدة لعميل"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Clients",
+      "item": [
+        {
+          "name": "GET /clients",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/clients",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clients"
+              ]
+            },
+            "description": "إنشاء عميل جديد"
+          }
+        },
+        {
+          "name": "POST /clients",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/clients",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clients"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /clients/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/clients/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clients",
+                ":id"
+              ]
+            },
+            "description": "إنشاء عميل جديد"
+          }
+        },
+        {
+          "name": "GET /clients/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/clients/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clients",
+                ":id"
+              ]
+            },
+            "description": "إنشاء عميل جديد"
+          }
+        },
+        {
+          "name": "PATCH /clients/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/clients/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clients",
+                ":id"
+              ]
+            },
+            "description": "إنشاء عميل جديد"
+          }
+        },
+        {
+          "name": "PATCH /clients/:id/assign-subscription",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/clients/:id/assign-subscription",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clients",
+                ":id",
+                "assign-subscription"
+              ]
+            },
+            "description": "إنشاء عميل جديد"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Company",
+      "item": [
+        {
+          "name": "GET /companies/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/companies/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /companies/:id",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/companies/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies",
+                ":id"
+              ]
+            },
+            "description": "Get company by ID including settings"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Company-setting",
+      "item": [
+        {
+          "name": "GET /companies/:id/setting",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/companies/:id/setting",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies",
+                ":id",
+                "setting"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PUT /companies/:id/setting",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/companies/:id/setting",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies",
+                ":id",
+                "setting"
+              ]
+            },
+            "description": "Get company settings by company ID"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Company-member",
+      "item": [
+        {
+          "name": "POST /company-members",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/company-members",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "company-members"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /company-members/:companyId",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/company-members/:companyId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "company-members",
+                ":companyId"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /company-members/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/company-members/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "company-members",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PATCH /company-members/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/company-members/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "company-members",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /company-members/:memberId",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/company-members/:memberId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "company-members",
+                ":memberId"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PATCH /company-members/:memberId/role",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/company-members/:memberId/role",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "company-members",
+                ":memberId",
+                "role"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PATCH /company-members/:memberId/toggle-status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/company-members/:memberId/toggle-status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "company-members",
+                ":memberId",
+                "toggle-status"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /company-members/add-member",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/company-members/add-member",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "company-members",
+                "add-member"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Content-schedule",
+      "item": [
+        {
+          "name": "GET /content-schedule",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/content-schedule",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "content-schedule"
+              ]
+            },
+            "description": "Create content schedule"
+          }
+        },
+        {
+          "name": "POST /content-schedule",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/content-schedule",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "content-schedule"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /content-schedule/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/content-schedule/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "content-schedule",
+                ":id"
+              ]
+            },
+            "description": "Create content schedule"
+          }
+        },
+        {
+          "name": "GET /content-schedule/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/content-schedule/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "content-schedule",
+                ":id"
+              ]
+            },
+            "description": "Create content schedule"
+          }
+        },
+        {
+          "name": "PATCH /content-schedule/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/content-schedule/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "content-schedule",
+                ":id"
+              ]
+            },
+            "description": "Create content schedule"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Content-scheduler",
+      "item": [
+        {
+          "name": "GET /content-scheduler",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/content-scheduler",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "content-scheduler"
+              ]
+            },
+            "description": "تشغيل الجدولة يدويًا (نشر المحتوى المجدول)"
+          }
+        },
+        {
+          "name": "POST /content-scheduler/check",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/content-scheduler/check",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "content-scheduler",
+                "check"
+              ]
+            },
+            "description": "تشغيل الجدولة يدويًا (نشر المحتوى المجدول)"
+          }
+        },
+        {
+          "name": "POST /content-scheduler/manual-publish",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/content-scheduler/manual-publish",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "content-scheduler",
+                "manual-publish"
+              ]
+            },
+            "description": "تشغيل الجدولة يدويًا (نشر المحتوى المجدول)"
+          }
+        },
+        {
+          "name": "POST /content-scheduler/run-now",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/content-scheduler/run-now",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "content-scheduler",
+                "run-now"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Country",
+      "item": [
+        {
+          "name": "GET /countries",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/countries",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "countries"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lib",
+      "item": [
+        {
+          "name": "GET /facebook/auth-url",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/facebook/auth-url",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "facebook",
+                "auth-url"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /facebook/callback",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/facebook/callback",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "facebook",
+                "callback"
+              ]
+            },
+            "description": "Get Facebook OAuth URL"
+          }
+        },
+        {
+          "name": "GET /instagram/auth-url",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/instagram/auth-url",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "instagram",
+                "auth-url"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /instagram/callback",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/instagram/callback",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "instagram",
+                "callback"
+              ]
+            },
+            "description": "Generate Instagram OAuth URL"
+          }
+        },
+        {
+          "name": "GET /linkedin/auth-url",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/linkedin/auth-url",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "linkedin",
+                "auth-url"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /linkedin/callback",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/linkedin/callback",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "linkedin",
+                "callback"
+              ]
+            },
+            "description": "Get LinkedIn auth URL"
+          }
+        },
+        {
+          "name": "GET /linkedin/callback",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/linkedin/callback",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "linkedin",
+                "callback"
+              ]
+            },
+            "description": "Get LinkedIn auth URL"
+          }
+        },
+        {
+          "name": "POST /linkedin/publish",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/linkedin/publish",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "linkedin",
+                "publish"
+              ]
+            },
+            "description": "Get LinkedIn auth URL"
+          }
+        },
+        {
+          "name": "GET /twitter/auth-url",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/twitter/auth-url",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "twitter",
+                "auth-url"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /twitter/callback",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/twitter/callback",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "twitter",
+                "callback"
+              ]
+            },
+            "description": "Get Twitter OAuth URL"
+          }
+        },
+        {
+          "name": "POST /twitter/publish",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/twitter/publish",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "twitter",
+                "publish"
+              ]
+            },
+            "description": "Get Twitter OAuth URL"
+          }
+        }
+      ]
+    },
+    {
+      "name": "File-upload",
+      "item": [
+        {
+          "name": "GET /file-upload",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/file-upload",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "file-upload"
+              ]
+            },
+            "description": "Upload a new file"
+          }
+        },
+        {
+          "name": "POST /file-upload",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/file-upload",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "file-upload"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /file-upload/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/file-upload/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "file-upload",
+                ":id"
+              ]
+            },
+            "description": "Upload a new file"
+          }
+        },
+        {
+          "name": "GET /file-upload/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/file-upload/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "file-upload",
+                ":id"
+              ]
+            },
+            "description": "Upload a new file"
+          }
+        },
+        {
+          "name": "PATCH /file-upload/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/file-upload/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "file-upload",
+                ":id"
+              ]
+            },
+            "description": "Upload a new file"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Interaction",
+      "item": [
+        {
+          "name": "GET /interactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/interactions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interactions"
+              ]
+            },
+            "description": "Create a new interaction"
+          }
+        },
+        {
+          "name": "POST /interactions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/interactions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interactions"
+              ]
+            },
+            "description": "Create a new interaction"
+          }
+        },
+        {
+          "name": "DELETE /interactions/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/interactions/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interactions",
+                ":id"
+              ]
+            },
+            "description": "Create a new interaction"
+          }
+        },
+        {
+          "name": "GET /interactions/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/interactions/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interactions",
+                ":id"
+              ]
+            },
+            "description": "Create a new interaction"
+          }
+        },
+        {
+          "name": "PATCH /interactions/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/interactions/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "interactions",
+                ":id"
+              ]
+            },
+            "description": "Create a new interaction"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invitation",
+      "item": [
+        {
+          "name": "POST /invitations",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/invitations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "invitations"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /invitations/:token",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/invitations/:token",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "invitations",
+                ":token"
+              ]
+            },
+            "description": "Create new company invitation"
+          }
+        },
+        {
+          "name": "POST /invitations/:token/accept",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/invitations/:token/accept",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "invitations",
+                ":token",
+                "accept"
+              ]
+            },
+            "description": "Create new company invitation"
+          }
+        },
+        {
+          "name": "POST /invitations/:token/cancel",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/invitations/:token/cancel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "invitations",
+                ":token",
+                "cancel"
+              ]
+            },
+            "description": "Create new company invitation"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Lead",
+      "item": [
+        {
+          "name": "GET /leads",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/leads",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "leads"
+              ]
+            },
+            "description": "إنشاء lead جديد"
+          }
+        },
+        {
+          "name": "POST /leads",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/leads",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "leads"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /leads/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/leads/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "leads",
+                ":id"
+              ]
+            },
+            "description": "إنشاء lead جديد"
+          }
+        },
+        {
+          "name": "GET /leads/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/leads/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "leads",
+                ":id"
+              ]
+            },
+            "description": "إنشاء lead جديد"
+          }
+        },
+        {
+          "name": "PATCH /leads/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/leads/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "leads",
+                ":id"
+              ]
+            },
+            "description": "إنشاء lead جديد"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Marketing-campaign",
+      "item": [
+        {
+          "name": "GET /marketing-campaigns",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/marketing-campaigns",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "marketing-campaigns"
+              ]
+            },
+            "description": "Create a new marketing campaign"
+          }
+        },
+        {
+          "name": "POST /marketing-campaigns",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/marketing-campaigns",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "marketing-campaigns"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /marketing-campaigns/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/marketing-campaigns/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "marketing-campaigns",
+                ":id"
+              ]
+            },
+            "description": "Create a new marketing campaign"
+          }
+        },
+        {
+          "name": "GET /marketing-campaigns/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/marketing-campaigns/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "marketing-campaigns",
+                ":id"
+              ]
+            },
+            "description": "Create a new marketing campaign"
+          }
+        },
+        {
+          "name": "PATCH /marketing-campaigns/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/marketing-campaigns/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "marketing-campaigns",
+                ":id"
+              ]
+            },
+            "description": "Create a new marketing campaign"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Me",
+      "item": [
+        {
+          "name": "GET /me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /me/affiliates/referrals",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/me/affiliates/referrals",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me",
+                "affiliates",
+                "referrals"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notification",
+      "item": [
+        {
+          "name": "POST /notifications",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /notifications/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications",
+                ":id"
+              ]
+            },
+            "description": "Create a new notification"
+          }
+        },
+        {
+          "name": "PATCH /notifications/:id/read",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications/:id/read",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications",
+                ":id",
+                "read"
+              ]
+            },
+            "description": "Create a new notification"
+          }
+        },
+        {
+          "name": "GET /notifications/client/:clientId",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications/client/:clientId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications",
+                "client",
+                ":clientId"
+              ]
+            },
+            "description": "Create a new notification"
+          }
+        },
+        {
+          "name": "GET /notifications/user/:userId",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications/user/:userId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications",
+                "user",
+                ":userId"
+              ]
+            },
+            "description": "Create a new notification"
+          }
+        },
+        {
+          "name": "GET /notifications/user/:userId/unread",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/notifications/user/:userId/unread",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "notifications",
+                "user",
+                ":userId",
+                "unread"
+              ]
+            },
+            "description": "Create a new notification"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "POST /payments/paddle/create-checkout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/payments/paddle/create-checkout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payments",
+                "paddle",
+                "create-checkout"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /payments/webhooks/paddle",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/payments/webhooks/paddle",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payments",
+                "webhooks",
+                "paddle"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pipeline-stage",
+      "item": [
+        {
+          "name": "GET /pipeline-stages",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pipeline-stages",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pipeline-stages"
+              ]
+            },
+            "description": "إنشاء مرحلة جديدة ضمن المسار"
+          }
+        },
+        {
+          "name": "POST /pipeline-stages",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pipeline-stages",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pipeline-stages"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /pipeline-stages/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pipeline-stages/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pipeline-stages",
+                ":id"
+              ]
+            },
+            "description": "إنشاء مرحلة جديدة ضمن المسار"
+          }
+        },
+        {
+          "name": "GET /pipeline-stages/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pipeline-stages/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pipeline-stages",
+                ":id"
+              ]
+            },
+            "description": "إنشاء مرحلة جديدة ضمن المسار"
+          }
+        },
+        {
+          "name": "PATCH /pipeline-stages/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pipeline-stages/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pipeline-stages",
+                ":id"
+              ]
+            },
+            "description": "إنشاء مرحلة جديدة ضمن المسار"
+          }
+        },
+        {
+          "name": "POST /pipeline-stages/reorder",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pipeline-stages/reorder",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pipeline-stages",
+                "reorder"
+              ]
+            },
+            "description": "إنشاء مرحلة جديدة ضمن المسار"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Point-event",
+      "item": [
+        {
+          "name": "GET /point-events",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/point-events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "point-events"
+              ]
+            },
+            "description": "Create a new point event"
+          }
+        },
+        {
+          "name": "POST /point-events",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/point-events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "point-events"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /point-events/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/point-events/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "point-events",
+                ":id"
+              ]
+            },
+            "description": "Create a new point event"
+          }
+        },
+        {
+          "name": "GET /point-events/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/point-events/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "point-events",
+                ":id"
+              ]
+            },
+            "description": "Create a new point event"
+          }
+        },
+        {
+          "name": "PATCH /point-events/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/point-events/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "point-events",
+                ":id"
+              ]
+            },
+            "description": "Create a new point event"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Project",
+      "item": [
+        {
+          "name": "GET /projects",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects"
+              ]
+            },
+            "description": "Create a new project"
+          }
+        },
+        {
+          "name": "POST /projects",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /projects/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":id"
+              ]
+            },
+            "description": "Create a new project"
+          }
+        },
+        {
+          "name": "GET /projects/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":id"
+              ]
+            },
+            "description": "Create a new project"
+          }
+        },
+        {
+          "name": "PATCH /projects/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":id"
+              ]
+            },
+            "description": "Create a new project"
+          }
+        },
+        {
+          "name": "GET /projects/:id/stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects/:id/stats",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                ":id",
+                "stats"
+              ]
+            },
+            "description": "Create a new project"
+          }
+        },
+        {
+          "name": "GET /projects/my-projects",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects/my-projects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects",
+                "my-projects"
+              ]
+            },
+            "description": "Create a new project"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reward-redemption",
+      "item": [
+        {
+          "name": "GET /rewards",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/rewards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rewards"
+              ]
+            },
+            "description": "Redeem an award using points"
+          }
+        },
+        {
+          "name": "GET /rewards/me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/rewards/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rewards",
+                "me"
+              ]
+            },
+            "description": "Redeem an award using points"
+          }
+        },
+        {
+          "name": "POST /rewards/redeem/:awardId",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/rewards/redeem/:awardId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rewards",
+                "redeem",
+                ":awardId"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Role",
+      "item": [
+        {
+          "name": "GET /roles",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/roles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "roles"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /roles",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/roles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "roles"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /roles",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/roles",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "roles"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /roles/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/roles/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "roles",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "GET /roles/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/roles/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "roles",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "PATCH /roles/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/roles/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "roles",
+                ":id"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Social-accounts",
+      "item": [
+        {
+          "name": "GET /social-accounts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-accounts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-accounts"
+              ]
+            },
+            "description": "Link a new social account"
+          }
+        },
+        {
+          "name": "POST /social-accounts",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-accounts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-accounts"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /social-accounts/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-accounts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-accounts",
+                ":id"
+              ]
+            },
+            "description": "Link a new social account"
+          }
+        },
+        {
+          "name": "GET /social-accounts/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-accounts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-accounts",
+                ":id"
+              ]
+            },
+            "description": "Link a new social account"
+          }
+        },
+        {
+          "name": "PATCH /social-accounts/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-accounts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-accounts",
+                ":id"
+              ]
+            },
+            "description": "Link a new social account"
+          }
+        },
+        {
+          "name": "POST /social-accounts/get-account-stats",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-accounts/get-account-stats",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-accounts",
+                "get-account-stats"
+              ]
+            },
+            "description": "Link a new social account"
+          }
+        },
+        {
+          "name": "GET /social-accounts/grouped",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-accounts/grouped",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-accounts",
+                "grouped"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /social-accounts/my-social-accounts",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-accounts/my-social-accounts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-accounts",
+                "my-social-accounts"
+              ]
+            },
+            "description": "Link a new social account"
+          }
+        },
+        {
+          "name": "GET /social-accounts/oauth/:platform/authorize",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-accounts/oauth/:platform/authorize",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-accounts",
+                "oauth",
+                ":platform",
+                "authorize"
+              ]
+            },
+            "description": "Link a new social account"
+          }
+        },
+        {
+          "name": "POST /social-accounts/oauth/:platform/callback",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-accounts/oauth/:platform/callback",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-accounts",
+                "oauth",
+                ":platform",
+                "callback"
+              ]
+            },
+            "description": "Link a new social account"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Social-post",
+      "item": [
+        {
+          "name": "GET /social-posts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-posts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-posts"
+              ]
+            },
+            "description": "Create new post"
+          }
+        },
+        {
+          "name": "POST /social-posts",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-posts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-posts"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /social-posts/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-posts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-posts",
+                ":id"
+              ]
+            },
+            "description": "Create new post"
+          }
+        },
+        {
+          "name": "GET /social-posts/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-posts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-posts",
+                ":id"
+              ]
+            },
+            "description": "Create new post"
+          }
+        },
+        {
+          "name": "PATCH /social-posts/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-posts/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-posts",
+                ":id"
+              ]
+            },
+            "description": "Create new post"
+          }
+        },
+        {
+          "name": "POST /social-posts/generate-only",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/social-posts/generate-only",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "social-posts",
+                "generate-only"
+              ]
+            },
+            "description": "Create new post"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sprint",
+      "item": [
+        {
+          "name": "GET /sprints",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sprints",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sprints"
+              ]
+            },
+            "description": "Create a new sprint"
+          }
+        },
+        {
+          "name": "POST /sprints",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sprints",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sprints"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /sprints/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sprints/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sprints",
+                ":id"
+              ]
+            },
+            "description": "Create a new sprint"
+          }
+        },
+        {
+          "name": "GET /sprints/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sprints/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sprints",
+                ":id"
+              ]
+            },
+            "description": "Create a new sprint"
+          }
+        },
+        {
+          "name": "PATCH /sprints/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sprints/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sprints",
+                ":id"
+              ]
+            },
+            "description": "Create a new sprint"
+          }
+        },
+        {
+          "name": "GET /sprints/:id/stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sprints/:id/stats",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sprints",
+                ":id",
+                "stats"
+              ]
+            },
+            "description": "Create a new sprint"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Subscription-plan",
+      "item": [
+        {
+          "name": "GET /subscription-plans",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscription-plans",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscription-plans"
+              ]
+            },
+            "description": "Create a new subscription plan"
+          }
+        },
+        {
+          "name": "POST /subscription-plans",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscription-plans",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscription-plans"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /subscription-plans/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscription-plans/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscription-plans",
+                ":id"
+              ]
+            },
+            "description": "Create a new subscription plan"
+          }
+        },
+        {
+          "name": "GET /subscription-plans/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscription-plans/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscription-plans",
+                ":id"
+              ]
+            },
+            "description": "Create a new subscription plan"
+          }
+        },
+        {
+          "name": "PATCH /subscription-plans/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscription-plans/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscription-plans",
+                ":id"
+              ]
+            },
+            "description": "Create a new subscription plan"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Subscription",
+      "item": [
+        {
+          "name": "POST /subscriptions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /subscriptions/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions",
+                ":id"
+              ]
+            },
+            "description": "Create a new subscription"
+          }
+        },
+        {
+          "name": "GET /subscriptions/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions",
+                ":id"
+              ]
+            },
+            "description": "Create a new subscription"
+          }
+        },
+        {
+          "name": "PATCH /subscriptions/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions",
+                ":id"
+              ]
+            },
+            "description": "Create a new subscription"
+          }
+        },
+        {
+          "name": "POST /subscriptions/activate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions/activate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions",
+                "activate"
+              ]
+            },
+            "description": "Create a new subscription"
+          }
+        },
+        {
+          "name": "GET /subscriptions/me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/subscriptions/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "subscriptions",
+                "me"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tags",
+      "item": [
+        {
+          "name": "GET /tags",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tags",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tags"
+              ]
+            },
+            "description": "Create new tag"
+          }
+        },
+        {
+          "name": "POST /tags",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tags",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tags"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /tags/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tags/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tags",
+                ":id"
+              ]
+            },
+            "description": "Create new tag"
+          }
+        },
+        {
+          "name": "GET /tags/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tags/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tags",
+                ":id"
+              ]
+            },
+            "description": "Create new tag"
+          }
+        },
+        {
+          "name": "PATCH /tags/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tags/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tags",
+                ":id"
+              ]
+            },
+            "description": "Create new tag"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Task",
+      "item": [
+        {
+          "name": "GET /tasks",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks"
+              ]
+            },
+            "description": "إنشاء مهمة جديدة"
+          }
+        },
+        {
+          "name": "POST /tasks",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /tasks/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                ":id"
+              ]
+            },
+            "description": "إنشاء مهمة جديدة"
+          }
+        },
+        {
+          "name": "GET /tasks/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                ":id"
+              ]
+            },
+            "description": "إنشاء مهمة جديدة"
+          }
+        },
+        {
+          "name": "PATCH /tasks/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                ":id"
+              ]
+            },
+            "description": "إنشاء مهمة جديدة"
+          }
+        },
+        {
+          "name": "PATCH /tasks/:id/assign/:assigneeId",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/:id/assign/:assigneeId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                ":id",
+                "assign",
+                ":assigneeId"
+              ]
+            },
+            "description": "إنشاء مهمة جديدة"
+          }
+        },
+        {
+          "name": "PATCH /tasks/:id/status/:status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/:id/status/:status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                ":id",
+                "status",
+                ":status"
+              ]
+            },
+            "description": "إنشاء مهمة جديدة"
+          }
+        },
+        {
+          "name": "GET /tasks/project/:projectId",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/project/:projectId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "project",
+                ":projectId"
+              ]
+            },
+            "description": "إنشاء مهمة جديدة"
+          }
+        },
+        {
+          "name": "GET /tasks/status/:status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tasks/status/:status",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "status",
+                ":status"
+              ]
+            },
+            "description": "إنشاء مهمة جديدة"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Usage-limit",
+      "item": [
+        {
+          "name": "GET /usage-limit",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/usage-limit",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "usage-limit"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /usage-limit/increment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/usage-limit/increment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "usage-limit",
+                "increment"
+              ]
+            },
+            "description": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "User-point",
+      "item": [
+        {
+          "name": "GET /user-points",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user-points",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user-points"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "POST /user-points",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user-points",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user-points"
+              ]
+            },
+            "description": "Get all user points"
+          }
+        },
+        {
+          "name": "GET /user-points/:userId",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user-points/:userId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user-points",
+                ":userId"
+              ]
+            },
+            "description": "Get all user points"
+          }
+        },
+        {
+          "name": "PATCH /user-points/:userId",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user-points/:userId",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user-points",
+                ":userId"
+              ]
+            },
+            "description": "Get all user points"
+          }
+        },
+        {
+          "name": "PATCH /user-points/:userId/add",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user-points/:userId/add",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user-points",
+                ":userId",
+                "add"
+              ]
+            },
+            "description": "Get all user points"
+          }
+        },
+        {
+          "name": "PATCH /user-points/:userId/deduct",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user-points/:userId/deduct",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user-points",
+                ":userId",
+                "deduct"
+              ]
+            },
+            "description": "Get all user points"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Web-content",
+      "item": [
+        {
+          "name": "GET /web-content",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/web-content",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "web-content"
+              ]
+            },
+            "description": "إنشاء محتوى ويب جديد"
+          }
+        },
+        {
+          "name": "POST /web-content",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/web-content",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "web-content"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "DELETE /web-content/:id",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/web-content/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "web-content",
+                ":id"
+              ]
+            },
+            "description": "إنشاء محتوى ويب جديد"
+          }
+        },
+        {
+          "name": "GET /web-content/:id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/web-content/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "web-content",
+                ":id"
+              ]
+            },
+            "description": "إنشاء محتوى ويب جديد"
+          }
+        },
+        {
+          "name": "PATCH /web-content/:id",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/web-content/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "web-content",
+                ":id"
+              ]
+            },
+            "description": "إنشاء محتوى ويب جديد"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}

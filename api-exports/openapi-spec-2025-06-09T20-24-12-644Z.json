@@ -1,0 +1,2832 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Infinity AI System API",
+    "description": "Complete API documentation for Infinity AI System Backend",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Development server"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "GET /",
+        "tags": [
+          "app.controller.ts"
+        ],
+        "operationId": "getHello",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/affiliate/commissions": {
+      "get": {
+        "summary": "GET /affiliate/commissions",
+        "tags": [
+          "Affiliate / Commissions"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "Get user commissions",
+        "tags": [
+          "Affiliate / Commissions"
+        ],
+        "operationId": "UseGuards",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/affiliate/me": {
+      "get": {
+        "summary": "GET /affiliate/me",
+        "tags": [
+          "Affiliate"
+        ],
+        "operationId": "ApiOkResponse",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/affiliate/referrals": {
+      "get": {
+        "summary": "GET /affiliate/referrals",
+        "tags": [
+          "Affiliate"
+        ],
+        "operationId": "ApiOkResponse",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/affiliate/referrals/earnings": {
+      "get": {
+        "summary": "GET /affiliate/referrals/earnings",
+        "tags": [
+          "Affiliate"
+        ],
+        "operationId": "getEarningsSummary",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/affiliate/request": {
+      "post": {
+        "summary": "Get current user affiliate info",
+        "tags": [
+          "Affiliate"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/ai-generator/generate": {
+      "post": {
+        "summary": "POST /ai-generator/generate",
+        "tags": [
+          "AI Generator"
+        ],
+        "operationId": "UseGuards",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/ai-provider-config": {
+      "get": {
+        "summary": "GET /ai-provider-config",
+        "tags": [
+          "AI Provider Config"
+        ],
+        "operationId": "findAll",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /ai-provider-config",
+        "tags": [
+          "AI Provider Config"
+        ],
+        "operationId": "create",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/ai-provider-config/:id": {
+      "delete": {
+        "summary": "DELETE /ai-provider-config/:id",
+        "tags": [
+          "AI Provider Config"
+        ],
+        "operationId": "remove",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "GET /ai-provider-config/:id",
+        "tags": [
+          "AI Provider Config"
+        ],
+        "operationId": "findOne",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "PATCH /ai-provider-config/:id",
+        "tags": [
+          "AI Provider Config"
+        ],
+        "operationId": "update",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/ai-provider-config/active": {
+      "get": {
+        "summary": "GET /ai-provider-config/active",
+        "tags": [
+          "AI Provider Config"
+        ],
+        "operationId": "getActiveProvider",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/analytics/dashboard/:companyId": {
+      "get": {
+        "summary": "GET /analytics/dashboard/:companyId",
+        "tags": [
+          "analytics"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/analytics/marketing/:companyId": {
+      "get": {
+        "summary": "Get company dashboard analytics",
+        "tags": [
+          "analytics"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/analytics/project/:projectId": {
+      "get": {
+        "summary": "Get company dashboard analytics",
+        "tags": [
+          "analytics"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/analytics/user": {
+      "get": {
+        "summary": "Get company dashboard analytics",
+        "tags": [
+          "analytics"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/auth/csrf-token": {
+      "get": {
+        "summary": "Register a new company with owner",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "getCsrfToken",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Register a new company with owner",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "login",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "summary": "Register a new company with owner",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "logout",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "summary": "Register a new company with owner",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "UseGuards",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "summary": "POST /auth/register",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "register",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/auth/register-company": {
+      "post": {
+        "summary": "POST /auth/register-company",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "HttpCode",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/auth/register-from-invitation": {
+      "post": {
+        "summary": "Register a new company with owner",
+        "tags": [
+          "auth"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/awards": {
+      "get": {
+        "summary": "Create a new award",
+        "tags": [
+          "Awards"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /awards",
+        "tags": [
+          "Awards"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/awards/:id": {
+      "delete": {
+        "summary": "Create a new award",
+        "tags": [
+          "Awards"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Create a new award",
+        "tags": [
+          "Awards"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Create a new award",
+        "tags": [
+          "Awards"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/awards/points": {
+      "get": {
+        "summary": "Create a new award",
+        "tags": [
+          "Awards"
+        ],
+        "operationId": "getUserPoints",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/awards/points/history": {
+      "get": {
+        "summary": "Create a new award",
+        "tags": [
+          "Awards"
+        ],
+        "operationId": "getUserPointHistory",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/awards/rewards/redeem": {
+      "post": {
+        "summary": "Create a new award",
+        "tags": [
+          "Awards"
+        ],
+        "operationId": "redeemAward",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/awards/rewards/redemptions": {
+      "get": {
+        "summary": "Create a new award",
+        "tags": [
+          "Awards"
+        ],
+        "operationId": "getUserRedemptions",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/campaign-performance": {
+      "get": {
+        "summary": "Create performance metric",
+        "tags": [
+          "Campaign Performance"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /campaign-performance",
+        "tags": [
+          "Campaign Performance"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/campaign-performance/:id": {
+      "delete": {
+        "summary": "Create performance metric",
+        "tags": [
+          "Campaign Performance"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Create performance metric",
+        "tags": [
+          "Campaign Performance"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Create performance metric",
+        "tags": [
+          "Campaign Performance"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/campaign-posts": {
+      "get": {
+        "summary": "Create a campaign post",
+        "tags": [
+          "Campaign Posts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /campaign-posts",
+        "tags": [
+          "Campaign Posts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/campaign-posts/:id": {
+      "delete": {
+        "summary": "Create a campaign post",
+        "tags": [
+          "Campaign Posts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Create a campaign post",
+        "tags": [
+          "Campaign Posts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Create a campaign post",
+        "tags": [
+          "Campaign Posts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "summary": "Create new category",
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /categories",
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/categories/:id": {
+      "delete": {
+        "summary": "Create new category",
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Create new category",
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Create new category",
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/client-notes": {
+      "post": {
+        "summary": "POST /client-notes",
+        "tags": [
+          "Client Notes"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/client-notes/:id": {
+      "delete": {
+        "summary": "إضافة ملاحظة جديدة لعميل",
+        "tags": [
+          "Client Notes"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "إضافة ملاحظة جديدة لعميل",
+        "tags": [
+          "Client Notes"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "إضافة ملاحظة جديدة لعميل",
+        "tags": [
+          "Client Notes"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/client-notes/client/:clientId": {
+      "get": {
+        "summary": "إضافة ملاحظة جديدة لعميل",
+        "tags": [
+          "Client Notes"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/clients": {
+      "get": {
+        "summary": "إنشاء عميل جديد",
+        "tags": [
+          "Clients"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /clients",
+        "tags": [
+          "Clients"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/clients/:id": {
+      "delete": {
+        "summary": "إنشاء عميل جديد",
+        "tags": [
+          "Clients"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "إنشاء عميل جديد",
+        "tags": [
+          "Clients"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "إنشاء عميل جديد",
+        "tags": [
+          "Clients"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/clients/:id/assign-subscription": {
+      "patch": {
+        "summary": "إنشاء عميل جديد",
+        "tags": [
+          "Clients"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/companies/:id": {
+      "get": {
+        "summary": "GET /companies/:id",
+        "tags": [
+          "Companies"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "summary": "Get company by ID including settings",
+        "tags": [
+          "Companies"
+        ],
+        "operationId": "HttpCode",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/companies/:id/setting": {
+      "get": {
+        "summary": "GET /companies/:id/setting",
+        "tags": [
+          "Company Settings"
+        ],
+        "operationId": "HttpCode",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "summary": "Get company settings by company ID",
+        "tags": [
+          "Company Settings"
+        ],
+        "operationId": "HttpCode",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/company-members": {
+      "post": {
+        "summary": "POST /company-members",
+        "tags": [
+          "Company Members"
+        ],
+        "operationId": "create",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/company-members/:companyId": {
+      "get": {
+        "summary": "GET /company-members/:companyId",
+        "tags": [
+          "Company Members"
+        ],
+        "operationId": "findAll",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/company-members/:id": {
+      "get": {
+        "summary": "GET /company-members/:id",
+        "tags": [
+          "Company Members"
+        ],
+        "operationId": "findOne",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "PATCH /company-members/:id",
+        "tags": [
+          "Company Members"
+        ],
+        "operationId": "update",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/company-members/:memberId": {
+      "delete": {
+        "summary": "DELETE /company-members/:memberId",
+        "tags": [
+          "Company Members"
+        ],
+        "operationId": "remove",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/company-members/:memberId/role": {
+      "patch": {
+        "summary": "PATCH /company-members/:memberId/role",
+        "tags": [
+          "Company Members"
+        ],
+        "operationId": "updateRole",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/company-members/:memberId/toggle-status": {
+      "patch": {
+        "summary": "PATCH /company-members/:memberId/toggle-status",
+        "tags": [
+          "Company Members"
+        ],
+        "operationId": "toggleStatus",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/company-members/add-member": {
+      "post": {
+        "summary": "POST /company-members/add-member",
+        "tags": [
+          "Company Members"
+        ],
+        "operationId": "addMember",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/content-schedule": {
+      "get": {
+        "summary": "Create content schedule",
+        "tags": [
+          "Content Schedule"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /content-schedule",
+        "tags": [
+          "Content Schedule"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/content-schedule/:id": {
+      "delete": {
+        "summary": "Create content schedule",
+        "tags": [
+          "Content Schedule"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Create content schedule",
+        "tags": [
+          "Content Schedule"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Create content schedule",
+        "tags": [
+          "Content Schedule"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/content-scheduler": {
+      "get": {
+        "summary": "تشغيل الجدولة يدويًا (نشر المحتوى المجدول)",
+        "tags": [
+          "Content Scheduler"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/content-scheduler/check": {
+      "post": {
+        "summary": "تشغيل الجدولة يدويًا (نشر المحتوى المجدول)",
+        "tags": [
+          "Content Scheduler"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/content-scheduler/manual-publish": {
+      "post": {
+        "summary": "تشغيل الجدولة يدويًا (نشر المحتوى المجدول)",
+        "tags": [
+          "Content Scheduler"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/content-scheduler/run-now": {
+      "post": {
+        "summary": "POST /content-scheduler/run-now",
+        "tags": [
+          "Content Scheduler"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/countries": {
+      "get": {
+        "summary": "GET /countries",
+        "tags": [
+          "Countries"
+        ],
+        "operationId": "findAll",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/facebook/auth-url": {
+      "get": {
+        "summary": "GET /facebook/auth-url",
+        "tags": [
+          "Facebook Auth"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/facebook/callback": {
+      "get": {
+        "summary": "Get Facebook OAuth URL",
+        "tags": [
+          "Facebook Auth"
+        ],
+        "operationId": "UsePipes",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/file-upload": {
+      "get": {
+        "summary": "Upload a new file",
+        "tags": [
+          "FileUpload"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /file-upload",
+        "tags": [
+          "FileUpload"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/file-upload/:id": {
+      "delete": {
+        "summary": "Upload a new file",
+        "tags": [
+          "FileUpload"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Upload a new file",
+        "tags": [
+          "FileUpload"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Upload a new file",
+        "tags": [
+          "FileUpload"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/instagram/auth-url": {
+      "get": {
+        "summary": "GET /instagram/auth-url",
+        "tags": [
+          "Instagram"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/instagram/callback": {
+      "get": {
+        "summary": "Generate Instagram OAuth URL",
+        "tags": [
+          "Instagram"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/interactions": {
+      "get": {
+        "summary": "Create a new interaction",
+        "tags": [
+          "Interactions"
+        ],
+        "operationId": "findAll",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new interaction",
+        "tags": [
+          "Interactions"
+        ],
+        "operationId": "UseGuards",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/interactions/:id": {
+      "delete": {
+        "summary": "Create a new interaction",
+        "tags": [
+          "Interactions"
+        ],
+        "operationId": "remove",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Create a new interaction",
+        "tags": [
+          "Interactions"
+        ],
+        "operationId": "findOne",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Create a new interaction",
+        "tags": [
+          "Interactions"
+        ],
+        "operationId": "update",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/invitations": {
+      "post": {
+        "summary": "POST /invitations",
+        "tags": [
+          "Invitations"
+        ],
+        "operationId": "HttpCode",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/invitations/:token": {
+      "get": {
+        "summary": "Create new company invitation",
+        "tags": [
+          "Invitations"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/invitations/:token/accept": {
+      "post": {
+        "summary": "Create new company invitation",
+        "tags": [
+          "Invitations"
+        ],
+        "operationId": "HttpCode",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/invitations/:token/cancel": {
+      "post": {
+        "summary": "Create new company invitation",
+        "tags": [
+          "Invitations"
+        ],
+        "operationId": "HttpCode",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/leads": {
+      "get": {
+        "summary": "إنشاء lead جديد",
+        "tags": [
+          "Leads"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /leads",
+        "tags": [
+          "Leads"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/leads/:id": {
+      "delete": {
+        "summary": "إنشاء lead جديد",
+        "tags": [
+          "Leads"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "إنشاء lead جديد",
+        "tags": [
+          "Leads"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "إنشاء lead جديد",
+        "tags": [
+          "Leads"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/linkedin/auth-url": {
+      "get": {
+        "summary": "GET /linkedin/auth-url",
+        "tags": [
+          "LinkedIn"
+        ],
+        "operationId": "UseGuards",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/linkedin/callback": {
+      "get": {
+        "summary": "Get LinkedIn auth URL",
+        "tags": [
+          "LinkedIn"
+        ],
+        "operationId": "HttpCode",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/linkedin/publish": {
+      "post": {
+        "summary": "Get LinkedIn auth URL",
+        "tags": [
+          "LinkedIn"
+        ],
+        "operationId": "UseGuards",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/marketing-campaigns": {
+      "get": {
+        "summary": "Create a new marketing campaign",
+        "tags": [
+          "Marketing Campaigns"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /marketing-campaigns",
+        "tags": [
+          "Marketing Campaigns"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/marketing-campaigns/:id": {
+      "delete": {
+        "summary": "Create a new marketing campaign",
+        "tags": [
+          "Marketing Campaigns"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Create a new marketing campaign",
+        "tags": [
+          "Marketing Campaigns"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Create a new marketing campaign",
+        "tags": [
+          "Marketing Campaigns"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/me": {
+      "get": {
+        "summary": "GET /me",
+        "tags": [
+          "me"
+        ],
+        "operationId": "ApiBearerAuth",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/me/affiliates/referrals": {
+      "get": {
+        "summary": "GET /me/affiliates/referrals",
+        "tags": [
+          "me"
+        ],
+        "operationId": "ApiBearerAuth",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/notifications": {
+      "post": {
+        "summary": "POST /notifications",
+        "tags": [
+          "Notifications"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/notifications/:id": {
+      "delete": {
+        "summary": "Create a new notification",
+        "tags": [
+          "Notifications"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/notifications/:id/read": {
+      "patch": {
+        "summary": "Create a new notification",
+        "tags": [
+          "Notifications"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/notifications/client/:clientId": {
+      "get": {
+        "summary": "Create a new notification",
+        "tags": [
+          "Notifications"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/notifications/user/:userId": {
+      "get": {
+        "summary": "Create a new notification",
+        "tags": [
+          "Notifications"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/notifications/user/:userId/unread": {
+      "get": {
+        "summary": "Create a new notification",
+        "tags": [
+          "Notifications"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/payments/paddle/create-checkout": {
+      "post": {
+        "summary": "POST /payments/paddle/create-checkout",
+        "tags": [
+          "payments"
+        ],
+        "operationId": "createPaddleCheckout",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/payments/webhooks/paddle": {
+      "post": {
+        "summary": "POST /payments/webhooks/paddle",
+        "tags": [
+          "payments"
+        ],
+        "operationId": "handlePaddleWebhook",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/pipeline-stages": {
+      "get": {
+        "summary": "إنشاء مرحلة جديدة ضمن المسار",
+        "tags": [
+          "Pipeline Stages"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /pipeline-stages",
+        "tags": [
+          "Pipeline Stages"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/pipeline-stages/:id": {
+      "delete": {
+        "summary": "إنشاء مرحلة جديدة ضمن المسار",
+        "tags": [
+          "Pipeline Stages"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "إنشاء مرحلة جديدة ضمن المسار",
+        "tags": [
+          "Pipeline Stages"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "إنشاء مرحلة جديدة ضمن المسار",
+        "tags": [
+          "Pipeline Stages"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/pipeline-stages/reorder": {
+      "post": {
+        "summary": "إنشاء مرحلة جديدة ضمن المسار",
+        "tags": [
+          "Pipeline Stages"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/point-events": {
+      "get": {
+        "summary": "Create a new point event",
+        "tags": [
+          "Point Events"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /point-events",
+        "tags": [
+          "Point Events"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/point-events/:id": {
+      "delete": {
+        "summary": "Create a new point event",
+        "tags": [
+          "Point Events"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Create a new point event",
+        "tags": [
+          "Point Events"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Create a new point event",
+        "tags": [
+          "Point Events"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "summary": "Create a new project",
+        "tags": [
+          "projects"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /projects",
+        "tags": [
+          "projects"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/projects/:id": {
+      "delete": {
+        "summary": "Create a new project",
+        "tags": [
+          "projects"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Create a new project",
+        "tags": [
+          "projects"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Create a new project",
+        "tags": [
+          "projects"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/projects/:id/stats": {
+      "get": {
+        "summary": "Create a new project",
+        "tags": [
+          "projects"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/projects/my-projects": {
+      "get": {
+        "summary": "Create a new project",
+        "tags": [
+          "projects"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/rewards": {
+      "get": {
+        "summary": "Redeem an award using points",
+        "tags": [
+          "Reward Redemptions"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/rewards/me": {
+      "get": {
+        "summary": "Redeem an award using points",
+        "tags": [
+          "Reward Redemptions"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/rewards/redeem/:awardId": {
+      "post": {
+        "summary": "POST /rewards/redeem/:awardId",
+        "tags": [
+          "Reward Redemptions"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/roles": {
+      "get": {
+        "summary": "GET /roles",
+        "tags": [
+          "role"
+        ],
+        "operationId": "findAll",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /roles",
+        "tags": [
+          "role"
+        ],
+        "operationId": "create",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/roles/:id": {
+      "delete": {
+        "summary": "DELETE /roles/:id",
+        "tags": [
+          "role"
+        ],
+        "operationId": "remove",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "GET /roles/:id",
+        "tags": [
+          "role"
+        ],
+        "operationId": "findOne",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "PATCH /roles/:id",
+        "tags": [
+          "role"
+        ],
+        "operationId": "update",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/social-accounts": {
+      "get": {
+        "summary": "Link a new social account",
+        "tags": [
+          "Social Accounts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /social-accounts",
+        "tags": [
+          "Social Accounts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/social-accounts/:id": {
+      "delete": {
+        "summary": "Link a new social account",
+        "tags": [
+          "Social Accounts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Link a new social account",
+        "tags": [
+          "Social Accounts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Link a new social account",
+        "tags": [
+          "Social Accounts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/social-accounts/get-account-stats": {
+      "post": {
+        "summary": "Link a new social account",
+        "tags": [
+          "Social Accounts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/social-accounts/grouped": {
+      "get": {
+        "summary": "GET /social-accounts/grouped",
+        "tags": [
+          "Social Accounts"
+        ],
+        "operationId": "UseGuards",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/social-accounts/my-social-accounts": {
+      "post": {
+        "summary": "Link a new social account",
+        "tags": [
+          "Social Accounts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/social-accounts/oauth/:platform/authorize": {
+      "get": {
+        "summary": "Link a new social account",
+        "tags": [
+          "Social Accounts"
+        ],
+        "operationId": "getOAuthUrl",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/social-accounts/oauth/:platform/callback": {
+      "post": {
+        "summary": "Link a new social account",
+        "tags": [
+          "Social Accounts"
+        ],
+        "operationId": "handleOAuthCallback",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/social-posts": {
+      "get": {
+        "summary": "Create new post",
+        "tags": [
+          "Social Posts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /social-posts",
+        "tags": [
+          "Social Posts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/social-posts/:id": {
+      "delete": {
+        "summary": "Create new post",
+        "tags": [
+          "Social Posts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Create new post",
+        "tags": [
+          "Social Posts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Create new post",
+        "tags": [
+          "Social Posts"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/social-posts/generate-only": {
+      "post": {
+        "summary": "Create new post",
+        "tags": [
+          "Social Posts"
+        ],
+        "operationId": "UseGuards",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/sprints": {
+      "get": {
+        "summary": "Create a new sprint",
+        "tags": [
+          "sprints"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /sprints",
+        "tags": [
+          "sprints"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/sprints/:id": {
+      "delete": {
+        "summary": "Create a new sprint",
+        "tags": [
+          "sprints"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Create a new sprint",
+        "tags": [
+          "sprints"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Create a new sprint",
+        "tags": [
+          "sprints"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/sprints/:id/stats": {
+      "get": {
+        "summary": "Create a new sprint",
+        "tags": [
+          "sprints"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/subscription-plans": {
+      "get": {
+        "summary": "Create a new subscription plan",
+        "tags": [
+          "Subscription Plans"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /subscription-plans",
+        "tags": [
+          "Subscription Plans"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/subscription-plans/:id": {
+      "delete": {
+        "summary": "Create a new subscription plan",
+        "tags": [
+          "Subscription Plans"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Create a new subscription plan",
+        "tags": [
+          "Subscription Plans"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Create a new subscription plan",
+        "tags": [
+          "Subscription Plans"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/subscriptions": {
+      "post": {
+        "summary": "POST /subscriptions",
+        "tags": [
+          "Subscriptions"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/subscriptions/:id": {
+      "delete": {
+        "summary": "Create a new subscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "operationId": "UseGuards",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Create a new subscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Create a new subscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "operationId": "UseGuards",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/subscriptions/activate": {
+      "post": {
+        "summary": "Create a new subscription",
+        "tags": [
+          "Subscriptions"
+        ],
+        "operationId": "UseGuards",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/subscriptions/me": {
+      "get": {
+        "summary": "GET /subscriptions/me",
+        "tags": [
+          "Subscriptions"
+        ],
+        "operationId": "getMySubscription",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/tags": {
+      "get": {
+        "summary": "Create new tag",
+        "tags": [
+          "Tags"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /tags",
+        "tags": [
+          "Tags"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/tags/:id": {
+      "delete": {
+        "summary": "Create new tag",
+        "tags": [
+          "Tags"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "Create new tag",
+        "tags": [
+          "Tags"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Create new tag",
+        "tags": [
+          "Tags"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/tasks": {
+      "get": {
+        "summary": "إنشاء مهمة جديدة",
+        "tags": [
+          "المهام"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /tasks",
+        "tags": [
+          "المهام"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/tasks/:id": {
+      "delete": {
+        "summary": "إنشاء مهمة جديدة",
+        "tags": [
+          "المهام"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "إنشاء مهمة جديدة",
+        "tags": [
+          "المهام"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "إنشاء مهمة جديدة",
+        "tags": [
+          "المهام"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/tasks/:id/assign/:assigneeId": {
+      "patch": {
+        "summary": "إنشاء مهمة جديدة",
+        "tags": [
+          "المهام"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/tasks/:id/status/:status": {
+      "patch": {
+        "summary": "إنشاء مهمة جديدة",
+        "tags": [
+          "المهام"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/tasks/project/:projectId": {
+      "get": {
+        "summary": "إنشاء مهمة جديدة",
+        "tags": [
+          "المهام"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/tasks/status/:status": {
+      "get": {
+        "summary": "إنشاء مهمة جديدة",
+        "tags": [
+          "المهام"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/twitter/auth-url": {
+      "get": {
+        "summary": "GET /twitter/auth-url",
+        "tags": [
+          "Social Providers – Twitter"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/twitter/callback": {
+      "get": {
+        "summary": "Get Twitter OAuth URL",
+        "tags": [
+          "Social Providers – Twitter"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/twitter/publish": {
+      "post": {
+        "summary": "Get Twitter OAuth URL",
+        "tags": [
+          "Social Providers – Twitter"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/usage-limit": {
+      "get": {
+        "summary": "GET /usage-limit",
+        "tags": [
+          "usage-limit"
+        ],
+        "operationId": "getLimits",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/usage-limit/increment": {
+      "post": {
+        "summary": "POST /usage-limit/increment",
+        "tags": [
+          "usage-limit"
+        ],
+        "operationId": "incrementUsage",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/user-points": {
+      "get": {
+        "summary": "GET /user-points",
+        "tags": [
+          "User Points"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "Get all user points",
+        "tags": [
+          "User Points"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/user-points/:userId": {
+      "get": {
+        "summary": "Get all user points",
+        "tags": [
+          "User Points"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Get all user points",
+        "tags": [
+          "User Points"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/user-points/:userId/add": {
+      "patch": {
+        "summary": "Get all user points",
+        "tags": [
+          "User Points"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/user-points/:userId/deduct": {
+      "patch": {
+        "summary": "Get all user points",
+        "tags": [
+          "User Points"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/web-content": {
+      "get": {
+        "summary": "إنشاء محتوى ويب جديد",
+        "tags": [
+          "Web Content"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "summary": "POST /web-content",
+        "tags": [
+          "Web Content"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/web-content/:id": {
+      "delete": {
+        "summary": "إنشاء محتوى ويب جديد",
+        "tags": [
+          "Web Content"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "get": {
+        "summary": "إنشاء محتوى ويب جديد",
+        "tags": [
+          "Web Content"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "summary": "إنشاء محتوى ويب جديد",
+        "tags": [
+          "Web Content"
+        ],
+        "operationId": "ApiOperation",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  }
+}
